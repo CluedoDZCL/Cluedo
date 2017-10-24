@@ -9,8 +9,7 @@ public class CharCard extends Card {
 		//add to array
 	}
 	
-	public void add(Card item){		
-		charCards.add(item);
+	public void add(Card card){		
+		charCards.add(card);
 	}
-
 }

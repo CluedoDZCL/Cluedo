@@ -10,8 +10,8 @@ public class WeaponCard extends Card{
 		
 	}
 	
-	public void add(Card item){		
-		weaponCards.add(item);
+	public void add(Card card){		
+		weaponCards.add(card);
 	}
 
 }

@@ -12,6 +12,4 @@ public class Card extends Board {
 	public String getType() {
 		return type;
 	}
-	
-
 }

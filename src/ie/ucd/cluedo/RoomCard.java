@@ -10,8 +10,8 @@ public class RoomCard extends Card {
 		
 	}
 	
-	public void add(Card item){		
-		roomCards.add(item);
+	public void add(Card card){		
+		roomCards.add(card);
 	}
 
 }
