@@ -68,7 +68,7 @@ public class Board {
 		poison.add(poison); 
 	}
 	
-	public void createPawns{
+	public void createPawns(){
 		Pawn candlestick_pawn = new WeaponPawn("candlestick_pawn", 1);
 		Pawn knife_pawn = new WeaponPawn("knife_pawn", 2);
 		Pawn pipe_pawn = new WeaponPawn("lead pipe_pawn", 3);
@@ -89,12 +89,19 @@ public class Board {
 
 	public void Mystery(){
 		//remove card each array
-		int randomChar = randomGenerator.nextInt(7);
-		int randomRoom = randomGenerator.nextInt(10);
-		int randomWeapon = randomGenerator.nextInt(7);
-		
+		Random rand = new Random();		
+		int randomChar = rand.nextInt(7);
+		int randomRoom = rand.nextInt(10);
+		int randomWeapon = rand.nextInt(7);		
 		
 		//add each card mystery array
+		mystery.add(charCards.get(randomChar));
+		mystery.add(roomCards.get(randomRoom));
+		mystery.add(weaponCards.get(randomWeapon));
+		
+		charCards.remove(randomChar);
+		roomCards.remove(randomRoom);
+		weaponCards.remove(randomWeapon);
 		
 	}
 }
