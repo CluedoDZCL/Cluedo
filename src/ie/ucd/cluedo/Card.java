@@ -1,6 +1,7 @@
 package ie.ucd.cluedo;
 
-public class Card {
+public class Card extends Board {
+
 	public String name;
 	public String type;
 	

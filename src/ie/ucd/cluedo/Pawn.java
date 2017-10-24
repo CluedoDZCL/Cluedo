@@ -4,7 +4,7 @@ public class Pawn {
 	public int position;
 	public String name;
 	public String type;
-	
+		
 	public int getPosition() {
 		return position;
 	}
