@@ -65,10 +65,10 @@ public class Board {
 		WeaponCard rope = new WeaponCard("rope");
 		rope.add(rope);
 		WeaponCard poison = new WeaponCard("poison");
-<<<<<<< HEAD
-		poison.add(poison);
-=======
-		
+		poison.add(poison); 
+	}
+	
+	public void createPawns{
 		Pawn candlestick_pawn = new WeaponPawn("candlestick_pawn", 1);
 		Pawn knife_pawn = new WeaponPawn("knife_pawn", 2);
 		Pawn pipe_pawn = new WeaponPawn("lead pipe_pawn", 3);
@@ -82,7 +82,7 @@ public class Board {
 		Pawn green_Pawn = new CharPawn("Reverend Green_Pawn",4);
 		Pawn mustard_Pawn = new CharPawn("Colonel Mustard_Pawn",5);
 		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",6);
->>>>>>> 1fa7f2fdcf94ce1cd3ef73d3d5b1c2486a1c1b24
+
 	}
 	
 	
