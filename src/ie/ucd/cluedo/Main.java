@@ -10,8 +10,9 @@ public class Main {
 		cluedo.CreateCards();
 			
 		//Create Pawns
-	
-	
+		cluedo.createPawns();
+	    //Create player
+	    
 
 	
 	 
