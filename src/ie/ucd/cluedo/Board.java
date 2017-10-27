@@ -11,12 +11,14 @@ public class Board {
 	protected List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
+	protected List<Player> users;
 		
 	public Board() {
 		charCards = new ArrayList<Card>();		
 		weaponCards = new ArrayList<Card>();	
 		roomCards = new ArrayList<Card>();
 		mystery = new ArrayList<Card>();
+		ArrayList users=new ArrayList<Player>();
 	}
 	
 	public void CreateCards() {
@@ -90,14 +92,13 @@ public class Board {
 		Scanner in=new Scanner(System.in);
 		int number=in.nextInt();
 		for (int i=0;i<number;i++){
-			Player A=new Player();
+			Player A = new Player();
+			users.add(A);//so that the players can be called by users[i];
 		}
 		//assign the card to each person
 	}
 	
-	
-
-	public void Mystery(){
+    public void Mystery(){
 		//remove card each array
 		Random rand = new Random();		
 		int randomChar = rand.nextInt(7);
