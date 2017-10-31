@@ -5,17 +5,21 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Game {
 	protected List<Card> charCards;
 	protected List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
+	protected List<Player> Users;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
 		weaponCards = new ArrayList<Card>();	
 		roomCards = new ArrayList<Card>();
 		mystery = new ArrayList<Card>();
+		Users=new ArrayList<Player>();
 	}
 	
 	public List<Card> getCharCards(){
@@ -92,15 +96,17 @@ public class Game {
 	}
 	
 	public void Creatplayer(){
-		System.out.println("How many of players do you have?");
-		Scanner in=new Scanner(System.in);
-		int number=in.nextInt();
-		for (int i=0;i<number;i++){
-			Player A = new Player();
-			users.add(A);//so that the players can be called by users[i];
-		}
-		//assign the card to each person
+	 System.out.println("How many players do you have(should between 3 and 6)");
+	 Scanner in=new Scanner(System.in);
+	 int number=in.nextInt();
+	 for(int i=0;i<number;i++){
+		 Player A=new Player();
+		 Users.add(A);
+	 }
+	
+	
 	}
+	
 	
 	public void Mystery(){
 		//randomly select card
