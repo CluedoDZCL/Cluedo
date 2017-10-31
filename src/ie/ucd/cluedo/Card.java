@@ -1,6 +1,6 @@
 package ie.ucd.cluedo;
 
-public class Card extends Board {
+public class Card extends Game {
 
 	public String name;
 	public String type;
@@ -12,4 +12,5 @@ public class Card extends Board {
 	public String getType() {
 		return type;
 	}
+
 }

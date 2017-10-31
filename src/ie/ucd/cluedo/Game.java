@@ -1,76 +1,78 @@
 package ie.ucd.cluedo;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Board {
-	
+public class Game {
 	protected List<Card> charCards;
 	protected List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
-	protected List<Player> users;
 		
-	public Board() {
+	public Game() {
 		charCards = new ArrayList<Card>();		
 		weaponCards = new ArrayList<Card>();	
 		roomCards = new ArrayList<Card>();
 		mystery = new ArrayList<Card>();
-		ArrayList users=new ArrayList<Player>();
+	}
+	
+	public List<Card> getCharCards(){
+		return charCards;
 	}
 	
 	public void CreateCards() {
 		//create character cards
 		CharCard scarlett = new CharCard("Miss Scarlett");
-		scarlett.add(scarlett);
 		CharCard plum = new CharCard("Professor Plum");
-		plum.add(plum);
 		CharCard peacock = new CharCard("Mrs. Peacock");
-		peacock.add(peacock);
 		CharCard green = new CharCard("Reverend Green");
-		green.add(green);
 		CharCard mustard = new CharCard("Colonel Mustard");
-		mustard.add(mustard);
 		CharCard white = new CharCard("Mrs White");
-		white.add(white);
+		charCards.add(scarlett);
+		charCards.add(plum);
+		charCards.add(peacock);
+		charCards.add(green);
+		charCards.add(mustard);		
+		charCards.add(white);
 		
 		//create room cards
 		RoomCard kitchen = new RoomCard("Kitchen");
-		kitchen.add(kitchen);
 		RoomCard ballroom = new RoomCard("Ballroom");
-		ballroom.add(ballroom);
 		RoomCard conservatory = new RoomCard("Conservatory");
-		conservatory.add(conservatory);
 		RoomCard dining = new RoomCard("Dining Room");
-		dining.add(dining);
 		RoomCard lounge = new RoomCard("Lounge");
-		lounge.add(lounge);
 		RoomCard hall = new RoomCard("Hall");
-		hall.add(hall);
 		RoomCard study = new RoomCard("Study");
-		study.add(study);
 		RoomCard billiard = new RoomCard("Billiard Room");
-		billiard.add(billiard);
 		RoomCard library = new RoomCard("Library");
-		library.add(library);
+		roomCards.add(kitchen);
+		roomCards.add(ballroom);
+		roomCards.add(conservatory);
+		roomCards.add(dining);
+		roomCards.add(lounge);
+		roomCards.add(hall);
+		roomCards.add(study);
+		roomCards.add(billiard);		
+		roomCards.add(library);
 		
 		//create weapon cards
 		WeaponCard candlestick = new WeaponCard("candlestick");
-		candlestick.add(candlestick);
 		WeaponCard knife = new WeaponCard("knife");
-		knife.add(knife);
 		WeaponCard pipe = new WeaponCard("lead pipe");
-		pipe.add(pipe);
 		WeaponCard revolver = new  WeaponCard("revolver");
-		revolver.add(revolver);
 		WeaponCard rope = new WeaponCard("rope");
-		rope.add(rope);
 		WeaponCard poison = new WeaponCard("poison");
-		poison.add(poison); 
+		weaponCards.add(candlestick);
+		weaponCards.add(knife);
+		weaponCards.add(pipe);
+		weaponCards.add(revolver);
+		weaponCards.add(rope);		
+		weaponCards.add(poison); 
 	}
+	
+	
 	
 	public void createPawns(){
 		Pawn candlestick_pawn = new WeaponPawn("candlestick_pawn", 1);
@@ -93,33 +95,43 @@ public class Board {
 		Scanner in=new Scanner(System.in);
 		int number=in.nextInt();
 		for (int i=0;i<number;i++){
-			Player A = new Player();
-			users.add(A);//so that the players can be called by users[i];
+			Player A=new Player();
 		}
 		//assign the card to each person
 	}
 	
-    public void Mystery(){
-		//remove card each array
+	public void Mystery(){
+		//randomly select card
 		Random rand = new Random();		
-		int randomChar = rand.nextInt(7);
-		int randomRoom = rand.nextInt(10);
-		int randomWeapon = rand.nextInt(7);		
+		int randomChar = rand.nextInt(6);
+		int randomRoom = rand.nextInt(9);
+		int randomWeapon = rand.nextInt(6);		
 		
 		//add each card mystery array
 		mystery.add(charCards.get(randomChar));
 		mystery.add(roomCards.get(randomRoom));
 		mystery.add(weaponCards.get(randomWeapon));
 		
+		//remove card each array
 		charCards.remove(randomChar);
 		roomCards.remove(randomRoom);
 		weaponCards.remove(randomWeapon);
-		
 	}
-=======
-public class Board extends Game{
 	
-	//implement the board design
-
->>>>>>> 51e948c8eb97e72cf4f96b6783eb03bd0783bcf1
+	public void distributeCards() {
+		for (int i = 0; i<19; i+=1) {
+			//cycle through player arrays and add
+			if (i<6) {
+				
+			}else if (i<11) {
+				
+			}else if (i<19) {
+				
+			}else {
+				System.out.println("Error card distribution");
+			}
+		}
+	}
+	
+	
 }
