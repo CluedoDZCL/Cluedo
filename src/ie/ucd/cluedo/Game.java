@@ -90,12 +90,14 @@ public class Game {
 		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",6);
 
 	}
+	
 	public void Creatplayer(){
 		System.out.println("How many of players do you have?");
 		Scanner in=new Scanner(System.in);
 		int number=in.nextInt();
 		for (int i=0;i<number;i++){
-			Player A=new Player();
+			Player A = new Player();
+			users.add(A);//so that the players can be called by users[i];
 		}
 		//assign the card to each person
 	}
