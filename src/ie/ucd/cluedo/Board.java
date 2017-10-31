@@ -3,6 +3,7 @@ package ie.ucd.cluedo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Board {
 	
@@ -83,6 +84,15 @@ public class Board {
 		Pawn mustard_Pawn = new CharPawn("Colonel Mustard_Pawn",5);
 		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",6);
 
+	}
+	public void Creatplayer(){
+		System.out.println("How many of players do you have?");
+		Scanner in=new Scanner(System.in);
+		int number=in.nextInt();
+		for (int i=0;i<number;i++){
+			Player A=new Player();
+		}
+		//assign the card to each person
 	}
 	
 	public void Mystery(){
