@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 public class CharPawn extends Pawn{
 	int position;
+	
 	public CharPawn(String name, int position) {
 		String type = "Charicter";
 		this.position=position;

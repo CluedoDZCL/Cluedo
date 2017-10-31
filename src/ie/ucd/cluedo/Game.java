@@ -22,7 +22,7 @@ public class Game {
 		return charCards;
 	}
 	
-	public void CreateCards() {
+	public void createCards() {
 		//create character cards
 		CharCard scarlett = new CharCard("Miss Scarlett");
 		CharCard plum = new CharCard("Professor Plum");
@@ -91,7 +91,7 @@ public class Game {
 
 	}
 	
-	public void Creatplayer(){
+	public void creatPlayer(){
 		System.out.println("How many of players do you have?");
 		Scanner in=new Scanner(System.in);
 		int number=in.nextInt();
@@ -102,7 +102,7 @@ public class Game {
 		//assign the card to each person
 	}
 	
-	public void Mystery(){
+	public void mystery(){
 		//randomly select card
 		Random rand = new Random();		
 		int randomChar = rand.nextInt(6);

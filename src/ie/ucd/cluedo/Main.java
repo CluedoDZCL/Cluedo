@@ -6,9 +6,9 @@ public class Main {
 		//Create Board
 		Game cluedo = new Game();
 		//Create Cards
-		cluedo.CreateCards();	
+		cluedo.createCards();	
 		//Create mystery
-		cluedo.Mystery();	
+		cluedo.mystery();	
 		
 		//Create Pawns	 
 		cluedo.createPawns();
