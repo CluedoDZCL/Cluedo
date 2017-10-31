@@ -1,7 +1,14 @@
 package ie.ucd.cluedo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Notebook {
+	protected List<Card> charCards;
+	protected List<Card> weaponCards;
+	protected List<Card> roomCards;
 	public Notebook(){
+		
 		
 	}
 	
