@@ -10,12 +10,9 @@ public class Main {
 		cluedo.CreateCards();
 			
 		//Create Pawns
-	
-	
-
-	
-	 
-	 
+		
+		
+		//Create mystery	 
 	 
 	 
 	 

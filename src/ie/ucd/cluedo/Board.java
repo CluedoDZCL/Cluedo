@@ -85,8 +85,6 @@ public class Board {
 
 	}
 	
-	
-
 	public void Mystery(){
 		//remove card each array
 		Random rand = new Random();		
