@@ -11,7 +11,7 @@ public class CharPawn extends Pawn{
 		String type = "Charicter";
 		this.position=position;
 	}
-	public void Move(){
+	public void move(){
 		Random rand = new Random();
 		int diceroll = rand.nextInt(6)+1;
 		int res;
@@ -28,7 +28,7 @@ public class CharPawn extends Pawn{
 			position=position+number;
 		}
 	}
-	public int Getposition(){
+	public int getPosition(){
 		return position;
 	}
 	

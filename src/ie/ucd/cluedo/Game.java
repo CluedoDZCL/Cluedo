@@ -96,7 +96,7 @@ public class Game {
 	}
 	
 
-	public void Creatplayer(){
+	public void creatPlayer(){
 	 System.out.println("How many players do you have(should between 3 and 6)");
 	 Scanner in=new Scanner(System.in);
 	 int number=in.nextInt();
@@ -104,25 +104,10 @@ public class Game {
 		 Player A=new Player();
 		 Users.add(A);
 	 }
-	
-	
 	}
-	
-	
-	public void Mystery(){
-	public void creatPlayer(){
-		System.out.println("How many of players do you have?");
-		Scanner in=new Scanner(System.in);
-		int number=in.nextInt();
-		for (int i=0;i<number;i++){
-			Player A = new Player();
-			users.add(A);//so that the players can be called by users[i];
-		}
-		//assign the card to each person
-	}
+
 	
 	public void mystery(){
->>>>>>> 76723a53eebfb86cc9cd9038213ebab867c4d390
 		//randomly select card
 		Random rand = new Random();		
 		int randomChar = rand.nextInt(6);
