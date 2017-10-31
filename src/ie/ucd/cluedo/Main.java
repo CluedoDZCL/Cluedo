@@ -1,33 +1,25 @@
 package ie.ucd.cluedo;
 
+import java.util.List;
+
 public class Main {
 	public static void main (String[] args) {
 		
 		//Create Board
-		Board cluedo = new Board();
-		
+		Game cluedo = new Game();
 		//Create Cards
-		cluedo.CreateCards();
-			
-		//Create Pawns
-<<<<<<< HEAD
+		cluedo.CreateCards();	
+		//Create mystery
+		cluedo.Mystery();	
 		
-		
-		//Create mystery	 
-=======
+		//Create Pawns	 
 		cluedo.createPawns();
+		
 	    //Create player
 	    
-
-	
-	 
-	 
->>>>>>> e0e13edc3796fb23d68e9c375106c54051df02a7
-	 
-	 
-	 
-	 
-	 
+		
+		System.out.println("Finished main");
+ 
 	
 	
 	}
