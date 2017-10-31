@@ -1,7 +1,5 @@
 package ie.ucd.cluedo;
 
-import java.util.List;
-
 public class Main {
 	public static void main (String[] args) {
 		
@@ -16,11 +14,11 @@ public class Main {
 		cluedo.createPawns();
 		
 	    //Create player
+		
 	    
+		//Distribute cards
+		cluedo.distributeCards();
 		
 		System.out.println("Finished main");
- 
-	
-	
 	}
 }

@@ -101,20 +101,37 @@ public class Game {
 	}
 	
 	public void Mystery(){
-		//remove card each array
+		//randomly select card
 		Random rand = new Random();		
-		int randomChar = rand.nextInt(7);
-		int randomRoom = rand.nextInt(10);
-		int randomWeapon = rand.nextInt(7);		
+		int randomChar = rand.nextInt(6);
+		int randomRoom = rand.nextInt(9);
+		int randomWeapon = rand.nextInt(6);		
 		
 		//add each card mystery array
 		mystery.add(charCards.get(randomChar));
 		mystery.add(roomCards.get(randomRoom));
 		mystery.add(weaponCards.get(randomWeapon));
 		
+		//remove card each array
 		charCards.remove(randomChar);
 		roomCards.remove(randomRoom);
 		weaponCards.remove(randomWeapon);
-		
 	}
+	
+	public void distributeCards() {
+		for (int i = 0; i<19; i+=1) {
+			//cycle through player arrays and add
+			if (i<6) {
+				
+			}else if (i<11) {
+				
+			}else if (i<19) {
+				
+			}else {
+				System.out.println("Error card distribution");
+			}
+		}
+	}
+	
+	
 }
