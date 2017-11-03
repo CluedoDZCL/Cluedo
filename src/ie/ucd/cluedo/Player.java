@@ -8,24 +8,25 @@ public class Player {
 	public Player(){
 		
 	}
-    public void RaiseHypothesis(CharPawn A, CharPawn E, WeaponPawn B, Card D){
-    	System.out.println("I formulated the hypothesis that"+E+" made the murder in the"+A.Getposition()+" with the"+B.Getname());
+	
+    public void raiseHypothesis(CharPawn A, CharPawn E, WeaponPawn B, Card D){
+    	System.out.println("I formulated the hypothesis that"+E+" made the murder in the"+A.getPosition()+" with the"+B.getName());
     	 }
-    public void RaiseAccusation(CharPawn A, CharPawn E, WeaponPawn B, Card D){
-    	System.out.println("I formulated the accusation that"+E+" made the murder in the"+A.Getposition()+" with the"+B.Getname());
+    public void raiseAccusation(CharPawn A, CharPawn E, WeaponPawn B, Card D){
+    	System.out.println("I formulated the accusation that"+E+" made the murder in the"+A.getPosition()+" with the"+B.getName());
     }
-    public void DefenceHypothesis(CharPawn C, CharPawn A, CharPawn E, WeaponPawn B, Card D,String name){
-    	System.out.println(A+"formulated the hypothesis that"+E+"  made the murder in the "+A.Getposition()+" with the"+B.Getname());
+    public void defenceHypothesis(CharPawn C, CharPawn A, CharPawn E, WeaponPawn B, Card D,String name){
+    	System.out.println(A+"formulated the hypothesis that"+E+"  made the murder in the "+A.getPosition()+" with the"+B.getName());
     	System.out.println("I refuted the hypothesis showing card"+D);//need to be modified!
     }
-    public void RejectHypothesis(CharPawn A, CharPawn C, CharPawn E, WeaponPawn B, Card D){
+    public void rejectHypothesis(CharPawn A, CharPawn C, CharPawn E, WeaponPawn B, Card D){
     	System.out.println(C+"refuted the hypothesis showing the card"+D);
     }
-    public void EverHypothesis(CharPawn A, CharPawn C, CharPawn E, WeaponPawn B){
-    	System.out.println(A+"made the hypothesis that"+E+"made the murder in the "+A.Getposition()+" with the"+B.Getname());
+    public void everHypothesis(CharPawn A, CharPawn C, CharPawn E, WeaponPawn B){
+    	System.out.println(A+"made the hypothesis that"+E+"made the murder in the "+A.getPosition()+" with the"+B.getName());
     	System.out.println(C+"refuted the hypothesis showing a card");
     }
-    protected void InitializeNotebook(){
+    protected void initializeNotebook(){
     	Notebook.add("scarlett");
     	Notebook.add("plum");
     	Notebook.add("peacock");
@@ -50,14 +51,14 @@ public class Player {
     	Notebook.add("rope");
     	Notebook.add("poison");
     }
-    protected void DelEleNotebook(){
+    protected void delEleNotebook(){
     	System.out.println("Please print the item you want to add in the Notebook");
     	Scanner in=new Scanner(System.in);
     	String name=in.nextLine();
     	Notebook.remove(name);
     	
     }
-    protected void AddEleNotebook(){
+    protected void addEleNotebook(){
     	System.out.println("Please print the item you want to add in the Notebook");
     	Scanner in=new Scanner(System.in);
     	String name=in.nextLine();

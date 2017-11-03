@@ -8,7 +8,7 @@ public class Main {
 		//Create Cards
 		cluedo.createCards();	
 		//Create mystery
-		cluedo.mystery();	
+		cluedo.createMystery();	
 		
 		//Create Pawns	 
 		cluedo.createPawns();

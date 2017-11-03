@@ -10,18 +10,14 @@ public class Game {
 	protected List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
-	protected List<Player> Users;
+	protected List<Player> users;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
 		weaponCards = new ArrayList<Card>();	
 		roomCards = new ArrayList<Card>();
 		mystery = new ArrayList<Card>();
-		Users=new ArrayList<Player>();
-	}
-	
-	public List<Card> getCharCards(){
-		return charCards;
+		users=new ArrayList<Player>();
 	}
 	
 	public void createCards() {
@@ -100,12 +96,12 @@ public class Game {
 	 int number=in.nextInt();
 	 for(int i=0;i<number;i++){
 		 Player A=new Player();
-		 Users.add(A);
+		 users.add(A);
 	 }
 	}
 
 	
-	public void mystery(){
+	public void createMystery(){
 		//randomly select card
 		Random rand = new Random();		
 		int randomChar = rand.nextInt(6);

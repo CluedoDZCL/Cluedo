@@ -5,7 +5,7 @@ public class WeaponPawn extends Pawn{
 	public WeaponPawn(String name,int position){
 		this.name=name;
 	}
-	public String Getname(){
+	public String getName(){
 		return name;
 	}
 
