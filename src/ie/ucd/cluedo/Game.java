@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import javax.swing.JOptionPane;
-
 public class Game {
 	protected List<Card> charCards;
 	protected List<Card> weaponCards;
