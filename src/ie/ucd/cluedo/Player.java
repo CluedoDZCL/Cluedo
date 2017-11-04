@@ -1,12 +1,19 @@
 package ie.ucd.cluedo;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Player {
 	protected List<String> Notebook;
+	protected List<Card> playerCards;
+	
 	public Player(){
-		
+		playerCards = new ArrayList<Card>();		
+	}
+	
+	public List<Card> getPlayerCards() {
+		return playerCards;
 	}
 	
     public void raiseHypothesis(CharPawn A, CharPawn E, WeaponPawn B, Card D){

@@ -1,22 +1,28 @@
 package ie.ucd.cluedo;
 
+import java.lang.Object;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+
 
 public class Game {
 	protected List<Card> charCards;
 	protected List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
+	protected List<Card> combinedCards;
 	protected List<Player> users;
+	int number;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
 		weaponCards = new ArrayList<Card>();	
 		roomCards = new ArrayList<Card>();
 		mystery = new ArrayList<Card>();
+		combinedCards = new ArrayList<Card>();
 		users=new ArrayList<Player>();
 	}
 	
@@ -93,7 +99,7 @@ public class Game {
 	public void creatPlayer(){
 	 System.out.println("How many players do you have(should between 3 and 6)");
 	 Scanner in=new Scanner(System.in);
-	 int number=in.nextInt();
+	 number=in.nextInt();
 	 for(int i=0;i<number;i++){
 		 Player A=new Player();
 		 users.add(A);
@@ -120,19 +126,23 @@ public class Game {
 	}
 	
 	public void distributeCards() {
-		for (int i = 0; i<19; i+=1) {
-			//cycle through player arrays and add
-			if (i<6) {
-				
-			}else if (i<11) {
-				
-			}else if (i<19) {
-				
-			}else {
-				System.out.println("Error card distribution");
-			}
+		//Add all cards to one array
+		for (int j=0; j<charCards.size(); j+=1) {
+			combinedCards.add(charCards.get(j));
+			combinedCards.add(weaponCards.get(j));
+		}
+		for (int j=0; j<roomCards.size(); j+=1) {
+			combinedCards.add(roomCards.get(j));
+		}		
+		for (int i = 0; i<combinedCards.size(); i+=1) {
+			//cycle through player arrays and add random card
+			Random rand = new Random();
+			int randIndex = rand.nextInt(combinedCards.size());
+			users.get(i % number).getPlayerCards().add(combinedCards.get(randIndex));
 		}
 	}
 	
-	
+	public List<Card> getCards(int index){
+		return users.get(index).getPlayerCards();
+	}
 }
