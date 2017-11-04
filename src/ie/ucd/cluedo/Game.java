@@ -15,6 +15,7 @@ public class Game {
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
 	protected List<Player> users;
+	protected List<Pawn> charapawn;
 	int number;
 		
 	public Game() {
@@ -92,7 +93,12 @@ public class Game {
 		Pawn green_Pawn = new CharPawn("Reverend Green_Pawn",4);
 		Pawn mustard_Pawn = new CharPawn("Colonel Mustard_Pawn",5);
 		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",6);
-
+		charapawn.add(scarlett_Pawn);
+		charapawn.add(plum_Pawn);
+		charapawn.add(peacock_Pawn);
+		charapawn.add(green_Pawn);
+		charapawn.add(mustard_Pawn);
+		charapawn.add(white_Pawn);
 	}
 	
 
@@ -100,10 +106,15 @@ public class Game {
 	 System.out.println("How many players do you have(should between 3 and 6)");
 	 Scanner in=new Scanner(System.in);
 	 number=in.nextInt();
+	 Random rand = new Random();
+	 int randomPawn = rand.nextInt(6);
 	 for(int i=0;i<number;i++){
 		 Player A=new Player();
+		 A.character=charapawn.get(randomPawn);
 		 users.add(A);
+		 
 	 }
+	 
 	}
 
 	
