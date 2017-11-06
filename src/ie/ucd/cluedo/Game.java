@@ -25,6 +25,7 @@ public class Game {
 		mystery = new ArrayList<Card>();
 		combinedCards = new ArrayList<Card>();
 		users=new ArrayList<Player>();
+		charapawn = new ArrayList<Pawn>();
 	}
 	
 	public void createCards() {
