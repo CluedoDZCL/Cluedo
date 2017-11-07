@@ -1,8 +1,6 @@
 package ie.ucd.cluedo;
 
-import java.lang.Object;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -81,19 +79,19 @@ public class Game {
 	
 	
 	public void createPawns(){
-		Pawn candlestick_pawn = new WeaponPawn("candlestick_pawn", 1);
-		Pawn knife_pawn = new WeaponPawn("knife_pawn", 2);
-		Pawn pipe_pawn = new WeaponPawn("lead pipe_pawn", 3);
-		Pawn revolver_pawn = new  WeaponPawn("revolver_pawn",4);
-		Pawn rope_pawn = new WeaponPawn("rope_pawn",5);
-		Pawn poison_pawn = new WeaponPawn("poison_pawn",6);
+		Pawn candlestick_pawn = new WeaponPawn("candlestick_pawn", 0);
+		Pawn knife_pawn = new WeaponPawn("knife_pawn", 10);
+		Pawn pipe_pawn = new WeaponPawn("lead pipe_pawn", 20);
+		Pawn revolver_pawn = new  WeaponPawn("revolver_pawn",30);
+		Pawn rope_pawn = new WeaponPawn("rope_pawn",40);
+		Pawn poison_pawn = new WeaponPawn("poison_pawn",50);
 		
-		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett_Pawn",1);
-		Pawn plum_Pawn = new CharPawn("Professor Plum_Pawn",2);
-		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock_Pawn",3);
-		Pawn green_Pawn = new CharPawn("Reverend Green_Pawn",4);
-		Pawn mustard_Pawn = new CharPawn("Colonel Mustard_Pawn",5);
-		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",6);
+		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett_Pawn",15);
+		Pawn plum_Pawn = new CharPawn("Professor Plum_Pawn",25);
+		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock_Pawn",35);
+		Pawn green_Pawn = new CharPawn("Reverend Green_Pawn",45);
+		Pawn mustard_Pawn = new CharPawn("Colonel Mustard_Pawn",55);
+		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",65);
 		charapawn.add(scarlett_Pawn);
 		charapawn.add(plum_Pawn);
 		charapawn.add(peacock_Pawn);
@@ -113,9 +111,7 @@ public class Game {
 		 Player A=new Player();
 		 A.character=charapawn.get(randomPawn);
 		 users.add(A);
-		 
-	 }
-	 
+		 }
 	}
 
 	

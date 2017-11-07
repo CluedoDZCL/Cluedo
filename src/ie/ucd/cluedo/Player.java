@@ -13,6 +13,7 @@ public class Player {
 		playerCards = new ArrayList<Card>();		
 	}
 	
+	
 	public List<Card> getPlayerCards() {
 		return playerCards;
 	}
