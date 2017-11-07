@@ -26,8 +26,9 @@ public class Player {
    	    Scanner sc=new Scanner(System.in); 
 	    String weapon=sc.next();
     	X.notebook.add("I formulated the hypothesis that"+person+" made the murder in the"+X.character.getPosition()+" with the"+weapon);
-    	 }
-    public void raiseAccusation(Player X){
+    	}
+   
+   public void raiseAccusation(Player X){
     	System.out.println("who do you believe would be the killer?" );
     	Scanner in=new Scanner(System.in); 
    	    String person=in.next();
