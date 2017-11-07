@@ -118,13 +118,9 @@ public class Game {
 		 break;
 		 }
 		 users.add(A);
-<<<<<<< HEAD
 		 }
-=======
+		 }
 		 
-	 }
-	 }
->>>>>>> 9da8799413ea959674f1b74ac9f3d37d5b87a530
 	}
 
 	
