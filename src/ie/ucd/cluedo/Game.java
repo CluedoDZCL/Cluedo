@@ -30,12 +30,12 @@ public class Game {
 	
 	public void createCards() {
 		//create character cards
-		CharCard scarlett = new CharCard("Miss Scarlett");
-		CharCard plum = new CharCard("Professor Plum");
-		CharCard peacock = new CharCard("Mrs. Peacock");
-		CharCard green = new CharCard("Reverend Green");
-		CharCard mustard = new CharCard("Colonel Mustard");
-		CharCard white = new CharCard("Mrs White");
+		Card scarlett = new CharCard("Miss Scarlett");
+		Card plum = new CharCard("Professor Plum");
+		Card peacock = new CharCard("Mrs. Peacock");
+		Card green = new CharCard("Reverend Green");
+		Card mustard = new CharCard("Colonel Mustard");
+		Card white = new CharCard("Mrs White");
 		charCards.add(scarlett);
 		charCards.add(plum);
 		charCards.add(peacock);
@@ -44,15 +44,15 @@ public class Game {
 		charCards.add(white);
 		
 		//create room cards
-		RoomCard kitchen = new RoomCard("Kitchen");
-		RoomCard ballroom = new RoomCard("Ballroom");
-		RoomCard conservatory = new RoomCard("Conservatory");
-		RoomCard dining = new RoomCard("Dining Room");
-		RoomCard lounge = new RoomCard("Lounge");
-		RoomCard hall = new RoomCard("Hall");
-		RoomCard study = new RoomCard("Study");
-		RoomCard billiard = new RoomCard("Billiard Room");
-		RoomCard library = new RoomCard("Library");
+		Card kitchen = new RoomCard("Kitchen");
+		Card ballroom = new RoomCard("Ballroom");
+		Card conservatory = new RoomCard("Conservatory");
+		Card dining = new RoomCard("Dining Room");
+		Card lounge = new RoomCard("Lounge");
+		Card hall = new RoomCard("Hall");
+		Card study = new RoomCard("Study");
+		Card billiard = new RoomCard("Billiard Room");
+		Card library = new RoomCard("Library");
 		roomCards.add(kitchen);
 		roomCards.add(ballroom);
 		roomCards.add(conservatory);
@@ -64,12 +64,12 @@ public class Game {
 		roomCards.add(library);
 		
 		//create weapon cards
-		WeaponCard candlestick = new WeaponCard("candlestick");
-		WeaponCard knife = new WeaponCard("knife");
-		WeaponCard pipe = new WeaponCard("lead pipe");
-		WeaponCard revolver = new  WeaponCard("revolver");
-		WeaponCard rope = new WeaponCard("rope");
-		WeaponCard poison = new WeaponCard("poison");
+		Card candlestick = new WeaponCard("candlestick");
+		Card knife = new WeaponCard("knife");
+		Card pipe = new WeaponCard("lead pipe");
+		Card revolver = new  WeaponCard("revolver");
+		Card rope = new WeaponCard("rope");
+		Card poison = new WeaponCard("poison");
 		weaponCards.add(candlestick);
 		weaponCards.add(knife);
 		weaponCards.add(pipe);
