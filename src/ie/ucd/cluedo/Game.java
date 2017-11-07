@@ -109,17 +109,18 @@ public class Game {
 	 int randomPawn = rand.nextInt(6);
 	 for(int i=0;i<number;i++){
 		 Player A=new Player();
+		 /*
 		 System.out.println("what character you want to be");
 		 Scanner sc=new Scanner(System.in);
 		 String name=sc.nextLine();
-		 for(int j=0;j<6;j++){
-		 if(charapawn.get(j).getName().equals(name)){
+		 */
+		 for(int j=0;j<6;j++){ 
 		 A.character=charapawn.get(j);
 		 break;
 		 }
 		 users.add(A);
 		 }
-		 }
+		 
 		 
 	}
 

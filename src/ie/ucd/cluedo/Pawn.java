@@ -1,6 +1,6 @@
 package ie.ucd.cluedo;
 
-public class Pawn extends Game{
+public abstract class Pawn{
 	public int position;
 	public String name;
 	public String type;
