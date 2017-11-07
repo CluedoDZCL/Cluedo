@@ -6,10 +6,11 @@ import javax.swing.JOptionPane;
 
 public class CharPawn extends Pawn{
 	int position;
-	
+	String name;
 	public CharPawn(String name, int position) {
 		String type = "Charicter";
 		this.position=position;
+		this.name=name;
 	}
 	public void move(){
 		Random rand = new Random();
@@ -30,6 +31,9 @@ public class CharPawn extends Pawn{
 	}
 	public int getPosition(){
 		return position;
+	}
+	public String getName(){
+		return name;
 	}
 	
 
