@@ -6,11 +6,16 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Player {
+	public String name;
 	protected List<String> notebook;
 	protected List<Card> playerCards;
 	public Pawn character;
-	public Player(){
-		playerCards = new ArrayList<Card>();		
+	public Player(String name){
+		playerCards = new ArrayList<Card>();
+		this.name=name;
+	}
+	public String getName(){
+		return name;
 	}
 	
 	
