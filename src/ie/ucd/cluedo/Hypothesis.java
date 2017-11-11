@@ -12,9 +12,20 @@ public class Hypothesis {
 	    String weapon=sc.next();
     	X.notebook.add("I formulated the hypothesis that"+person+" made the murder in the"+X.character.getPosition()+" with the"+weapon);
     	
-    	//find out the name related card//
-    	for(int i=0;i<9;i++){
-    		if(roomCards.get(i).)
+    	//find out the related cards//
+    	
+    	//find out who possess the cards//
+    	if(true){
+    		Y.notebook.add(X+"formulated the hypothesis that"+person+"  made the murder in the "+X.character.getPosition()+" with the"+weapon);
+        	Y.notebook.add("I refuted the hypothesis showing card"+C);
+        	X.notebook.add(Y+"refuted the hypothesis showing the card"+C);
+        	for(int j=0;j<Game.users.size();j++){
+        		if(!Game.users.get(j).getName().equals(X) && !Game.users.get(j).getName().equals(Y)){
+        			Game.users.get(j).notebook.add(X+"made the hypothesis that"+person+"made the murder in the "+X.character.getPosition()+" with the"+weapon);
+        			Game.users.get(j).notebook.add(Y+"refuted the hypothesis showing a card");
+        		}
+        		
+        	}
     	}
 		
 	}

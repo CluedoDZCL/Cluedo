@@ -12,7 +12,7 @@ public class Game {
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
-	protected List<Player> users;
+	protected static List<Player> users;
 	protected List<Pawn> charapawn;
 	int number;
 		
@@ -115,7 +115,7 @@ public class Game {
 		 System.out.println("what character you want to be");
 		 Scanner sc=new Scanner(System.in);
 		 String name=sc.nextLine();
-		 for(int j=0;j<6;j++){ 
+		 for(int j=0;j<charapawn.size();j++){ 
 		if(users.get(j).character.getName().equals(name)){
 		 A.character=charapawn.get(j);
 		 break;
