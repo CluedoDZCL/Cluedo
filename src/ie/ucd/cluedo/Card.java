@@ -12,15 +12,5 @@ public abstract class Card{
 	public String getType() {
 		return type;
 	}
-	/*
-	public int getCard(Card card) {
-		for (int i=0; i< user.size();i+=1) {
-			if (user.get(j).contains(card)){
-				return j;
-			}
-		}
-		
-	}
-	*/
-
+	
 }

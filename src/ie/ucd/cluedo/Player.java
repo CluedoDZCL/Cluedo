@@ -23,6 +23,16 @@ public class Player {
 		return playerCards;
 	}
 	
+	public boolean contains(Card card) {
+		boolean contains = false;
+		for (int i=0; i< playerCards.size();i+=1) {
+			if (playerCards.get(i).equals(card))
+				contains = true;
+		}
+		return contains;
+	}
+	
+	
     public void raiseAccusation(Player X){
     	System.out.println("who do you believe would be the killer?" );
     	Scanner in=new Scanner(System.in); 
@@ -35,4 +45,5 @@ public class Player {
     protected void initializeNotebook(){
     	notebook.add("Game start");
      }
+	
     }

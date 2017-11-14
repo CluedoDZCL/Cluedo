@@ -122,8 +122,6 @@ public class Game {
 		 }}
 		 users.add(A);
 		 }
-		 
-		 
 	}
 
 	
@@ -165,4 +163,18 @@ public class Game {
 	public List<Card> getCards(int index){
 		return users.get(index).getPlayerCards();
 	}
+	
+	
+	public int getCard(Card card) {
+		int index = 0;
+		for (int i=0; i< users.size();i+=1) {
+			if (users.get(i).contains(card)){
+				index=i;					
+			} 
+		}
+		return index;
+	}
+		
 }
+	
+
