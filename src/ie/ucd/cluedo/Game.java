@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 
 public class Game {
-	protected List<Card> charCards;
-	protected List<Card> weaponCards;
+	protected static List<Card> charCards;
+	protected static List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
@@ -169,11 +169,28 @@ public class Game {
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){
-				index=i;					
+				index=i;	//return the index of the player				
 			} 
 		}
 		return index;
 	}
+	public static int findcharCard(String name){
+		int index=0;
+		for(int i=0;i<charCards.size();i++){
+			if(charCards.get(i).getName().equals(name))
+				index=i;
+		}
+		return index;
+	}
+	public static int findweaponCard(String name){
+		int index=0;
+		for(int i=0;i<weaponCards.size();i++){
+			if(weaponCards.get(i).getName().equals(name))
+				index=i;
+		}
+		return index;
+	}
+	//public int findroomCard(String )
 		
 }
 	
