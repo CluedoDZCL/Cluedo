@@ -14,6 +14,7 @@ public class Game {
 	protected List<Card> combinedCards;
 	protected static List<Player> users;
 	protected List<Pawn> charapawn;
+	protected List<Pawn> userChar;
 	int number;
 		
 	public Game() {
@@ -24,6 +25,7 @@ public class Game {
 		combinedCards = new ArrayList<Card>();
 		users=new ArrayList<Player>();
 		charapawn = new ArrayList<Pawn>();
+		userChar=new ArrayList<Pawn>();
 	}
 	
 	public void createCards() {
@@ -102,28 +104,37 @@ public class Game {
 	
 
 	public void creatPlayer(){
+		while(true){
 	 System.out.println("How many players do you have(should between 3 and 6)");
 	 Scanner in=new Scanner(System.in);
 	 number=in.nextInt();
-	 Random rand = new Random();
-	 int randomPawn = rand.nextInt(6);
-	 for(int i=0;i<number;i++){
+	 if(number>=3 && number<6){
+	    
+		 for(int i=0;i<number;i++){
 		 System.out.print("what is your name?");
 		 Scanner scc=new Scanner(System.in);
 		 String playerName=scc.nextLine();
 		 Player A=new Player(playerName);
-		 System.out.println("what character you want to be");
+		 for(int t=0;t<charapawn.size();t++){  
+	            System.out.println(charapawn.get(t).getName());  
+	        } 
+		while(true){
+		 System.out.println("what character you want to be, please input the index");
 		 Scanner sc=new Scanner(System.in);
-		 String name=sc.nextLine();
-		 for(int j=0;j<charapawn.size();j++){ 
-		if(users.get(j).character.getName().equals(name)){
-		 A.character=charapawn.get(j);
-		 break;
-		 }}
-		 users.add(A);
+		 int index=sc.nextInt();
+		 if(index>=0 && index<6){
+		A.character=charapawn.get(index);
+		charapawn.remove(index);
+		userChar.add(A.character);
+	    users.add(A);
+	    break;
 		 }
+	}}
+		 break;
 	}
-
+	
+	 }
+	 }
 	
 	public void createMystery(){
 		//randomly select card
@@ -165,7 +176,7 @@ public class Game {
 	}
 	
 	
-	public int getCard(Card card) {
+	public static int getCard(Card card) {
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){
