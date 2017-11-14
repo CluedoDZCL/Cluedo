@@ -8,5 +8,9 @@ public class WeaponPawn extends Pawn{
 	public String getName(){
 		return name;
 	}
+	
+	public void move(int newPosition) {
+		position=newPosition;
+	}
 
 }

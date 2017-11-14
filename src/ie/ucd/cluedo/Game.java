@@ -81,19 +81,19 @@ public class Game {
 	
 	
 	public void createPawns(){
-		Pawn candlestick_pawn = new WeaponPawn("candlestick_pawn", 0);
-		Pawn knife_pawn = new WeaponPawn("knife_pawn", 10);
-		Pawn pipe_pawn = new WeaponPawn("lead pipe_pawn", 20);
-		Pawn revolver_pawn = new  WeaponPawn("revolver_pawn",30);
-		Pawn rope_pawn = new WeaponPawn("rope_pawn",40);
-		Pawn poison_pawn = new WeaponPawn("poison_pawn",50);
+		Pawn candlestick_pawn = new WeaponPawn("candlestick", 0);
+		Pawn knife_pawn = new WeaponPawn("knife", 10);
+		Pawn pipe_pawn = new WeaponPawn("lead pipe", 20);
+		Pawn revolver_pawn = new  WeaponPawn("revolver",30);
+		Pawn rope_pawn = new WeaponPawn("rope",40);
+		Pawn poison_pawn = new WeaponPawn("poison",50);
 		
-		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett_Pawn",15);
-		Pawn plum_Pawn = new CharPawn("Professor Plum_Pawn",25);
-		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock_Pawn",35);
-		Pawn green_Pawn = new CharPawn("Reverend Green_Pawn",45);
-		Pawn mustard_Pawn = new CharPawn("Colonel Mustard_Pawn",55);
-		Pawn white_Pawn = new CharPawn("Mrs White_Pawn",65);
+		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett",15);
+		Pawn plum_Pawn = new CharPawn("Professor Plum",25);
+		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock",35);
+		Pawn green_Pawn = new CharPawn("Reverend Green",45);
+		Pawn mustard_Pawn = new CharPawn("Colonel Mustard",55);
+		Pawn white_Pawn = new CharPawn("Mrs White",65);
 		charapawn.add(scarlett_Pawn);
 		charapawn.add(plum_Pawn);
 		charapawn.add(peacock_Pawn);
@@ -105,34 +105,35 @@ public class Game {
 
 	public void creatPlayer(){
 		while(true){
-	 System.out.println("How many players do you have(should between 3 and 6)");
-	 Scanner in=new Scanner(System.in);
-	 number=in.nextInt();
-	 if(number>=3 && number<6){
-	    
-		 for(int i=0;i<number;i++){
-		 System.out.print("what is your name?");
-		 Scanner scc=new Scanner(System.in);
-		 String playerName=scc.nextLine();
-		 Player A=new Player(playerName);
-		 for(int t=0;t<charapawn.size();t++){  
-	            System.out.println(charapawn.get(t).getName());  
-	        } 
-		while(true){
-		 System.out.println("what character you want to be, please input the index");
-		 Scanner sc=new Scanner(System.in);
-		 int index=sc.nextInt();
-		 if(index>=0 && index<6){
-		A.character=charapawn.get(index);
-		charapawn.remove(index);
-		userChar.add(A.character);
-	    users.add(A);
-	    break;
-		 }
-	}}
-		 break;
-	}
-	
+			System.out.println("How many players do you have(should between 3 and 6)");
+			Scanner in=new Scanner(System.in);
+			number=in.nextInt();
+			if(number>=3 && number<6){
+			   
+				for(int i=0;i<number;i++){
+					System.out.print("what is your name?");
+					Scanner scc=new Scanner(System.in);
+					String playerName=scc.nextLine();
+					Player A=new Player(playerName);
+					for(int t=0;t<charapawn.size();t++){  
+				           System.out.println(charapawn.get(t).getName());  
+				       } 
+					while(true){
+						System.out.println("what character you want to be, please input the index");
+						Scanner sc=new Scanner(System.in);
+						int index=sc.nextInt();
+						if(index>=0 && index<6){
+							A.character=charapawn.get(index);
+							charapawn.remove(index);
+							userChar.add(A.character);
+						    users.add(A);
+						    break;
+						 }
+					}
+				}
+				 break;
+			}
+			
 	 }
 	 }
 	
@@ -162,12 +163,14 @@ public class Game {
 		}
 		for (int j=0; j<roomCards.size(); j+=1) {
 			combinedCards.add(roomCards.get(j));
-		}		
-		for (int i = 0; i<combinedCards.size(); i+=1) {
+		}
+		int iteration = combinedCards.size();
+		for (int i = 0; i<iteration; i+=1) {
 			//cycle through player arrays and add random card
 			Random rand = new Random();
 			int randIndex = rand.nextInt(combinedCards.size());
 			users.get(i % number).getPlayerCards().add(combinedCards.get(randIndex));
+			combinedCards.remove(randIndex);
 		}
 	}
 	
@@ -185,23 +188,8 @@ public class Game {
 		}
 		return index;
 	}
-	public static int findcharCard(String name){
-		int index=0;
-		for(int i=0;i<charCards.size();i++){
-			if(charCards.get(i).getName().equals(name))
-				index=i;
-		}
-		return index;
-	}
-	public static int findweaponCard(String name){
-		int index=0;
-		for(int i=0;i<weaponCards.size();i++){
-			if(weaponCards.get(i).getName().equals(name))
-				index=i;
-		}
-		return index;
-	}
-	//public int findroomCard(String )
+	
+	
 		
 }
 	

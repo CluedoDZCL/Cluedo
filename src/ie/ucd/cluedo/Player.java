@@ -18,6 +18,10 @@ public class Player {
 		return name;
 	}
 	
+	public String getCharacter() {
+		return character.getName();
+	}
+	
 	
 	public List<Card> getPlayerCards() {
 		return playerCards;
