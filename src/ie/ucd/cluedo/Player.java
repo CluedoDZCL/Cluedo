@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
@@ -18,8 +19,8 @@ public class Player {
 		return name;
 	}
 	
-	public String getCharacter() {
-		return character.getName();
+	public Pawn getCharacter() {
+		return character;
 	}
 	
 	
@@ -50,4 +51,24 @@ public class Player {
     	notebook.add("Game start");
      }
 	
-    }
+	public void movement(){
+		int position=character.getPosition();
+		Random rand = new Random();
+		int diceroll = rand.nextInt(6)+1;
+		int res;
+	    res=JOptionPane.showConfirmDialog(null,"Are you sure you want to go"+diceroll+"steps?",
+	     "",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+		
+		if(res==JOptionPane.YES_OPTION){
+			position=diceroll+position;
+		}
+		if(res==JOptionPane.NO_OPTION){
+			System.out.println("How many steps do you want to go?");
+			Scanner in=new Scanner(System.in);
+			int number=in.nextInt();
+			position=position+number;
+		}
+}
+    
+    
+}

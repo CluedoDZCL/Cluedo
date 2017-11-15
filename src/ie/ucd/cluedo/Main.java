@@ -19,7 +19,7 @@ public class Main {
 		for (int i=0; i<cluedo.users.size();i++) {
 			
 			String name=cluedo.users.get(i).getName();
-			String character=cluedo.users.get(i).getCharacter();
+			String character=cluedo.users.get(i).getCharacter().getName();
 			System.out.println(name + " is using pawn " + character);
 			System.out.println(name + " has the following cards;");
 			for (int j=0; j<cluedo.users.get(i).playerCards.size();j++) {
@@ -33,6 +33,11 @@ public class Main {
 		//check moving
 		Board board = new Board();
 		board.createRooms();
+		
+		cluedo.users.get(0).movement();
+		
+		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
+		
 		
 		
 		System.out.println("Finished main");

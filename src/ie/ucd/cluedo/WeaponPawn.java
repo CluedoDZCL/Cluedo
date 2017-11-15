@@ -9,10 +9,6 @@ public class WeaponPawn extends Pawn{
 		return name;
 	}
 	
-	public void move(int newPosition) {
-		position=newPosition;
-	}
-
 	public int checkPosition() {
 		return position;
 	}

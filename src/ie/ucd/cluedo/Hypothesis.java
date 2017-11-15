@@ -16,7 +16,7 @@ public class Hypothesis {
     	X.notebook.add("I formulated the hypothesis that"+person+" made the murder in the"+X.character.getPosition()+" with the"+weapon);
     	
     	//find out the related cards//
-    	int c=Game.findcharCard(person);
+    	int c=Game.getCard(person);
     	int y=Game.getCard(Game.charCards.get(c));//who possess the card
     	if(y>0){
     		Game.users.get(y).notebook.add(X+"formulated the hypothesis that"+person+"  made the murder in the "+X.character.getPosition()+" with the"+weapon);
@@ -29,7 +29,7 @@ public class Hypothesis {
         		}
         	}
     	}
-		int w=Game.findweaponCard(weapon);
+		int w=Game.getCard(weapon);
 		int z=Game.getCard(Game.weaponCards.get(w));
 		if(z>0){
 			Game.users.get(z).notebook.add(X+"formulated the hypothesis that"+person+"  made the murder in the "+X.character.getPosition()+" with the"+weapon);
@@ -43,6 +43,15 @@ public class Hypothesis {
 		}
 		
         	}
-	}}}
+	}}
+	
+	public void moveChar(CharPawn character, int newPosition) {
+		character.position=newPosition;
+	}
+	
+	public void moveWeapon(WeaponPawn weapon, int newPosition) {
+		weapon.position=newPosition;
+	}
+}
 
 
