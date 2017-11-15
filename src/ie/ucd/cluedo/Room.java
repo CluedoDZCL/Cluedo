@@ -9,5 +9,9 @@ public class Room {
 		this.position=position;
 	}
 	
+	public int getPosition() {
+		return position;
+	}
+	
 	
 }

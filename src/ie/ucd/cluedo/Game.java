@@ -13,7 +13,10 @@ public class Game {
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
 	protected static List<Player> users;
-	protected List<Pawn> charapawn;
+	protected List<Pawn> charPawn;
+	protected List<Pawn> weaponPawn;
+	protected List<Pawn> pawns;
+	protected List<Pawn> pawnList;
 	protected List<Pawn> userChar;
 	int number;
 		
@@ -24,7 +27,10 @@ public class Game {
 		mystery = new ArrayList<Card>();
 		combinedCards = new ArrayList<Card>();
 		users=new ArrayList<Player>();
-		charapawn = new ArrayList<Pawn>();
+		charPawn = new ArrayList<Pawn>();
+		weaponPawn = new ArrayList<Pawn>();
+		pawns = new ArrayList<Pawn>();
+		pawnList = new ArrayList<Pawn>();
 		userChar=new ArrayList<Pawn>();
 	}
 	
@@ -81,12 +87,18 @@ public class Game {
 	
 	
 	public void createPawns(){
-		Pawn candlestick_pawn = new WeaponPawn("candlestick", 0);
-		Pawn knife_pawn = new WeaponPawn("knife", 10);
-		Pawn pipe_pawn = new WeaponPawn("lead pipe", 20);
-		Pawn revolver_pawn = new  WeaponPawn("revolver",30);
-		Pawn rope_pawn = new WeaponPawn("rope",40);
-		Pawn poison_pawn = new WeaponPawn("poison",50);
+		Pawn candlestick_Pawn = new WeaponPawn("candlestick", 0);
+		Pawn knife_Pawn = new WeaponPawn("knife", 10);
+		Pawn pipe_Pawn = new WeaponPawn("lead pipe", 20);
+		Pawn revolver_Pawn = new  WeaponPawn("revolver",30);
+		Pawn rope_Pawn = new WeaponPawn("rope",40);
+		Pawn poison_Pawn = new WeaponPawn("poison",50);
+		weaponPawn.add(candlestick_Pawn);
+		weaponPawn.add(knife_Pawn);
+		weaponPawn.add(pipe_Pawn);
+		weaponPawn.add(revolver_Pawn);
+		weaponPawn.add(rope_Pawn);
+		weaponPawn.add(poison_Pawn);
 		
 		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett",15);
 		Pawn plum_Pawn = new CharPawn("Professor Plum",25);
@@ -94,12 +106,17 @@ public class Game {
 		Pawn green_Pawn = new CharPawn("Reverend Green",45);
 		Pawn mustard_Pawn = new CharPawn("Colonel Mustard",55);
 		Pawn white_Pawn = new CharPawn("Mrs White",65);
-		charapawn.add(scarlett_Pawn);
-		charapawn.add(plum_Pawn);
-		charapawn.add(peacock_Pawn);
-		charapawn.add(green_Pawn);
-		charapawn.add(mustard_Pawn);
-		charapawn.add(white_Pawn);
+		charPawn.add(scarlett_Pawn);
+		charPawn.add(plum_Pawn);
+		charPawn.add(peacock_Pawn);
+		charPawn.add(green_Pawn);
+		charPawn.add(mustard_Pawn);
+		charPawn.add(white_Pawn);
+		
+		for (int i=0; i<6; i++) {
+			pawns.add(weaponPawn.get(i));
+			pawns.add(charPawn.get(i));
+		}
 	}
 	
 
@@ -115,16 +132,16 @@ public class Game {
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
 					Player A=new Player(playerName);
-					for(int t=0;t<charapawn.size();t++){  
-				           System.out.println(charapawn.get(t).getName());  
+					for(int t=0;t<charPawn.size();t++){  
+				           System.out.println(charPawn.get(t).getName());  
 				       } 
 					while(true){
 						System.out.println("what character you want to be, please input the index");
 						Scanner sc=new Scanner(System.in);
 						int index=sc.nextInt();
-						if(index>=0 && index<charapawn.size()){
-							A.character=charapawn.get(index);
-							charapawn.remove(index);
+						if(index>=0 && index<charPawn.size()){
+							A.character=charPawn.get(index);
+							charPawn.remove(index);
 							userChar.add(A.character);
 						    users.add(A);
 						    break;
