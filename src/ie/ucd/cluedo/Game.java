@@ -122,7 +122,7 @@ public class Game {
 						System.out.println("what character you want to be, please input the index");
 						Scanner sc=new Scanner(System.in);
 						int index=sc.nextInt();
-						if(index>=0 && index<6){
+						if(index>=0 && index<charapawn.size()){
 							A.character=charapawn.get(index);
 							charapawn.remove(index);
 							userChar.add(A.character);

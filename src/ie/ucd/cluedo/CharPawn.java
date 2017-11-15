@@ -7,12 +7,18 @@ import javax.swing.JOptionPane;
 public class CharPawn extends Pawn{
 	int position;
 	String name;
+	
 	public CharPawn(String name, int position) {
 		String type = "Charicter";
 		this.position=position;
 		this.name=name;
 	}
-	public void move(){
+	
+	public void move(int newPosition) {
+		position=newPosition;
+	}
+	
+	public void movement(){
 		Random rand = new Random();
 		int diceroll = rand.nextInt(6)+1;
 		int res;
@@ -21,7 +27,7 @@ public class CharPawn extends Pawn{
 		
 		if(res==JOptionPane.YES_OPTION){
 			position=diceroll+position;
-			}
+		}
 		if(res==JOptionPane.NO_OPTION){
 			System.out.println("How many steps do you want to go?");
 			Scanner in=new Scanner(System.in);
@@ -29,6 +35,7 @@ public class CharPawn extends Pawn{
 			position=position+number;
 		}
 	}
+	
 	public int getPosition(){
 		return position;
 	}
@@ -36,5 +43,8 @@ public class CharPawn extends Pawn{
 		return name;
 	}
 	
+	public int checkPosition() {
+		return position;
+	}
 
 }
