@@ -12,7 +12,7 @@ public class Game {
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
-	protected static List<Player> users;
+	protected List<Player> users;
 	protected List<Pawn> charPawn;
 	protected List<Pawn> weaponPawn;
 	protected List<Pawn> pawns;
@@ -133,25 +133,24 @@ public class Game {
 					String playerName=scc.nextLine();
 					Player A=new Player(playerName);
 					for(int t=0;t<charPawn.size();t++){  
-				           System.out.println(charPawn.get(t).getName());  
+				           System.out.println((t+1)+") "+charPawn.get(t).getName());  
 				       } 
 					while(true){
 						System.out.println("what character you want to be, please input the index");
 						Scanner sc=new Scanner(System.in);
 						int index=sc.nextInt();
-						if(index>=0 && index<charPawn.size()){
-							A.character=charPawn.get(index);
-							charPawn.remove(index);
+						if(index>=1 && index<=charPawn.size()){
+							A.character=charPawn.get(index-1);
+							charPawn.remove(index-1);
 							userChar.add(A.character);
 						    users.add(A);
 						    break;
 						 }
 					}
 				}
-				 break;
+			break;
 			}
-			
-	 }
+		}
 	 }
 	
 	public void createMystery(){
@@ -196,7 +195,7 @@ public class Game {
 	}
 	
 	
-	public static int getCard(Card card) {
+	public int getCard(Card card) {
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){

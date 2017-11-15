@@ -1,5 +1,4 @@
 package ie.ucd.cluedo;
-import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,19 +54,44 @@ public class Player {
 		int position=character.getPosition();
 		Random rand = new Random();
 		int diceroll = rand.nextInt(6)+1;
-		int res;
-	    res=JOptionPane.showConfirmDialog(null,"Are you sure you want to go"+diceroll+"steps?",
-	     "",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
-		
-		if(res==JOptionPane.YES_OPTION){
-			position=diceroll+position;
-		}
-		if(res==JOptionPane.NO_OPTION){
-			System.out.println("How many steps do you want to go?");
+		int resp;
+		System.out.println("you have rolled a " + diceroll );
+				
+		while(true) {
+			System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay?");
 			Scanner in=new Scanner(System.in);
-			int number=in.nextInt();
-			position=position+number;
+			int resp1=in.nextInt();
+		
+			if(resp1==0) {
+				break;
+			}
+			else if(resp1==1){
+				while(true) {
+					System.out.println("How many steps do you want to go?");
+					Scanner resp2=new Scanner(System.in);
+					int amount=resp2.nextInt();
+					if (amount<=diceroll) {
+						character.position=position-amount;
+						break;
+					}
+				}
+				break;
+			}
+			else if(resp1==2){
+				while(true) {
+					System.out.println("How many steps do you want to go?");
+					Scanner resp2=new Scanner(System.in);
+					int amount=resp2.nextInt();
+					if (amount<=diceroll) {
+						character.position=position+amount;
+						break;
+					}
+				}
+				break;
+			}
 		}
+			
+		
 }
     
     
