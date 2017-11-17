@@ -12,12 +12,13 @@ public class Game {
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
-	protected List<Player> users;
+	protected static List<Player> users;
 	protected static List<Pawn> charPawn;
 	protected static List<Pawn> weaponPawn;
 	protected List<Pawn> pawns;
 	protected List<Pawn> pawnList;
 	protected List<Pawn> userChar;
+	protected static List<Card> allCard;
 	int number;
 		
 	public Game() {
@@ -32,6 +33,7 @@ public class Game {
 		pawns = new ArrayList<Pawn>();
 		pawnList = new ArrayList<Pawn>();
 		userChar=new ArrayList<Pawn>();
+		allCard=new ArrayList<Card>();
 	}
 	
 	public void createCards() {
@@ -82,6 +84,10 @@ public class Game {
 		weaponCards.add(revolver);
 		weaponCards.add(rope);		
 		weaponCards.add(poison); 
+		
+		allCard.addAll(charCards);
+		allCard.addAll(roomCards);
+		allCard.addAll(weaponCards);
 	}
 	
 	
@@ -195,13 +201,23 @@ public class Game {
 	}
 	
 	
-	public int getCard(Card card) {
+	public static int getCard(Card card) {
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){
 				index=i;	//return the index of the player				
 			} 
 		}
+		return index;
+	}
+	public static int findCard(String name){
+		int index=0;
+		 for(int t=0;t<allCard.size();t++){
+			 if(allCard.get(t).getName().equals(name)){
+				 index=t;
+				 allCard.remove(t);
+			 }
+		 }
 		return index;
 	}
 	

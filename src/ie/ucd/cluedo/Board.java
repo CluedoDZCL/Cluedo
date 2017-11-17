@@ -3,7 +3,6 @@ package ie.ucd.cluedo;
 import java.util.List;
 
 public class Board extends Game{
-	 	
 	public void createRooms(){
 		Room kitchen = new Room(10,"Kitchen");
 		Room ballroom = new Room(20,"Ballroom");
