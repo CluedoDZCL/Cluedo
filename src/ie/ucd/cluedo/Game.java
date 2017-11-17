@@ -13,8 +13,8 @@ public class Game {
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
 	protected List<Player> users;
-	protected List<Pawn> charPawn;
-	protected List<Pawn> weaponPawn;
+	protected static List<Pawn> charPawn;
+	protected static List<Pawn> weaponPawn;
 	protected List<Pawn> pawns;
 	protected List<Pawn> pawnList;
 	protected List<Pawn> userChar;
@@ -191,7 +191,7 @@ public class Game {
 	}
 	
 	public List<Card> getCards(int index){
-		return users.get(index).getPlayerCards();
+		return users.get(index).getPlayerCards(); //return all the cards of a player
 	}
 	
 	

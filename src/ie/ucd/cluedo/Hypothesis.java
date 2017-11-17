@@ -7,13 +7,20 @@ public class Hypothesis {
 	int z=0;
 	int t=0;
 	public Hypothesis(Player X){
+		for(int t=0;t<Game.charPawn.size();t++){  
+	           System.out.println((t+1)+") "+Game.charPawn.get(t).getName());  
+	       } 
 		System.out.println("who do you suspect could be the killer?" );
     	Scanner in=new Scanner(System.in); 
-   	    String person=in.next();
+   	    int person=in.nextInt();
    	    System.out.println("with what weapon?");
+   	 for(int t=0;t<Game.weaponPawn.size();t++){  
+         System.out.println((t+1)+") "+Game.weaponPawn.get(t).getName());  
+     } 
    	    Scanner sc=new Scanner(System.in); 
-	    String weapon=sc.next();
-    	X.notebook.add("I formulated the hypothesis that"+person+" made the murder in the"+X.character.getPosition()+" with the"+weapon);
+	    int weapon=sc.nextInt();
+    	
+	    X.notebook.add("I formulated the hypothesis that"+Game.charPawn.get(person).getName()+" made the murder in the"+X.character.getPosition()+" with the"+Game.weaponPawn.get(weapon).getName());
     	
     	//find out the related cards//
     	int c=Game.getCard(person);
