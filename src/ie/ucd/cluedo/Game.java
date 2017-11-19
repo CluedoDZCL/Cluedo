@@ -7,18 +7,18 @@ import java.util.Scanner;
 
 
 public class Game {
-	protected static List<Card> charCards;
-	protected static List<Card> weaponCards;
+	protected   List<Card> charCards;
+	protected   List<Card> weaponCards;
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
-	protected static List<Player> users;
-	protected static List<Pawn> charPawn;
-	protected static List<Pawn> weaponPawn;
+	protected   List<Player> users;
+	protected   List<Pawn> charPawn;
+	protected   List<Pawn> weaponPawn;
 	protected List<Pawn> pawns;
 	protected List<Pawn> pawnList;
 	protected List<Pawn> userChar;
-	protected static List<Card> allCard;
+	protected   List<Card> allCard;
 	int number;
 		
 	public Game() {
@@ -201,7 +201,7 @@ public class Game {
 	}
 	
 	
-	public static int getCard(Card card) {
+	public int getCard(Card card) {
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){
@@ -210,7 +210,7 @@ public class Game {
 		}
 		return index;
 	}
-	public static int findCard(String name){
+	public int findCard(String name){
 		int index=0;
 		 for(int t=0;t<allCard.size();t++){
 			 if(allCard.get(t).getName().equals(name)){

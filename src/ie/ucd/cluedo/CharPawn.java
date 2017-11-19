@@ -17,12 +17,9 @@ public class CharPawn extends Pawn{
 	public int getPosition(){
 		return position;
 	}
+	
 	public String getName(){
 		return name;
 	}
 	
-	public int checkPosition() {
-		return position;
-	}
-
 }

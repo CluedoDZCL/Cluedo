@@ -36,7 +36,13 @@ public class Main {
 		
 		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
 		cluedo.users.get(0).movement();
-		System.out.println(cluedo.users.get(0).getCharacter().getPosition());		
+		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
+		cluedo.users.get(0).movement();
+		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
+		cluedo.users.get(0).movement();
+		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
+		cluedo.users.get(0).movement();
+		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
 		
 		
 		System.out.println("Finished main");

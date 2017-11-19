@@ -51,7 +51,7 @@ public class Player {
      }
 	
 	public void movement(){
-		int position=character.getPosition();
+		int pos=character.getPosition();
 		Random rand = new Random();
 		int diceroll = rand.nextInt(6)+1;
 		int resp;
@@ -62,7 +62,7 @@ public class Player {
 			Scanner in=new Scanner(System.in);
 			int resp1=in.nextInt();
 		
-			if(resp1==0) {
+			if(resp1==3) {
 				break;
 			}
 			else if(resp1==1){
@@ -71,7 +71,7 @@ public class Player {
 					Scanner resp2=new Scanner(System.in);
 					int amount=resp2.nextInt();
 					if (amount<=diceroll) {
-						character.position=position-amount;
+						character.position=pos-amount;
 						break;
 					}
 				}
@@ -83,7 +83,7 @@ public class Player {
 					Scanner resp2=new Scanner(System.in);
 					int amount=resp2.nextInt();
 					if (amount<=diceroll) {
-						character.position=position+amount;
+						character.position=pos+amount;
 						break;
 					}
 				}
