@@ -1,8 +1,14 @@
 package ie.ucd.cluedo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Board extends Game{
+	protected List<Room> rooms;
+	
+	public Board() {
+		rooms = new ArrayList<Room>();
+	}
 	public void createRooms(){
 		Room kitchen = new Room(10,"Kitchen");
 		Room ballroom = new Room(20,"Ballroom");
@@ -13,6 +19,15 @@ public class Board extends Game{
 		Room study = new Room(70,"Study");
 		Room billiard = new Room(80,"Billiard Room");
 		Room library = new Room(90,"Library");
+		rooms.add(kitchen);
+		rooms.add(ballroom);
+		rooms.add(conservatory);
+		rooms.add(dining);
+		rooms.add(lounge);
+		rooms.add(hall);
+		rooms.add(study);
+		rooms.add(billiard);
+		rooms.add(library);		
 			
 	}
 	
@@ -27,7 +42,7 @@ public class Board extends Game{
 	public List<Pawn> checkRoom(Game game,Room room){
 		pawnList.clear();
 		int position =room.getPosition();
-		for (int i=0; i< game.weaponPawn.size();i++) {
+		for (int i=0; i< game.pawns.size();i++) {
 			if (game.pawns.get(i).getPosition()==position) {
 				pawnList.add(game.pawns.get(i));
 			}

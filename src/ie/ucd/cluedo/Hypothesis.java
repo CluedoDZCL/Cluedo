@@ -51,8 +51,8 @@ public class Hypothesis {
 		
 	}
 	
-	public void movePawn(Pawn pawn, int newPosition) {
-		pawn.position=newPosition;
+	public static void movePawn( Pawn pawn, int newPosition) {
+		pawn.setPosition(newPosition);
 	}
 	
 	

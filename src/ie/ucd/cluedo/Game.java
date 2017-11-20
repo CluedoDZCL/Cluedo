@@ -119,7 +119,7 @@ public class Game {
 		charPawn.add(mustard_Pawn);
 		charPawn.add(white_Pawn);
 		
-		for (int i=0; i<6; i++) {
+		for (int i=0; i<weaponPawn.size(); i++) {
 			pawns.add(weaponPawn.get(i));
 			pawns.add(charPawn.get(i));
 		}

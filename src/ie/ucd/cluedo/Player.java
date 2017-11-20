@@ -71,7 +71,7 @@ public class Player {
 					Scanner resp2=new Scanner(System.in);
 					int amount=resp2.nextInt();
 					if (amount<=diceroll) {
-						character.position=pos-amount;
+						character.setPosition(pos-amount);
 						break;
 					}
 				}
@@ -83,7 +83,7 @@ public class Player {
 					Scanner resp2=new Scanner(System.in);
 					int amount=resp2.nextInt();
 					if (amount<=diceroll) {
-						character.position=pos+amount;
+						character.setPosition(pos+amount);
 						break;
 					}
 				}

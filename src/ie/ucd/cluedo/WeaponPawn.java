@@ -12,4 +12,8 @@ public class WeaponPawn extends Pawn{
 	public int checkPosition() {
 		return position;
 	}
+	
+	public void setPosition(int pos) {
+		position=pos;
+	}
 }

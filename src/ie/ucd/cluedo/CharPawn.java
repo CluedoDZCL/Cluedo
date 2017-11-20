@@ -18,6 +18,10 @@ public class CharPawn extends Pawn{
 		return position;
 	}
 	
+	public void setPosition(int pos) {
+		position=pos;
+	}
+	
 	public String getName(){
 		return name;
 	}

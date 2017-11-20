@@ -9,6 +9,10 @@ public abstract class Pawn{
 		return position;
 	}
 	
+	public void setPosition(int pos) {
+		position=pos;
+	}
+	
 	public String getName(){
 		return name;		
 	}

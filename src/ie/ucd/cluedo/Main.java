@@ -37,13 +37,16 @@ public class Main {
 		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
 		cluedo.users.get(0).movement();
 		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
-		cluedo.users.get(0).movement();
-		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
-		cluedo.users.get(0).movement();
-		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
-		cluedo.users.get(0).movement();
-		System.out.println(cluedo.users.get(0).getCharacter().getPosition());
 		
+		cluedo.users.get(0).getCharacter().setPosition(20);
+		cluedo.weaponPawn.get(1).setPosition(20);
+		cluedo.weaponPawn.get(3).setPosition(20);
+		int size=board.checkRoom(cluedo,board.rooms.get(1)).size();
+		for (int i=0; i<size;i++) {
+			System.out.println(board.checkRoom(cluedo,board.rooms.get(1)).get(i).getName());
+		}
+		
+				
 		
 		System.out.println("Finished main");
 	}
