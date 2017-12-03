@@ -227,14 +227,14 @@ public class Game {
 	}
 	
 	public void startGame(){
-		int noPlayer=0;
+		int currentPlayer=0;
 		while (!solved) {
-			users.get(noPlayer).movement();
+			users.get(currentPlayer % 3).movement();
 			
 			
 			
 			
-			noPlayer++;
+			currentPlayer++;
 		}
 		
 	}

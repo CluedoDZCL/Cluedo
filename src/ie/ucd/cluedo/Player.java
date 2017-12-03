@@ -56,13 +56,21 @@ public class Player {
 		int dice1 = rand.nextInt(6)+1;
 		int dice2 = rand.nextInt(6)+1;
 		int diceroll=dice1+dice2;
-		int resp;
+		int resp1;
 		System.out.println("you have rolled a " + diceroll );
 				
 		while(true) {
-			System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay?");
-			Scanner in=new Scanner(System.in);
-			int resp1=in.nextInt();
+			if (pos==20 || pos==50 || pos==70 || pos==90) {
+				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut?");
+				Scanner in=new Scanner(System.in);
+				resp1=in.nextInt();
+			}
+			else {
+				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay?");
+				Scanner in=new Scanner(System.in);
+				resp1=in.nextInt();
+			}
+			
 		
 			if(resp1==3) {
 				break;
@@ -91,10 +99,18 @@ public class Player {
 				}
 				break;
 			}
+			else if(resp1==4){
+				while(true) {
+					if (pos==20)	character.setPosition(70);
+					else if (pos==50)	character.setPosition(90);
+					else if (pos==70)	character.setPosition(20);
+					else if (pos==90)	character.setPosition(50);
+					break;
+					}
+				}
+				break;
+			}
 		}
 			
 		
-}
-    
-    
 }
