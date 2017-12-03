@@ -20,6 +20,7 @@ public class Game {
 	protected List<Pawn> userChar;
 	protected   List<Card> allCard;
 	int number;
+	boolean solved=false;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
@@ -221,7 +222,22 @@ public class Game {
 		return index;
 	}
 	
+	public void mysterySolved() {
+		solved=true;
+	}
 	
+	public void startGame(){
+		int noPlayer=0;
+		while (!solved) {
+			users.get(noPlayer).movement();
+			
+			
+			
+			
+			noPlayer++;
+		}
+		
+	}
 		
 }
 	

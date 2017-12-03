@@ -15,7 +15,7 @@ public class Main {
 		//Distribute cards
 		cluedo.distributeCards();
 		
-		//check setup correct
+		/*check setup correct 
 		for (int i=0; i<cluedo.users.size();i++) {
 			
 			String name=cluedo.users.get(i).getName();
@@ -29,7 +29,8 @@ public class Main {
 		}
 		System.out.println("The mystery is " + cluedo.mystery.get(0).getName() + " in the "
 				+ cluedo.mystery.get(1).getName()+ " with the " + cluedo.mystery.get(2).getName());
-		
+		*/
+		/*
 		//check moving
 		Board board = new Board();
 		board.createRooms();
@@ -45,8 +46,10 @@ public class Main {
 		for (int i=0; i<size;i++) {
 			System.out.println(board.checkRoom(cluedo,board.rooms.get(1)).get(i).getName());
 		}
+		*/
 		
-				
+		cluedo.startGame();
+		
 		
 		System.out.println("Finished main");
 	}
