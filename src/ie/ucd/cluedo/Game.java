@@ -12,15 +12,17 @@ public class Game {
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
-	protected   List<Player> users;
+	protected static  List<Player> users;
 	protected   List<Pawn> charPawn;
 	protected   List<Pawn> weaponPawn;
 	protected List<Pawn> pawns;
 	protected List<Pawn> pawnList;
 	protected List<Pawn> userChar;
 	protected   List<Card> allCard;
+	protected List<Pawn> charCreate;
 	int number;
 	boolean solved=false;
+	
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
@@ -35,6 +37,7 @@ public class Game {
 		pawnList = new ArrayList<Pawn>();
 		userChar=new ArrayList<Pawn>();
 		allCard=new ArrayList<Card>();
+		charCreate=new ArrayList<Pawn>();
 	}
 	
 	public void createCards() {
@@ -120,6 +123,13 @@ public class Game {
 		charPawn.add(mustard_Pawn);
 		charPawn.add(white_Pawn);
 		
+		charCreate.add(scarlett_Pawn);
+		charCreate.add(plum_Pawn);
+		charCreate.add(peacock_Pawn);
+		charCreate.add(green_Pawn);
+		charCreate.add(mustard_Pawn);
+		charCreate.add(white_Pawn);
+		
 		for (int i=0; i<weaponPawn.size(); i++) {
 			pawns.add(weaponPawn.get(i));
 			pawns.add(charPawn.get(i));
@@ -132,23 +142,23 @@ public class Game {
 			System.out.println("How many players do you have(should between 3 and 6)");
 			Scanner in=new Scanner(System.in);
 			number=in.nextInt();
-			if(number>=3 && number<6){
+			if(number>=3 && number<=6){
 			   
 				for(int i=0;i<number;i++){
-					System.out.print("what is your name?");
+					System.out.print("what is your name?\n");
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
 					Player A=new Player(playerName);
-					for(int t=0;t<charPawn.size();t++){  
-				           System.out.println((t+1)+") "+charPawn.get(t).getName());  
+					for(int t=0;t<charCreate.size();t++){  
+				           System.out.println((t+1)+") "+charCreate.get(t).getName());  
 				       } 
 					while(true){
 						System.out.println("what character you want to be, please input the index");
 						Scanner sc=new Scanner(System.in);
 						int index=sc.nextInt();
 						if(index>=1 && index<=charPawn.size()){
-							A.character=charPawn.get(index-1);
-							charPawn.remove(index-1);
+							A.character=charCreate.get(index-1);
+							charCreate.remove(index-1);
 							userChar.add(A.character);
 						    users.add(A);
 						    break;
@@ -214,7 +224,7 @@ public class Game {
 	}
 	
 	
-	public int getCard(Card card) {
+	public int getCard(Card card) { //find out the card holder
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){
@@ -223,16 +233,17 @@ public class Game {
 		}
 		return index;
 	}
-	public int findCard(String name){
+	public int findCard(String name){ //find out the card index
 		int index=0;
 		 for(int t=0;t<allCard.size();t++){
 			 if(allCard.get(t).getName().equals(name)){
 				 index=t;
-				 allCard.remove(t);
+				// allCard.remove(t);
 			 }
 		 }
 		return index;
 	}
+	
 	
 	public void mysterySolved() {
 		solved=true;
@@ -243,9 +254,9 @@ public class Game {
 		while (!solved) {
 			currentPlayer++;
 			System.out.println("Its " + users.get(currentPlayer).getName() + "s turn");
-			users.get(currentPlayer % users.size()).movement();
+			users.get(currentPlayer % number).movement();
 			
-			users.get(currentPlayer % users.size()).choice(game);
+			users.get(currentPlayer % number).choice(game);
 		}
 		
 	}
