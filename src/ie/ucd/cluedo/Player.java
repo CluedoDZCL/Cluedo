@@ -75,7 +75,6 @@ public class Player {
      }
 	
 	public void movement(){
-		
 		int pos=character.getPosition();
 		Random rand = new Random();
 		int dice1 = rand.nextInt(6)+1;

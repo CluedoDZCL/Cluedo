@@ -254,7 +254,9 @@ public class Game {
 		while (!solved) {
 			currentPlayer++;
 			System.out.println("Its " + users.get(currentPlayer).getName() + "s turn");
+
             System.out.println("your current position is "+users.get(currentPlayer).getCharacter().getPosition());
+
 			users.get(currentPlayer % number).movement();
 			
 			users.get(currentPlayer % number).choice(game);
