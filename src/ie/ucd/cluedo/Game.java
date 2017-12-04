@@ -12,7 +12,7 @@ public class Game {
 	protected List<Card> roomCards;
 	protected List<Card> mystery;
 	protected List<Card> combinedCards;
-	protected static  List<Player> users;
+	protected  List<Player> users;
 	protected   List<Pawn> charPawn;
 	protected   List<Pawn> weaponPawn;
 	protected List<Pawn> pawns;
@@ -254,6 +254,7 @@ public class Game {
 		while (!solved) {
 			currentPlayer++;
 			System.out.println("Its " + users.get(currentPlayer).getName() + "s turn");
+            System.out.println("your current position is "+users.get(currentPlayer).getCharacter().getPosition());
 			users.get(currentPlayer % number).movement();
 			
 			users.get(currentPlayer % number).choice(game);
