@@ -250,6 +250,10 @@ public class Game {
 	}
 	
 	public void startGame(Game game, Hypothesis hepo, Board board){
+		//initial notebook
+		for(int t=0;t<number;t++){
+			users.get(t).initializeNotebook();
+		}
 		int currentPlayer=-1;
 		while (!solved) {
 			currentPlayer++;
@@ -257,7 +261,7 @@ public class Game {
 				System.out.println("Its " + users.get(currentPlayer).getName() + "'s turn");
 	
 	            System.out.println("your current position is "+users.get(currentPlayer).getCharacter().getPosition());
-	
+	            users.get(currentPlayer % number).checkNotebook();
 				users.get(currentPlayer % number).movement();
 				
 				users.get(currentPlayer % number).choice(game, hepo, board);
