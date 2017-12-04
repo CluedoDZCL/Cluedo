@@ -87,10 +87,7 @@ public class Player {
     }
 
     
-    protected void initializeNotebook(){
-    	notebook.add("Game start");
-     }
-	
+ 
 	public void movement(){
 		int pos=character.getPosition();
 		Random rand = new Random();
@@ -153,7 +150,7 @@ public class Player {
 			}
 		}
 			
-		public void choice(Game game, Hypothesis hepo, Board board) {
+		public void choice(Game game,Board board) {
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
@@ -178,7 +175,8 @@ public class Player {
 				}
 			}
 		}
-
+		
+		
 		
 		
 		

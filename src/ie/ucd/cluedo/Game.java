@@ -260,6 +260,7 @@ public class Game {
 			users.get(currentPlayer % number).movement();
 			
 			users.get(currentPlayer % number).choice(game, hepo, board);
+
 		}
 		
 	}
