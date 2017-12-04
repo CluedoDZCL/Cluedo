@@ -11,6 +11,7 @@ public class Player {
 	protected List<Card> playerCards;
 	public Pawn character;
 	public Player(String name){
+		notebook=new ArrayList<String>();
 		playerCards = new ArrayList<Card>();
 		this.name=name;
 	}
@@ -37,20 +38,42 @@ public class Player {
 	}
 	
 	
-    public void raiseAccusation(Player X){
-    	System.out.println("who do you believe would be the killer?" );
-    	Scanner in=new Scanner(System.in); 
-   	    String person=in.next();
-   	    System.out.println("with what weapon?");
-   	    Scanner sc=new Scanner(System.in); 
-	    String weapon=sc.next();
+    public void raiseAccusation(Player X, Game game){
+    	for(int t=0;t<game.charPawn.size();t++){  
+	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
+	       } 
+	//	while(true){
+		       System.out.println("who do you accuse could be the killer?" );
+ 	              Scanner in=new Scanner(System.in); 
+	                     int person=in.nextInt();
+	            //        if(person>=1 && person<=game.charPawn.size()){
+	             //         break;
+		         //     }
+	//	}
+	    System.out.println("with what weapon?");
+	    for(int t=0;t<game.weaponPawn.size();t++){  
+             System.out.println((t+1)+") "+game.weaponPawn.get(t).getName());  
+                                                  } 
+//	     while(true){
+	            Scanner sc=new Scanner(System.in); 
+	            int weapon=sc.nextInt();
+	     //       if(weapon>=1 && weapon<=game.weaponPawn.size()){
+	     //                  break;
+	     //             }
+	  //   }
+	             //keyword.add(game.charPawn.get(person).getName());
+	      	     //keyword.add(game.weaponPawn.get(weapon).getName());
+	      	     //keyword.add(board.findRoomName(X));
     	X.notebook.add("I formulated the accusation that"+person+" made the murder in the"+X.character.getPosition()+" with the"+weapon);
     }
+    
     protected void initializeNotebook(){
     	notebook.add("Game start");
      }
 	
-	public void movement(){
+	public void movement(int userName){
+		System.out.println("welcome back "+Game.users.get(userName).getName()+"!");
+		System.out.println("your current position is "+Game.users.get(userName).character.getPosition());
 		int pos=character.getPosition();
 		Random rand = new Random();
 		int dice1 = rand.nextInt(6)+1;

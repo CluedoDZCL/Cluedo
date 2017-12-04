@@ -49,4 +49,14 @@ public class Board extends Game{
 		}
 		return pawnList;
 	}
+	public String findRoomName(Player X){
+		String roomName="";
+		for(int t=0;t<rooms.size();t++){
+			if(X.character.getPosition()==(rooms.get(t).getPosition()))
+				roomName=rooms.get(t).getName();
+			
+		}
+		return roomName;
+	}
+	
 }
