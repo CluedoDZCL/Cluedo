@@ -78,6 +78,7 @@ public class Player {
     		}
     			else{
     				game.users.remove(this);
+    				
     			}
     		if(choice==2){
     			
