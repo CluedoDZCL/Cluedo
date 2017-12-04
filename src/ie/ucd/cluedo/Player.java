@@ -11,10 +11,12 @@ public class Player {
 	protected List<Card> playerCards;
 	public Pawn character;
 	public List<String>accusationWords;
+	public boolean playing;
 	
 	public Player(String name){
 		notebook=new ArrayList<String>();
 		playerCards = new ArrayList<Card>();
+		playing =true;
 		this.name=name;
 	}
 	public String getName(){
@@ -150,7 +152,7 @@ public class Player {
 			}
 		}
 			
-		public void choice(Game game,Board board) {
+		public void choice(Game game,Hypothesis hepo,Board board) {
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
