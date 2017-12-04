@@ -10,7 +10,8 @@ public class Player {
 	protected List<String> notebook;
 	protected List<Card> playerCards;
 	public Pawn character;
-			
+	public List<String>accusationWords;
+	
 	public Player(String name){
 		notebook=new ArrayList<String>();
 		playerCards = new ArrayList<Card>();
@@ -40,7 +41,8 @@ public class Player {
 	
 	
 
-    public void raiseAccusation(Game game){
+    public void raiseAccusation(Game game, Board board){
+    	accusationWords = new ArrayList<String>();
     	for(int t=0;t<game.charPawn.size();t++){  
 	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
 	       } 
@@ -63,10 +65,24 @@ public class Player {
 	     //                  break;
 	     //             }
 	  //   }
-	             //keyword.add(game.charPawn.get(person).getName());
-	      	     //keyword.add(game.weaponPawn.get(weapon).getName());
-	      	     //keyword.add(board.findRoomName(X));
+	             accusationWords.add(game.charPawn.get(person).getName());
+	             accusationWords.add(game.weaponPawn.get(weapon).getName());
+	             accusationWords.add(board.findRoomName(this));
     	notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
+    	System.out.print("Are you sure? If the accusation is wrong, you will be delete forever \n 1) yes \n 2) no");
+    	Scanner ce=new Scanner(System.in);
+    	int choice=ce.nextInt();
+    	if(choice==1){
+    		if(game.mystery.get(0).getName().equals(accusationWords.get(0)) && game.mystery.get(1).getName().equals(accusationWords.get(0)) && game.mystery.get(2).getName().equals(accusationWords.get(1))){
+    			System.out.println("Congratulations! You have won the game!");
+    		}
+    			else{
+    				game.users.remove(this);
+    			}
+    		if(choice==2){
+    			
+    		}
+    	}
     }
 
     
@@ -142,11 +158,12 @@ public class Player {
 				resp=in.nextInt();
 				
 				if (resp==1) {
-					raiseAccusation(game);
+				raiseAccusation(game, board);
 				}
 				else if (resp==2) {
 					if (pos==10 || pos==20 ||pos==30 ||pos==40 ||pos==50 ||pos==60 ||pos==70 ||pos==80 ||pos==90) {
-						Hypothesis.makeHypothesis(this,game, board);
+						//Put hypothis method here
+						hepo.makeHypothesis(this, game, board);
 						break;
 					} else {
 						System.out.println("You are not in a room");
