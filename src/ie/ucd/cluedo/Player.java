@@ -152,7 +152,11 @@ public class Player {
 			}
 		}
 			
+<<<<<<< HEAD
+		public void choice(Game game,Hypothesis hepo, Board board) {
+=======
 		public void choice(Game game,Hypothesis hepo,Board board) {
+>>>>>>> 0d9e3b50847bf6354c8bc76afde2b4ba35f2fa2b
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
