@@ -74,8 +74,6 @@ public class Player {
      }
 	
 	public void movement(){
-		System.out.println("welcome back "+name+"!");
-		System.out.println("your current position is "+name);
 		int pos=character.getPosition();
 		Random rand = new Random();
 		int dice1 = rand.nextInt(6)+1;
