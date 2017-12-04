@@ -49,7 +49,8 @@ public class Main {
 		}
 		*/
 		Player a=new Player("aa");
-		Hypothesis hypo=new Hypothesis(a, cluedo, apartment);
+		Hypothesis hepo=new Hypothesis();
+        hepo.makeHypothesis(a,cluedo,apartment);
 		
 
 		cluedo.startGame(cluedo);
