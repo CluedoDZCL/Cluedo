@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Hypothesis {
     protected List<String> keyword; // the list of the room name, weapon name, and person name
-    protected int person=0;
-    protected int weapon=0;
+    protected int person;
+    protected int weapon;
     
 	public Hypothesis(){
 		keyword=new ArrayList<String>();
@@ -17,7 +17,7 @@ public class Hypothesis {
 		for(int t=0;t<game.charPawn.size();t++){  
 	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
 	       } 
-	while(true){
+		while(true){
 		       System.out.println("who do you suspect could be the killer?" );
  	              Scanner in=new Scanner(System.in); 
 	                      person=in.nextInt();
@@ -29,7 +29,7 @@ public class Hypothesis {
 	    for(int t=0;t<game.weaponPawn.size();t++){  
              System.out.println((t+1)+") "+game.weaponPawn.get(t).getName());  
                                                   } 
-     while(true){
+	    while(true){
 	            Scanner sc=new Scanner(System.in); 
 	             weapon=sc.nextInt();
 	           if(weapon>=1 && weapon<=game.weaponPawn.size()){
@@ -65,7 +65,7 @@ public class Hypothesis {
 	
 	
 
-	public static void movePawn( Pawn pawn, int newPosition) {
+	public void movePawn( Pawn pawn, int newPosition) {
 		pawn.setPosition(newPosition);
 	}
 	

@@ -10,7 +10,7 @@ public class Player {
 	protected List<String> notebook;
 	protected List<Card> playerCards;
 	public Pawn character;
-	
+			
 	public Player(String name){
 		notebook=new ArrayList<String>();
 		playerCards = new ArrayList<Card>();
@@ -70,10 +70,7 @@ public class Player {
     }
 
     
-    protected void initializeNotebook(){
-    	notebook.add("Game start");
-     }
-	
+ 
 	public void movement(){
 		int pos=character.getPosition();
 		Random rand = new Random();
@@ -136,7 +133,7 @@ public class Player {
 			}
 		}
 			
-		public void choice(Game game, Hypothesis hepo, Board board) {
+		public void choice(Game game,Board board) {
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
@@ -149,8 +146,7 @@ public class Player {
 				}
 				else if (resp==2) {
 					if (pos==10 || pos==20 ||pos==30 ||pos==40 ||pos==50 ||pos==60 ||pos==70 ||pos==80 ||pos==90) {
-						//Put hypothis method here
-						hepo.makeHypothesis(Player, game, board);
+						Hypothesis.makeHypothesis(this,game, board);
 						break;
 					} else {
 						System.out.println("You are not in a room");
@@ -161,7 +157,8 @@ public class Player {
 				}
 			}
 		}
-
+		
+		
 		
 		
 		

@@ -249,7 +249,7 @@ public class Game {
 		solved=true;
 	}
 	
-	public void startGame(Game game){
+	public void startGame(Game game,Board board){
 		int currentPlayer=-1;
 		while (!solved) {
 			currentPlayer++;
@@ -259,7 +259,7 @@ public class Game {
 
 			users.get(currentPlayer % number).movement();
 			
-			users.get(currentPlayer % number).choice(game);
+			users.get(currentPlayer % number).choice(game,board);
 		}
 		
 	}

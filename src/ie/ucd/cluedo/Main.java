@@ -5,7 +5,7 @@ public class Main {
 		
 		//Create Board, Cards, Pawns and mystery
 		Game cluedo = new Game();
-		Board apartment=new Board();
+		Board board=new Board();
 		cluedo.createCards();	
 		cluedo.createMystery();	
 		cluedo.createPawns();
@@ -48,14 +48,9 @@ public class Main {
 			System.out.println(board.checkRoom(cluedo,board.rooms.get(1)).get(i).getName());
 		}
 		*/
-		Player a=new Player("aa");
-		Hypothesis hepo=new Hypothesis();
-        hepo.makeHypothesis(a,cluedo,apartment);
 		
-
-		cluedo.startGame(cluedo);
-
-		
+		cluedo.startGame(cluedo,board);
+	
 		
 		System.out.println("Finished main");
 	}
