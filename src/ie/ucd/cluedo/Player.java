@@ -150,7 +150,7 @@ public class Player {
 			}
 		}
 			
-		public void choice(Game game,Board board) {
+		public void choice(Game game,Hypothesis hepo, Board board) {
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
