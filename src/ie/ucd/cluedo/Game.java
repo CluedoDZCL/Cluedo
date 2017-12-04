@@ -178,6 +178,18 @@ public class Game {
 		weaponCards.remove(randomWeapon);
 	}
 	
+	public boolean checkMystery(String charicter, String room, String weapon) {
+		if (mystery.get(0).getName().equals(charicter) && mystery.get(1).getName().equals(room) && 
+				mystery.get(2).getName().equals(weapon)) {
+			solved=true;
+			return true;
+		}
+		else {
+			return false;
+		}
+	
+	}
+	
 	public void distributeCards() {
 		//Add all cards to one array
 		for (int j=0; j<charCards.size(); j+=1) {
@@ -226,15 +238,14 @@ public class Game {
 		solved=true;
 	}
 	
-	public void startGame(){
-		int currentPlayer=0;
+	public void startGame(Game game){
+		int currentPlayer=-1;
 		while (!solved) {
-			users.get(currentPlayer % 3).movement();
-			
-			
-			
-			
 			currentPlayer++;
+			System.out.println("Its " + users.get(currentPlayer).getName() + "s turn");
+			users.get(currentPlayer % users.size()).movement();
+			
+			users.get(currentPlayer % users.size()).choice(game);
 		}
 		
 	}

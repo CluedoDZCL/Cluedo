@@ -48,7 +48,7 @@ public class Main {
 		}
 		*/
 		
-		cluedo.startGame();
+		cluedo.startGame(cluedo);
 		
 		
 		System.out.println("Finished main");

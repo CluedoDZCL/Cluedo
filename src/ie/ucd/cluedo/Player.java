@@ -37,15 +37,26 @@ public class Player {
 	}
 	
 	
-    public void raiseAccusation(Player X){
+    public void raiseAccusation(Game game){
     	System.out.println("who do you believe would be the killer?" );
-    	Scanner in=new Scanner(System.in); 
-   	    String person=in.next();
+    	Scanner resp1=new Scanner(System.in); 
+   	    String person=resp1.next();
    	    System.out.println("with what weapon?");
-   	    Scanner sc=new Scanner(System.in); 
-	    String weapon=sc.next();
-    	X.notebook.add("I formulated the accusation that"+person+" made the murder in the"+X.character.getPosition()+" with the"+weapon);
+   	    Scanner resp2=new Scanner(System.in); 
+	    String weapon=resp2.next();
+	    System.out.println("in what room?");
+   	    Scanner resp3=new Scanner(System.in); 
+	    String room=resp3.next();
+    	notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
+    	if (game.checkMystery(person,room,weapon)) {
+    		System.out.println("Congratulations you have won the game");
+    	}
+    	else {
+    		
+    	}
     }
+
+    
     protected void initializeNotebook(){
     	notebook.add("Game start");
      }
@@ -61,17 +72,17 @@ public class Player {
 				
 		while(true) {
 			if (pos==20 || pos==50 || pos==70 || pos==90) {
-				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut?");
+				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut");
 				Scanner in=new Scanner(System.in);
 				resp1=in.nextInt();
 			}
 			else {
-				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay?");
+				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay");
 				Scanner in=new Scanner(System.in);
 				resp1=in.nextInt();
 			}
 			
-		
+			
 			if(resp1==3) {
 				break;
 			}
@@ -101,7 +112,7 @@ public class Player {
 			}
 			else if(resp1==4){
 				while(true) {
-					if (pos==20)	character.setPosition(70);
+					if 		(pos==20)	character.setPosition(70);
 					else if (pos==50)	character.setPosition(90);
 					else if (pos==70)	character.setPosition(20);
 					else if (pos==90)	character.setPosition(50);
@@ -112,5 +123,37 @@ public class Player {
 			}
 		}
 			
+		public void choice(Game game) {
+			while(true) {
+				int resp;
+				int pos=character.getPosition();
+				System.out.println("Would you like to, \n 1) make acusation \n 2) make hypothesis \n 3) do nothing");
+				Scanner in=new Scanner(System.in);
+				resp=in.nextInt();
+				
+				if (resp==1) {
+					raiseAccusation(game);
+				}
+				else if (resp==2) {
+					if (pos==10 || pos==20 ||pos==30 ||pos==40 ||pos==50 ||pos==60 ||pos==70 ||pos==80 ||pos==90) {
+						//Put hypothis method here
+						break;
+					} else {
+						System.out.println("You are not in a room");
+					}
+				}
+				else if (resp==3) {
+					break;
+				}
+			}
+		}
+
+		
+		
 		
 }
+		
+		
+		
+		
+		

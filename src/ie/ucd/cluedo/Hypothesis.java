@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Hypothesis {
     protected List<String> keyword; // the list of the room name, weapon name, and person name
+    
 	public Hypothesis(Player X, Game game){
 		for(int t=0;t<game.charPawn.size();t++){  
 	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  

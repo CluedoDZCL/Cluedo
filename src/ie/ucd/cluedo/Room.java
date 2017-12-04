@@ -13,5 +13,8 @@ public class Room {
 		return position;
 	}
 	
+	public String getName() {
+		return name;
+	}
 	
 }
