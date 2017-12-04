@@ -249,17 +249,17 @@ public class Game {
 		solved=true;
 	}
 	
-	public void startGame(Game game){
+	public void startGame(Game game, Hypothesis hepo, Board board){
 		int currentPlayer=-1;
 		while (!solved) {
 			currentPlayer++;
-			System.out.println("Its " + users.get(currentPlayer).getName() + "s turn");
+			System.out.println("Its " + users.get(currentPlayer).getName() + "'s turn");
 
             System.out.println("your current position is "+users.get(currentPlayer).getCharacter().getPosition());
 
 			users.get(currentPlayer % number).movement();
 			
-			users.get(currentPlayer % number).choice(game);
+			users.get(currentPlayer % number).choice(game, hepo, board);
 		}
 		
 	}
