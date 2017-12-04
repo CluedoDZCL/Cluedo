@@ -162,6 +162,7 @@ public class Player {
 				
 				if (resp==1) {
 				raiseAccusation(game, board);
+				break;
 				}
 				else if (resp==2) {
 					if (pos==10 || pos==20 ||pos==30 ||pos==40 ||pos==50 ||pos==60 ||pos==70 ||pos==80 ||pos==90) {
