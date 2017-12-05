@@ -52,7 +52,13 @@ public class Main {
 		}
 		*/
 
-		cluedo.startGame(cluedo, hepo, apartment);
+		//cluedo.startGame(cluedo, hepo, apartment);
+		
+		cluedo.users.get(0).character.setPosition(20);
+		System.out.println(cluedo.users.get(0).character.getPosition());
+		
+		System.out.println(apartment.findRoomName(cluedo.users.get(0)));
+		
 		
 		System.out.println("Finished main");
 	}
