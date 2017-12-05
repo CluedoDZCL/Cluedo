@@ -210,6 +210,20 @@ public class Player {
 		notebook.add("Game Start");
 		notebook.add("*****************");
 	}	
+	public void checkCard(){
+		System.out.println("Do you want to check your cards \n 1) yes; \n 2) no;");
+		Scanner ck=new Scanner(System.in);
+		int check=ck.nextInt();
+		if(check==1){
+			printCard();
+		}
+		
+	}
+	public void printCard(){
+		for(int t=0;t<playerCards.size();t++){  
+	           System.out.println(playerCards.get(t).getName());  
+	       }
+	}
 		
 }
 		

@@ -257,10 +257,11 @@ public class Game {
 		int currentPlayer=-1;
 		while (!solved) {
 			currentPlayer++;
-			if (users.get(currentPlayer).playing) {
-				System.out.println("Its " + users.get(currentPlayer).getName() + "'s turn");
+			if (users.get(currentPlayer%number).playing) {
+				System.out.println("Its " + users.get(currentPlayer%number).getName() + "'s turn");
 	
-	            System.out.println("your current position is "+users.get(currentPlayer).getCharacter().getPosition());
+	            System.out.println("your current position is "+users.get(currentPlayer%number).getCharacter().getPosition());
+	            users.get(currentPlayer%number).checkCard();
 	            users.get(currentPlayer % number).checkNotebook();
 				users.get(currentPlayer % number).movement();
 				
