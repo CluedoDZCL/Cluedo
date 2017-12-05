@@ -39,27 +39,36 @@ public class Hypothesis {
 	     //get position of the player//
 	     keyword.add(game.charPawn.get(person-1).getName());
 	     keyword.add(game.weaponPawn.get(weapon-1).getName());
-	     keyword.add(board.findRoomName(X));
-	    X.notebook.add("I formulated the hypothesis that"+keyword.get(0)+" made the murder in the"+keyword.get(1)+" with the"+keyword.get(2)+"\n");
+	     keyword.add(board.findRoomName(X.character.getPosition()));
+	    X.notebook.add("I formulated the hypothesis that "+keyword.get(0)+" made the murder in the"+keyword.get(2)+" with the "+keyword.get(1)+"\n");
  	
- 	//find out the related cards//
+ 	    //find out the related cards//
 	    for(int t=0;t<3;t++){
- 	int cardIndex=game.findCard(keyword.get(t));
- 	int holderIndex=game.getCard(game.allCard.get(cardIndex));//who possess the card
- 	if(holderIndex>0){
- 		game.users.get(holderIndex).notebook.add(X+"formulated the hypothesis that"+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the"+keyword.get(1)+"\n");
- 		game.users.get(holderIndex).notebook.add("I refuted the hypothesis showing card"+keyword.get(t)+"\n");
-     	X.notebook.add(game.users.get(holderIndex)+"refuted the hypothesis showing the card"+keyword.get(t)+"\n");
-     	for(int j=0;j<game.users.size();j++){
-     		if(!game.users.get(j).getName().equals(X) && !game.users.get(j).getName().equals(game.users.get(holderIndex).getClass())){
-     			game.users.get(j).notebook.add(X+"made the hypothesis that"+keyword.get(0)+"made the murder in the "+keyword.get(2)+" with the"+keyword.get(1)+"\n");
-     			game.users.get(j).notebook.add(game.users.get(holderIndex)+"refuted the hypothesis showing a card\n");
+ 	      int cardIndex=game.findCard(keyword.get(t));
+ 	      int holderIndex=game.getCard(game.allCard.get(cardIndex));//who possess the card
+ 	        //  if(holderIndex>0 && !game.users.get(holderIndex).equals(X)){
+ 	            if(holderIndex>0){
+ 		         game.users.get(holderIndex).notebook.add(X.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
+ 		         game.users.get(holderIndex).notebook.add("I refuted the hypothesis by showing card "+keyword.get(t)+"\n");
+ 		         game.users.get(holderIndex).notebook.add("*****************");
+ 		            X.notebook.add(game.users.get(holderIndex).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
+ 		            X.notebook.add("*****************");
+     	              for(int j=0;j<game.users.size();j++){
+     		             if(!game.users.get(j).equals(X) && !game.users.get(j).equals(game.users.get(holderIndex))){
+     			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
+     			            game.users.get(j).notebook.add(game.users.get(holderIndex).getName()+" refuted the hypothesis by showing a card\n");
+     		                game.users.get(j).notebook.add("*****************");
      		}
      	}
  	}
  	else 
- 		X.notebook.add("Card"+keyword.get(t)+"can not be found\n");
+ 		X.notebook.add("Card "+keyword.get(t)+" can not be found\n");
+ 	    X.notebook.add("*************");
 	    }
+	    keyword.remove(game.charPawn.get(person-1).getName());
+	    keyword.remove(game.weaponPawn.get(weapon-1).getName());
+	    keyword.remove(board.findRoomName(X.character.getPosition()));
+	    System.out.println("You have finished the hypothesis");
 	}
 	
 	

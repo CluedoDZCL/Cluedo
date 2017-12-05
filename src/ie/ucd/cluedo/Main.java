@@ -8,6 +8,7 @@ public class Main {
 
 		Board apartment=new Board();
 		Hypothesis hepo=new Hypothesis();
+		apartment.createRooms();
 
 		cluedo.createCards();	
 		cluedo.createMystery();	
@@ -52,6 +53,7 @@ public class Main {
 		}
 		*/
 
+<<<<<<< HEAD
 		//cluedo.startGame(cluedo, hepo, apartment);
 		
 		cluedo.users.get(0).character.setPosition(20);
@@ -59,6 +61,12 @@ public class Main {
 		
 		System.out.println(apartment.findRoomName(cluedo.users.get(0)));
 		
+=======
+	     cluedo.startGame(cluedo, hepo, apartment);
+		
+		//cluedo.users.get(0).character.setPosition(20);
+		//System.out.println(apartment.findRoomName(cluedo.users.get(0).character.getPosition()));
+>>>>>>> 4494b76d127612131b227aa784e2bfdf75f6d28d
 		
 		System.out.println("Finished main");
 	}

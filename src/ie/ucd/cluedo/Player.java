@@ -45,31 +45,33 @@ public class Player {
 
     public void raiseAccusation(Game game, Board board){
     	accusationWords = new ArrayList<String>();
+    	int person;
+    	int weapon;
     	for(int t=0;t<game.charPawn.size();t++){  
 	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
 	       } 
-	//	while(true){
+	while(true){
 		       System.out.println("who do you accuse could be the killer?" );
  	              Scanner in=new Scanner(System.in); 
-	                     int person=in.nextInt();
-	            //        if(person>=1 && person<=game.charPawn.size()){
-	             //         break;
-		         //     }
-	//	}
+	                      person=in.nextInt();
+	                   if(person>=1 && person<=game.charPawn.size()){
+	                     break;
+		             }
+		}
 	    System.out.println("with what weapon?");
 	    for(int t=0;t<game.weaponPawn.size();t++){  
              System.out.println((t+1)+") "+game.weaponPawn.get(t).getName());  
                                                   } 
-//	     while(true){
+	     while(true){
 	            Scanner sc=new Scanner(System.in); 
-	            int weapon=sc.nextInt();
-	     //       if(weapon>=1 && weapon<=game.weaponPawn.size()){
-	     //                  break;
-	     //             }
-	  //   }
-	             accusationWords.add(game.charPawn.get(person).getName());
-	             accusationWords.add(game.weaponPawn.get(weapon).getName());
-	             accusationWords.add(board.findRoomName(this));
+	             weapon=sc.nextInt();
+	           if(weapon>=1 && weapon<=game.weaponPawn.size()){
+	                      break;
+	                 }
+	     }
+	             accusationWords.add(game.charPawn.get(person-1).getName());
+	             accusationWords.add(game.weaponPawn.get(weapon-1).getName());
+	             accusationWords.add(board.findRoomName(this.character.getPosition()));
     	notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
     	System.out.print("Are you sure? If the accusation is wrong, you will be delete forever \n 1) yes \n 2) no");
     	Scanner ce=new Scanner(System.in);
@@ -77,13 +79,21 @@ public class Player {
     	if(choice==1){
     		if(game.mystery.get(0).getName().equals(accusationWords.get(0)) && game.mystery.get(1).getName().equals(accusationWords.get(0)) && game.mystery.get(2).getName().equals(accusationWords.get(1))){
     			System.out.println("Congratulations! You have won the game!");
+    			game.solved=true;
     		}
     			else{
-    				game.users.remove(this);
-    				
+    				//game.users.remove(this);
+    				this.playing=false;
+    	     System.out.println("Sorry you are out");
+    	     for(int j=0;j<game.users.size();j++){
+    	     		if(!game.users.get(j).getName().equals(this) ){
+    	     			game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
+    	     			game.users.get(j).notebook.add("*****************");
+    	     		}
+    	     	}
     			}
     		if(choice==2){
-    			
+    			System.out.println("you stopped the accusation, game goes on");
     		}
     	}
     }
@@ -180,9 +190,40 @@ public class Player {
 			}
 		}
 		
+      public void printNotebook(){
+    	  for(int t=0;t<notebook.size();t++){  
+	           System.out.println(notebook.get(t));  
+	       }
+    	  
+      }
+	public void checkNotebook(){
+		System.out.println("Do you want to check your notebook \n 1) yes; \n 2) no;");
+		Scanner ck=new Scanner(System.in);
+		int check=ck.nextInt();
+		if(check==1){
+			printNotebook();
+		}
 		
+	}
+	public void initializeNotebook(){
+		notebook.add("*****************");
+		notebook.add("Game Start");
+		notebook.add("*****************");
+	}	
+	public void checkCard(){
+		System.out.println("Do you want to check your cards \n 1) yes; \n 2) no;");
+		Scanner ck=new Scanner(System.in);
+		int check=ck.nextInt();
+		if(check==1){
+			printCard();
+		}
 		
-		
+	}
+	public void printCard(){
+		for(int t=0;t<playerCards.size();t++){  
+	           System.out.println(playerCards.get(t).getName());  
+	       }
+	}
 		
 }
 		
