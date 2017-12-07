@@ -249,6 +249,7 @@ public class Game {
 		solved=true;
 	}
 	
+	
 	public void startGame(Game game, Hypothesis hepo, Board board){
 		//initial notebook
 		for(int t=0;t<number;t++){

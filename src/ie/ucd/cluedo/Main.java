@@ -5,22 +5,17 @@ public class Main {
 		
 		//Create Board, Cards, Pawns and mystery
 		Game cluedo = new Game();
-
 		Board apartment=new Board();
 		Hypothesis hepo=new Hypothesis();
+		
 		apartment.createRooms();
-
 		cluedo.createCards();	
 		cluedo.createMystery();	
 		cluedo.createPawns();
-		
-	    //Create player
 		cluedo.creatPlayer();
-	    
-		//Distribute cards
-		cluedo.distributeCards();
+	   	cluedo.distributeCards();
 		
-		/*check setup correct 
+		/*//check setup correct 
 		for (int i=0; i<cluedo.users.size();i++) {
 			
 			String name=cluedo.users.get(i).getName();

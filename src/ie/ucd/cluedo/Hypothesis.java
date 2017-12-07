@@ -11,8 +11,8 @@ public class Hypothesis {
     
 	public Hypothesis(){
 		keyword=new ArrayList<String>();
-		
 	}
+	
 	public void makeHypothesis(Player X, Game game, Board board){
 		for(int t=0;t<game.charPawn.size();t++){  
 	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
