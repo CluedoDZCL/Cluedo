@@ -28,6 +28,7 @@ public class Hypothesis {
  	    			}
  	    		catch(NumberFormatException nfe) {
  	    			System.out.println("please input the index number");
+ 	    			continue;
  	    		}
 	                   if(person>=1 && person<=game.charPawn.size()){
 	                     break;
@@ -45,6 +46,7 @@ public class Hypothesis {
 	    			}
 	    		catch(NumberFormatException nfe) {
 	    			System.out.println("please input the index number");
+	    			continue;
 	    		}
 	           if(weapon>=1 && weapon<=game.weaponPawn.size()){
 	                     break;
