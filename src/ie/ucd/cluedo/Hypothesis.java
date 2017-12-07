@@ -11,8 +11,8 @@ public class Hypothesis {
     
 	public Hypothesis(){
 		keyword=new ArrayList<String>();
-		
 	}
+	
 	public void makeHypothesis(Player X, Game game, Board board){
 		int cardIndex[]=new int[3];
 		int x=0;
