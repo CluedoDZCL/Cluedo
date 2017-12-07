@@ -59,6 +59,7 @@ public class Player {
  	    			}
  	    		catch(NumberFormatException nfe) {
  	    			System.out.println("please input the index number");
+ 	    			continue;
  	    		}
 	                   if(person>=1 && person<=game.charPawn.size()){
 	                     break;
@@ -76,6 +77,7 @@ public class Player {
 	    			}
 	    		catch(NumberFormatException nfe) {
 	    			System.out.println("please input the correct index");
+	    			continue;
 	    		}
 	           if(weapon>=1 && weapon<=game.weaponPawn.size()){
 	                      break;
@@ -119,18 +121,33 @@ public class Player {
 		int dice2 = rand.nextInt(6)+1;
 		int diceroll=dice1+dice2;
 		int resp1;
+		int amount=0;
 		System.out.println("you have rolled a " + diceroll );
 				
 		while(true) {
 			if (pos==20 || pos==50 || pos==70 || pos==90) {
 				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut");
 				Scanner in=new Scanner(System.in);
-				resp1=in.nextInt();
+				String input=in.nextLine();
+				try	{
+					resp1=Integer.parseInt(input);
+					}
+				catch(NumberFormatException nfe) {
+					System.out.println("please input the correct index number");
+					continue;
+				}
 			}
 			else {
 				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay");
 				Scanner in=new Scanner(System.in);
-				resp1=in.nextInt();
+				String input=in.nextLine();
+				try	{
+					resp1=Integer.parseInt(input);
+					}
+				catch(NumberFormatException nfe) {
+					System.out.println("please input the correct index number");
+					continue;
+				}
 			}
 			
 			
@@ -141,7 +158,14 @@ public class Player {
 				while(true) {
 					System.out.println("How many steps do you want to go?");
 					Scanner resp2=new Scanner(System.in);
-					int amount=resp2.nextInt();
+					String respTwo=resp2.nextLine();
+					try	{
+						amount=Integer.parseInt(respTwo);
+						}
+					catch(NumberFormatException nfe) {
+						System.out.println("please input a number");
+						continue;
+					}
 					if (amount<=diceroll) {
 						character.setPosition(pos-amount % 100);
 						break;
@@ -153,7 +177,14 @@ public class Player {
 				while(true) {
 					System.out.println("How many steps do you want to go?");
 					Scanner resp2=new Scanner(System.in);
-					int amount=resp2.nextInt();
+					String respTwo=resp2.nextLine();
+					try	{
+						amount=Integer.parseInt(respTwo);
+						}
+					catch(NumberFormatException nfe) {
+						System.out.println("please input a number");
+						continue;
+					}
 					if (amount<=diceroll) {
 						character.setPosition(pos+amount % 100);
 						break;
@@ -181,7 +212,14 @@ public class Player {
 				int pos=character.getPosition();
 				System.out.println("Would you like to, \n 1) make acusation \n 2) make hypothesis \n 3) do nothing");
 				Scanner in=new Scanner(System.in);
-				resp=in.nextInt();
+				String respOne=in.nextLine();
+				try	{
+					resp=Integer.parseInt(respOne);
+					}
+				catch(NumberFormatException nfe) {
+					System.out.println("please input a number");
+					continue;
+				}
 				
 				if (resp==1) {
 				raiseAccusation(game, board);
@@ -209,13 +247,30 @@ public class Player {
     	  
       }
 	public void checkNotebook(){
+		int check;
+		while(true){
 		System.out.println("Do you want to check your notebook \n 1) yes; \n 2) no;");
 		Scanner ck=new Scanner(System.in);
-		int check=ck.nextInt();
+		String ckc=ck.nextLine();
+		try	{
+			check=Integer.parseInt(ckc);
+			}
+		catch(NumberFormatException nfe) {
+			System.out.println("please input a number");
+			continue;
+		}
 		if(check==1){
 			printNotebook();
+			break;
 		}
-		
+		if(check==2){
+			break;
+		}
+		if(check!=1 && check!=2){
+			System.out.println("please input the correct index");
+			continue;
+		}
+		}	
 	}
 	public void initializeNotebook(){
 		notebook.add("*****************");
@@ -223,14 +278,30 @@ public class Player {
 		notebook.add("*****************");
 	}	
 	public void checkCard(){
+		int check;
+		while(true){
 		System.out.println("Do you want to check your cards \n 1) yes; \n 2) no;");
 		Scanner ck=new Scanner(System.in);
-		int check=ck.nextInt();
+		String ckc=ck.nextLine();
+		try	{
+			check=Integer.parseInt(ckc);
+			}
+		catch(NumberFormatException nfe) {
+			System.out.println("please input a number");
+			continue;
+		}
 		if(check==1){
 			printCard();
+			break;
 		}
-		
-	}
+		if(check==2){
+			break;
+		}
+		if(check!=1 && check!=2){
+			System.out.println("please input the correct index");
+			continue;
+		}	
+	}}
 	public void printCard(){
 		for(int t=0;t<playerCards.size();t++){  
 	           System.out.println(playerCards.get(t).getName());  

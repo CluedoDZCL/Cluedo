@@ -77,6 +77,7 @@ public class Hypothesis {
 		         game.users.get(t).notebook.add("*****************");
 		            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
 		            X.notebook.add("*****************");
+		            System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
     	              for(int j=0;j<game.users.size();j++){
     		             if(j!=x && j!=t){
     			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
@@ -100,6 +101,7 @@ public class Hypothesis {
 			         game.users.get(t).notebook.add("*****************");
 			            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
 			            X.notebook.add("*****************");
+			            System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
 	    	              for(int j=0;j<game.users.size();j++){
 	    		             if(j!=x && j!=t){
 	    			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
@@ -117,7 +119,7 @@ public class Hypothesis {
 	    keyword.remove(game.charPawn.get(person-1).getName());
 	    keyword.remove(game.weaponPawn.get(weapon-1).getName());
 	    keyword.remove(board.findRoomName(X.character.getPosition()));
-	    System.out.println("You have finished the hypothesis");
+	    
 	    	}
 	    	  
 	
