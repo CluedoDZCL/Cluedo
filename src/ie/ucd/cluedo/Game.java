@@ -169,6 +169,7 @@ public class Game {
 							}
 						catch(NumberFormatException nfe) {
 							System.out.println("please input the index number");
+							continue;
 						}
 						   if(index>=1 && index<=charCreate.size()){
 							A.character=charCreate.get(index-1);
