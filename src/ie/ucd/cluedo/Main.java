@@ -1,8 +1,9 @@
 package ie.ucd.cluedo;
 
+import java.util.Scanner;
+
 public class Main {
 	public static void main (String[] args) {
-		
 		//Create Board, Cards, Pawns and mystery
 		Game cluedo = new Game();
 
@@ -53,7 +54,7 @@ public class Main {
 		}
 		*/
 
-	     cluedo.startGame(cluedo, hepo, apartment);
+	    cluedo.startGame(cluedo, hepo, apartment);
 		
 		//cluedo.users.get(0).character.setPosition(20);
 		//System.out.println(apartment.findRoomName(cluedo.users.get(0).character.getPosition()));

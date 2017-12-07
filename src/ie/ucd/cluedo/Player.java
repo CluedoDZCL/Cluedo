@@ -45,15 +45,21 @@ public class Player {
 
     public void raiseAccusation(Game game, Board board){
     	accusationWords = new ArrayList<String>();
-    	int person;
-    	int weapon;
+    	int person=0;
+    	int weapon=0;
     	for(int t=0;t<game.charPawn.size();t++){  
 	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
 	       } 
 	while(true){
 		       System.out.println("who do you accuse could be the killer?" );
  	              Scanner in=new Scanner(System.in); 
-	                      person=in.nextInt();
+ 	             String inputPerson=in.nextLine();
+ 	    		try	{
+ 	    			person=Integer.parseInt(inputPerson);
+ 	    			}
+ 	    		catch(NumberFormatException nfe) {
+ 	    			System.out.println("please input the index number");
+ 	    		}
 	                   if(person>=1 && person<=game.charPawn.size()){
 	                     break;
 		             }
@@ -64,7 +70,13 @@ public class Player {
                                                   } 
 	     while(true){
 	            Scanner sc=new Scanner(System.in); 
-	             weapon=sc.nextInt();
+	            String inputWeapon=sc.nextLine();
+	    		try	{
+	    			weapon=Integer.parseInt(inputWeapon);
+	    			}
+	    		catch(NumberFormatException nfe) {
+	    			System.out.println("please input the correct index");
+	    		}
 	           if(weapon>=1 && weapon<=game.weaponPawn.size()){
 	                      break;
 	                 }

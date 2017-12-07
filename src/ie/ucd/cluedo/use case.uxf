@@ -67,7 +67,7 @@ bg=white</panel_attributes>
       <w>120</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>make hypothesis
+    <panel_attributes>view the cards
 bg=white</panel_attributes>
     <additional_attributes/>
   </element>
@@ -119,13 +119,13 @@ bg=white</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
+      <x>280</x>
       <y>150</y>
-      <w>160</w>
-      <h>250</h>
+      <w>180</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes/>
-    <additional_attributes>10.0;230.0;60.0;160.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;300.0;160.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLUseCase</id>
@@ -172,5 +172,51 @@ bg=white</panel_attributes>
     </coordinates>
     <panel_attributes/>
     <additional_attributes>10.0;10.0;140.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>170</x>
+      <y>430</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>make hypothesis
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>130</x>
+      <y>480</y>
+      <w>170</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>reject others hypothesis
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>150</y>
+      <w>170</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;340.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>150</y>
+      <w>180</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;250.0;160.0;10.0</additional_attributes>
   </element>
 </diagram>
