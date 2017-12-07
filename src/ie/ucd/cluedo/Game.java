@@ -138,10 +138,17 @@ public class Game {
 	
 
 	public void creatPlayer(){
+		int index=0;
 		while(true){
 			System.out.println("How many players do you have(should between 3 and 6)");
 			Scanner in=new Scanner(System.in);
-			number=in.nextInt();
+			String inputstr=in.nextLine();
+		try	{
+			number=Integer.parseInt(inputstr);
+			}
+		catch(NumberFormatException nfe) {
+			System.out.println("please input a number between 3 and 6");
+		}
 			if(number>=3 && number<=6){
 			   
 				for(int i=0;i<number;i++){
@@ -155,8 +162,15 @@ public class Game {
 					while(true){
 						System.out.println("what character you want to be, please input the index");
 						Scanner sc=new Scanner(System.in);
-						int index=sc.nextInt();
-						if(index>=1 && index<=charPawn.size()){
+						//index=sc.nextInt();
+						String inputIndex=in.nextLine();
+						try	{
+							index=Integer.parseInt(inputIndex);
+							}
+						catch(NumberFormatException nfe) {
+							System.out.println("please input the index number");
+						}
+						   if(index>=1 && index<=charCreate.size()){
 							A.character=charCreate.get(index-1);
 							charCreate.remove(index-1);
 							userChar.add(A.character);
@@ -224,7 +238,7 @@ public class Game {
 	}
 	
 	
-	public int getCard(Card card) { //find out the card holder
+	public int findHolder(Card card) { //find out the card holder
 		int index = 0;
 		for (int i=0; i< users.size();i+=1) {
 			if (users.get(i).contains(card)){
