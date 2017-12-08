@@ -55,6 +55,10 @@ public class Board extends Game{
 			if(rooms.get(t).position==loc){
 				roomName=rooms.get(t).getName();
 			}
+			
+		}
+		if(roomName==null){
+		   roomName="corridor";
 		}
 		return roomName;
 	}

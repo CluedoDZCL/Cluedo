@@ -120,6 +120,11 @@ public class Hypothesis {
 	    keyword.remove(game.weaponPawn.get(weapon-1).getName());
 	    keyword.remove(board.findRoomName(X.character.getPosition()));
 	    
+	    if(found==false){
+	    	X.notebook.add("Nothing has been found !");
+	    	System.out.println("Nothing has been found !");
+	    }
+	    
 	    	}
 	    	  
 	

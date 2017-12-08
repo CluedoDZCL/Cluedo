@@ -126,6 +126,7 @@ public class Player {
 				
 		while(true) {
 			if (pos==20 || pos==50 || pos==70 || pos==90) {
+				
 				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut");
 				Scanner in=new Scanner(System.in);
 				String input=in.nextLine();
@@ -210,6 +211,7 @@ public class Player {
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
+				System.out.println("Now you are in the "+board.findRoomName(pos));
 				System.out.println("Would you like to, \n 1) make acusation \n 2) make hypothesis \n 3) end turn");
 				Scanner in=new Scanner(System.in);
 				String respOne=in.nextLine();
