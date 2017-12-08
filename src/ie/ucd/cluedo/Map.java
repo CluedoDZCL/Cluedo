@@ -32,9 +32,6 @@ public class Map extends WindowAdapter implements ActionListener{
 		 }
 	}
 	public Map(){
-		
-	}
-	public void checkMap(){
 		fCon=new JFrame("Check the Map");
 		fPic=new JFrame("Appartment");
 		p1=new JPanel();
@@ -45,13 +42,16 @@ public class Map extends WindowAdapter implements ActionListener{
 		b.addActionListener(this);
 		b1.addActionListener(this);
 		l=new JLabel("Click here to check the map");
-		ImageIcon icon=new ImageIcon("apartment.png");
-		l1=new JLabel(icon);
+		ImageIcon icon=new ImageIcon("C:/Users/ZYX/Desktop/apartment.png");
+		l1=new JLabel(icon, JLabel.CENTER);
+	}
+	public void checkMap(){
+		
 		 p2.setLayout(new BorderLayout());
          p2.add("West", l);
 	     p2.add("East", b);
 	         
-	     p1.setLayout(new GridLayout(2, 2));
+	     p1.setLayout(new GridLayout(1, 1));
 	     p1.add(p2);
 	     fCon.add(p1);
 	     fCon.addWindowListener(new Map());
