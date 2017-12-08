@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +19,7 @@ public class Map extends WindowAdapter implements ActionListener{
     JPanel p1,p2,p3;
     JLabel l;
 	JLabel l1;
-    Button b,b1;
+    JButton b,b1;
     ImageIcon icon;
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -37,8 +38,8 @@ public class Map extends WindowAdapter implements ActionListener{
 		p1=new JPanel();
 		p2=new JPanel();
 		p3=new JPanel();
-		b=new Button("check");
-		b1=new Button("close");
+		b=new JButton("check");
+		b1=new JButton("close");
 		b.addActionListener(this);
 		b1.addActionListener(this);
 		l=new JLabel("Click here to check the map");
