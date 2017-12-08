@@ -125,13 +125,9 @@ public class Player {
 		System.out.println("you have rolled a " + diceroll );
 				
 		while(true) {
-<<<<<<< HEAD
+
 			if (pos==6 || pos==24 || pos==36 || pos==48) {
-=======
-			if (pos==20 || pos==50 || pos==70 || pos==90) {
-				
->>>>>>> 0ab1a66467bf0ea6cee0ccd17c8f7f01d1fbb2f3
-				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut");
+				System.out.println("Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay \n 4)shortcut");
 				Scanner in=new Scanner(System.in);
 				String input=in.nextLine();
 				try	{
