@@ -139,7 +139,7 @@ public class Player {
 				}
 			}
 			else {
-				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay");
+				System.out.println("Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay");
 				Scanner in=new Scanner(System.in);
 				String input=in.nextLine();
 				try	{
