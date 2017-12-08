@@ -75,9 +75,9 @@ public class Hypothesis {
 	    		game.users.get(t).notebook.add(X.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 		         game.users.get(t).notebook.add("I refuted the hypothesis by showing card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 		         game.users.get(t).notebook.add("*****************");
-		            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
+		            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 		            X.notebook.add("*****************");
-		            System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
+		            System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
     	              for(int j=0;j<game.users.size();j++){
     		             if(j!=x && j!=t){
     			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
@@ -99,9 +99,9 @@ public class Hypothesis {
 		    		game.users.get(t).notebook.add(X.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 			         game.users.get(t).notebook.add("I refuted the hypothesis by showing card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 			         game.users.get(t).notebook.add("*****************");
-			            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
+			            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 			            X.notebook.add("*****************");
-			            System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+keyword.get(t)+"\n");
+			            System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 	    	              for(int j=0;j<game.users.size();j++){
 	    		             if(j!=x && j!=t){
 	    			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
