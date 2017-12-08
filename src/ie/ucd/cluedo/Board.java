@@ -10,15 +10,15 @@ public class Board extends Game{
 		rooms = new ArrayList<Room>();
 	}
 	public void createRooms(){
-		Room ballroom = new Room(10,"Ballroom");
-		Room conservatory = new Room(20,"Conservatory");
-		Room billiard = new Room(30,"Billiard Room");
-		Room library = new Room(40,"Library");
-		Room study = new Room(50,"Study");
-		Room hall = new Room(60,"Hall");
-		Room lounge = new Room(70,"Lounge");
-		Room dining = new Room(80,"Dining Room");
-		Room kitchen = new Room(90,"Kitchen");
+		Room ballroom = new Room(0,"Ballroom");
+		Room conservatory = new Room(6,"Conservatory");
+		Room billiard = new Room(12,"Billiard Room");
+		Room library = new Room(18,"Library");
+		Room study = new Room(24,"Study");
+		Room hall = new Room(30,"Hall");
+		Room lounge = new Room(36,"Lounge");
+		Room dining = new Room(42,"Dining Room");
+		Room kitchen = new Room(48,"Kitchen");
 		rooms.add(kitchen);
 		rooms.add(ballroom);
 		rooms.add(conservatory);

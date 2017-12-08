@@ -98,11 +98,11 @@ public class Game {
 	
 	public void createPawns(){
 		Pawn candlestick_Pawn = new WeaponPawn("candlestick", 0);
-		Pawn knife_Pawn = new WeaponPawn("knife", 10);
-		Pawn pipe_Pawn = new WeaponPawn("lead pipe", 20);
+		Pawn knife_Pawn = new WeaponPawn("knife", 12);
+		Pawn pipe_Pawn = new WeaponPawn("lead pipe", 24);
 		Pawn revolver_Pawn = new  WeaponPawn("revolver",30);
-		Pawn rope_Pawn = new WeaponPawn("rope",40);
-		Pawn poison_Pawn = new WeaponPawn("poison",50);
+		Pawn rope_Pawn = new WeaponPawn("rope",36);
+		Pawn poison_Pawn = new WeaponPawn("poison",48);
 		weaponPawn.add(candlestick_Pawn);
 		weaponPawn.add(knife_Pawn);
 		weaponPawn.add(pipe_Pawn);
@@ -110,12 +110,12 @@ public class Game {
 		weaponPawn.add(rope_Pawn);
 		weaponPawn.add(poison_Pawn);
 		
-		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett",15);
-		Pawn plum_Pawn = new CharPawn("Professor Plum",25);
-		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock",35);
-		Pawn green_Pawn = new CharPawn("Reverend Green",45);
-		Pawn mustard_Pawn = new CharPawn("Colonel Mustard",55);
-		Pawn white_Pawn = new CharPawn("Mrs White",65);
+		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett",3);
+		Pawn plum_Pawn = new CharPawn("Professor Plum",15);
+		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock",27);
+		Pawn green_Pawn = new CharPawn("Reverend Green",33);
+		Pawn mustard_Pawn = new CharPawn("Colonel Mustard",45);
+		Pawn white_Pawn = new CharPawn("Mrs White",51);
 		charPawn.add(scarlett_Pawn);
 		charPawn.add(plum_Pawn);
 		charPawn.add(peacock_Pawn);

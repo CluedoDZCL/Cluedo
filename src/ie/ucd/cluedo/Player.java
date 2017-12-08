@@ -125,7 +125,7 @@ public class Player {
 		System.out.println("you have rolled a " + diceroll );
 				
 		while(true) {
-			if (pos==20 || pos==50 || pos==70 || pos==90) {
+			if (pos==6 || pos==24 || pos==36 || pos==48) {
 				System.out.println("Would you like to, \n 1) move left \n 2) move right \n 3) stay \n 4)shortcut");
 				Scanner in=new Scanner(System.in);
 				String input=in.nextLine();
@@ -194,10 +194,10 @@ public class Player {
 			}
 			else if(resp1==4){
 				while(true) {
-					if 		(pos==20)	character.setPosition(70);
-					else if (pos==50)	character.setPosition(90);
-					else if (pos==70)	character.setPosition(20);
-					else if (pos==90)	character.setPosition(50);
+					if 		(pos==6)	character.setPosition(36);
+					else if (pos==24)	character.setPosition(48);
+					else if (pos==36)	character.setPosition(6);
+					else if (pos==48)	character.setPosition(24);
 					break;
 					}
 				}
@@ -226,7 +226,7 @@ public class Player {
 				break;
 				}
 				else if (resp==2) {
-					if (pos==10 || pos==20 ||pos==30 ||pos==40 ||pos==50 ||pos==60 ||pos==70 ||pos==80 ||pos==90) {
+					if (pos==0 || pos==6 ||pos==12 ||pos==18 ||pos==24 ||pos==30 ||pos==36 ||pos==42 ||pos==48) {
 						hepo.makeHypothesis(this, game, board);
 						break;
 					} else {
