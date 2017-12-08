@@ -270,12 +270,8 @@ public class Game {
 		solved=true;
 	}
 	
-<<<<<<< HEAD
 	
 	public void startGame(Hypothesis hepo, Board board){
-=======
-	public void startGame(Game game, Hypothesis hepo, Board board){
->>>>>>> d9b55a32634d486a5e85d5831c84dd64c5e9069b
 		//initial notebook
 		for(int t=0;t<number;t++){
 			users.get(t).initializeNotebook();

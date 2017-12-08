@@ -210,7 +210,7 @@ public class Player {
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
-				System.out.println("Would you like to, \n 1) make acusation \n 2) make hypothesis \n 3) do nothing");
+				System.out.println("Would you like to, \n 1) make acusation \n 2) make hypothesis \n 3) end turn");
 				Scanner in=new Scanner(System.in);
 				String respOne=in.nextLine();
 				try	{
@@ -227,7 +227,6 @@ public class Player {
 				}
 				else if (resp==2) {
 					if (pos==10 || pos==20 ||pos==30 ||pos==40 ||pos==50 ||pos==60 ||pos==70 ||pos==80 ||pos==90) {
-						//Put hypothis method here
 						hepo.makeHypothesis(this, game, board);
 						break;
 					} else {
