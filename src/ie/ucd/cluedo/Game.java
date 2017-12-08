@@ -150,12 +150,19 @@ public class Game {
 			System.out.println("please input a number between 3 and 6");
 		}
 			if(number>=3 && number<=6){
-			   
+			   outerloop:
 				for(int i=0;i<number;i++){
 					System.out.print("what is your name?\n");
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
+					for(int j=0;j<users.size();j++){
+						if(users.get(j).getName().equals(playerName)){
+							System.out.println("Duplicate user name, please input another name");
+				            continue outerloop;
+						}
+						}
 					Player A=new Player(playerName);
+					users.add(A);
 					for(int t=0;t<charCreate.size();t++){  
 				           System.out.println((t+1)+") "+charCreate.get(t).getName());  
 				       } 
@@ -175,7 +182,6 @@ public class Game {
 							A.character=charCreate.get(index-1);
 							charCreate.remove(index-1);
 							userChar.add(A.character);
-						    users.add(A);
 						    break;
 						 }
 					}
@@ -264,8 +270,12 @@ public class Game {
 		solved=true;
 	}
 	
+<<<<<<< HEAD
 	
 	public void startGame(Hypothesis hepo, Board board){
+=======
+	public void startGame(Game game, Hypothesis hepo, Board board){
+>>>>>>> d9b55a32634d486a5e85d5831c84dd64c5e9069b
 		//initial notebook
 		for(int t=0;t<number;t++){
 			users.get(t).initializeNotebook();
