@@ -265,7 +265,7 @@ public class Game {
 	}
 	
 	
-	public void startGame(Game game, Hypothesis hepo, Board board){
+	public void startGame(Hypothesis hepo, Board board){
 		//initial notebook
 		for(int t=0;t<number;t++){
 			users.get(t).initializeNotebook();
@@ -280,8 +280,9 @@ public class Game {
 	            users.get(currentPlayer% number).checkCard();
 	            users.get(currentPlayer % number).checkNotebook();
 				users.get(currentPlayer % number).movement();
+				users.get(currentPlayer % number).choice(this, hepo, board);
 				
-				users.get(currentPlayer % number).choice(game, hepo, board);
+				System.out.println("\n--------------------------------------------------------------------------- \n");
 			}
 		}
 		
