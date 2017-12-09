@@ -99,13 +99,13 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 	    }
 	    //find out the index of suspects
 	    for(int t=0;t<game.charPawn.size();t++){
-	    	if(game.charPawn.get(t).equals(person)){
+	    	if(game.charPawn.get(t).getName()==person){
 	    		suspect=t;
 	    	}
 	    }
 	    //find out the index of the weapon
 	    for(int t=0;t<game.weaponPawn.size();t++){
-	    	if(game.users.get(t).equals(weapon)){
+	    	if(game.weaponPawn.get(t).getName()==weapon){
 	    		weaponIndex=t;
 	    	}
 	    }
@@ -117,7 +117,7 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 	    outerloop:
 	    for(int t=x-1;t>=0;t--){
 	    	for(int i=0;i<cardIndex.length;i++){
-	    	if(game.users.get(t).playing==true && game.findHolder(game.allCard.get(cardIndex[i]))==t){
+	    	if((game.users.get(t).playing==true) && (game.findHolder(game.allCard.get(cardIndex[i]))==t)){
 	    		game.users.get(t).notebook.add(player.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 		         game.users.get(t).notebook.add("I refuted the hypothesis by showing card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 		         game.users.get(t).notebook.add("************************************************************");
@@ -141,7 +141,7 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 	    	outerloop:
 	    for(int t=game.users.size()-1;t>=x+1;t--){
 	    	for(int i=0;i<cardIndex.length;i++){
-		    	if(game.users.get(t).playing==true && game.findHolder(game.allCard.get(cardIndex[i]))==t){
+		    	if((game.users.get(t).playing==true) && (game.findHolder(game.allCard.get(cardIndex[i]))==t)){
 		    		game.users.get(t).notebook.add(player.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 			         game.users.get(t).notebook.add("I refuted the hypothesis by showing card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 			         game.users.get(t).notebook.add("************************************************************");
@@ -173,7 +173,7 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 	    	player.notebook.add("Nothing has been found !");
 	    	JOptionPane.showMessageDialog(null, "Nothing has been found", "", JOptionPane.INFORMATION_MESSAGE);
 	    }
-	    
+	       player.raise=true;
 	    	}
 	    	  
 	
@@ -186,8 +186,9 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 		if(e.getSource() == b0){
            person=(String) c0.getSelectedItem();
            weapon=(String) c1.getSelectedItem();
+           
            keyword.add(person);
-      	   keyword.add(person);
+      	   keyword.add(weapon);
       	   keyword.add(room);
       	   hy.setVisible(false);
       	   processHypothesis();

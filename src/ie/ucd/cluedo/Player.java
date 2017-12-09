@@ -39,12 +39,32 @@ public class Player extends WindowAdapter implements ActionListener {
     public Player player;
     public Game game;
     public Board board;
+    public Hypothesis hypo;
     
     public JFrame hy;
 	public JButton bacu;
 	public JPanel p, p0acu, p1acu,p2;
     public JComboBox<String> c0,c1;
     public JLabel l,l0,l1;
+    
+    public JFrame window=new JFrame("windows for "+this.getName());
+	public JPanel p0win=new JPanel();
+	public JLabel l0win=new JLabel("click here to view your cards");
+	public JButton b0win=new JButton("view cards");
+	public JPanel p1win=new JPanel();
+	public JLabel l1win=new JLabel("click here to view your notebook");
+	public JButton b1win=new JButton("view notebook");
+	public JPanel p2win=new JPanel();
+	public JLabel l2win=new JLabel("click here to make accusation");
+	public JButton b2win=new JButton("make accusation");
+	public JPanel p3win=new JPanel();
+	public JLabel l3win=new JLabel("click here to make hypothesis");
+	public JButton b3win=new JButton("make hypothesis");
+	public JPanel p4win=new JPanel();
+	public JButton b4win=new JButton("exit");
+	
+	boolean raise=false;
+    
 	
 	public Player(String name){
 		notebook=new ArrayList<String>();
@@ -76,11 +96,8 @@ public class Player extends WindowAdapter implements ActionListener {
 	
 	
 
-    public void raiseAccusation(Game game, Board board){
+    public void raiseAccusation(){
     	accusationWords = new ArrayList<String>();
-		this.game=game;
-		this.board=board;
-		room=board.findRoomName(character.getPosition());
 		hy=new JFrame("Making accusation");
 		bacu=new JButton("done");
 		bacu.addActionListener(this);
@@ -126,25 +143,27 @@ public class Player extends WindowAdapter implements ActionListener {
     }
     
     public void processAccusation(){
+    	raise=true;
     	int suspect=0;
     	int weaponIndex=0;
-	    notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
+	    
     	int choice = JOptionPane.showConfirmDialog(null,"If the accusation is wrong, you will be removed from the game, are you still going on?","Important!!!",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
     	if(choice==JOptionPane.YES_OPTION){
     		 //find out the index of suspects
-    	    for(int t=0;t<game.charPawn.size();t++){
-    	    	if(game.charPawn.get(t).equals(person)){
+    		notebook.add("I formulated the accusation that"+person+" made the murder in the "+board.findRoomName(character.getPosition())+" with the"+weapon);
+    		for(int t=0;t<game.charPawn.size();t++){
+    	    	if(game.charPawn.get(t).getName()==person){
     	    		suspect=t;
     	    	}
     	    }
     	    //find out the index of the weapon
     	    for(int t=0;t<game.weaponPawn.size();t++){
-    	    	if(game.users.get(t).equals(weapon)){
+    	    	if(game.weaponPawn.get(t).getName()==weapon){
     	    		weaponIndex=t;
     	    	}
     	    }
-    		game.charPawn.get(suspect).setPosition(player.character.getPosition());
-    	    game.weaponPawn.get(weaponIndex).setPosition(player.character.getPosition());
+    		game.charPawn.get(suspect).setPosition(this.character.getPosition());
+    	    game.weaponPawn.get(weaponIndex).setPosition(this.character.getPosition());
     		    if(game.mystery.get(0).getName().equals(accusationWords.get(0)) && game.mystery.get(1).getName().equals(accusationWords.get(0)) && game.mystery.get(2).getName().equals(accusationWords.get(1))){
     			   JOptionPane.showMessageDialog(null, "Congratulations! You got the correct answer !", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
     			   game.solved=true;
@@ -152,8 +171,9 @@ public class Player extends WindowAdapter implements ActionListener {
     			else{
     				//game.users.remove(this);
     				this.playing=false;
-    				JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer, you are out", "You are out!", JOptionPane.INFORMATION_MESSAGE);
-    	               for(int j=0;j<game.users.size();j++){
+    				JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer", "You are out!", JOptionPane.INFORMATION_MESSAGE);
+    				JOptionPane.showMessageDialog(null, "you have been removed", "You are out!", JOptionPane.INFORMATION_MESSAGE);
+    				for(int j=0;j<game.users.size();j++){
     	     		       if(!game.users.get(j).getName().equals(this) ){
     	     			       game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
     	     			       game.users.get(j).notebook.add("*****************");
@@ -163,6 +183,7 @@ public class Player extends WindowAdapter implements ActionListener {
     	}
         if(choice==JOptionPane.NO_OPTION){
     			JOptionPane.showMessageDialog(null, "You stopped the accusation.", "Game goes on", JOptionPane.INFORMATION_MESSAGE);
+    			raise=false;
     		}
     	}
     
@@ -262,7 +283,8 @@ public class Player extends WindowAdapter implements ActionListener {
 		}
 			
 
-		public void choice(Game game,Hypothesis hepo, Board board) {
+	/*	public void choice(Game game,Hypothesis hepo, Board board) {
+			hypo=hepo;
 			while(true) {
 				int resp;
 				int pos=character.getPosition();
@@ -279,8 +301,12 @@ public class Player extends WindowAdapter implements ActionListener {
 				}
 				
 				if (resp==1) {
-				raiseAccusation(game, board);
-				break;
+					if (pos==0 || pos==6 ||pos==12 ||pos==18 ||pos==24 ||pos==30 ||pos==36 ||pos==42 ||pos==48) {
+				         raiseAccusation();
+				       break;}
+					else{
+						System.out.println("You are not in a room");
+					}
 				}
 				else if (resp==2) {
 					if (pos==0 || pos==6 ||pos==12 ||pos==18 ||pos==24 ||pos==30 ||pos==36 ||pos==42 ||pos==48) {
@@ -295,7 +321,7 @@ public class Player extends WindowAdapter implements ActionListener {
 				}
 			}
 		}
-		
+		*/
       public void printNotebook(){
     	  notes=new JFrame("notebook of "+this.getName());
     	  p0=new JPanel();
@@ -317,7 +343,7 @@ public class Player extends WindowAdapter implements ActionListener {
  	     notes.setVisible(true);
  	     notes.pack();
       }
-	public void checkNotebook(){
+/*	public void checkNotebook(){
 		int check;
 		while(true){
 		System.out.println("Do you want to check your notebook \n 1) yes; \n 2) no;");
@@ -343,6 +369,7 @@ public class Player extends WindowAdapter implements ActionListener {
 		}
 		}	
 	}
+	*/
 	public void initializeNotebook(){
 		notebook.add("************************************************************");
 		notebook.add("Game Start");
@@ -373,6 +400,7 @@ public class Player extends WindowAdapter implements ActionListener {
 			continue;
 		}	
 	}}
+
 	public void printCard(){
 		cards=new JFrame("cards for "+this.getName());
   	    p1=new JPanel();
@@ -394,10 +422,50 @@ public class Player extends WindowAdapter implements ActionListener {
 	     cards.setVisible(true);
 	     cards.pack();
 	}
+	public void buildWindow(Game game, Board board, Hypothesis hepo){
+		this.game=game;
+		this.board=board;
+		this.hypo=hepo;
+		room=board.findRoomName(character.getPosition());
+		JLabel l00=new JLabel("Welcome to room " + room );
+		JPanel p00=new JPanel();
+		p00.add(l00);
+		window=new JFrame("windows for "+this.getName());
+		p0win.add(l0win);
+		p0win.add(b0win);
+		p1win.add(l1win);
+		p1win.add(b1win);
+		p2win.add(l2win);
+		p2win.add(b2win);
+		p3win.add(l3win);
+		p3win.add(b3win);
+		p4win.add(b4win);
+		b0win.addActionListener(this);
+		b1win.addActionListener(this);
+		b2win.addActionListener(this);
+		b3win.addActionListener(this);
+		b4win.addActionListener(this);
+		
+		JPanel pc=new JPanel();
+		pc.setLayout(new BoxLayout(pc, BoxLayout.Y_AXIS));
+		pc.add(p00);
+		pc.add(p0win); 
+		pc.add(p1win); 
+		pc.add(p2win); 
+		pc.add(p3win);
+		pc.add(p4win);
+		window.add(pc);
+		window.addWindowListener(new Player(""));
+	    window.setSize(1000, 1000);
+	    window.setVisible(true);
+	    window.pack();
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		 if(e.getSource() == b0){
+		 
+		 int pos=this.character.getPosition();
+		if(e.getSource() == b0){
 			 notes.setVisible(false); 
 	        }// TODO Auto-generated method stub
 		 if(e.getSource() == b1){
@@ -411,6 +479,33 @@ public class Player extends WindowAdapter implements ActionListener {
              accusationWords.add(room);
              hy.setVisible(false);
         	 processAccusation();
+		 }
+		 if(e.getSource()==b0win){
+			 printCard();
+		 }
+		 if(e.getSource()==b1win){
+			 printNotebook();
+		 }
+		 if(e.getSource()==b2win){
+			 if((raise==false) && (pos==0 || pos==6 ||pos==12 ||pos==18 ||pos==24 ||pos==30 ||pos==36 ||pos==42 ||pos==48)){
+				 raiseAccusation();
+				 }
+				 else{
+					 JOptionPane.showMessageDialog(null, "you cannot raise an accusation", " ", JOptionPane.INFORMATION_MESSAGE);
+				 }
+			
+		 }
+		 if(e.getSource()==b3win){
+			 if((raise==false) && (pos==0 || pos==6 ||pos==12 ||pos==18 ||pos==24 ||pos==30 ||pos==36 ||pos==42 ||pos==48)){
+			 hypo.makeHypothesis(this, game, board);
+			 }
+			 else{
+				 JOptionPane.showMessageDialog(null, "you cannot raise a hypothesis", " ", JOptionPane.INFORMATION_MESSAGE);
+			 }
+		 }
+		 if(e.getSource()==b4win){
+			 window.setVisible(false);
+			 
 		 }
 	}
 		

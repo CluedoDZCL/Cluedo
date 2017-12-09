@@ -284,10 +284,12 @@ public class Game {
 				System.out.println("Its " + users.get(currentPlayer%number).getName() + "'s turn");
 	
 	            System.out.println("your current position is "+users.get(currentPlayer%number).getCharacter().getPosition());
-	            users.get(currentPlayer% number).checkCard();
-	            users.get(currentPlayer % number).checkNotebook();
+	           users.get(currentPlayer% number).checkCard();
+	      //      users.get(currentPlayer % number).checkNotebook();
 				users.get(currentPlayer % number).movement();
-				users.get(currentPlayer % number).choice(this, hepo, board);
+				users.get(currentPlayer % number).buildWindow(this, board, hepo);
+				
+			//	users.get(currentPlayer % number).choice(this, hepo, board);
 				
 				
 			}
