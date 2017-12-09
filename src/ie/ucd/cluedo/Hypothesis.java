@@ -1,12 +1,15 @@
 package ie.ucd.cluedo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-public class Hypothesis {
+public class Hypothesis extends WindowAdapter implements ActionListener{
     protected List<String> keyword; // the list of the room name, weapon name, and person name
     protected int person;
     protected int weapon;
@@ -76,15 +79,15 @@ public class Hypothesis {
 	    	if(game.findHolder(game.allCard.get(cardIndex[i]))==t){
 	    		game.users.get(t).notebook.add(X.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 		         game.users.get(t).notebook.add("I refuted the hypothesis by showing card "+game.allCard.get(cardIndex[i]).getName()+"\n");
-		         game.users.get(t).notebook.add("*****************");
+		         game.users.get(t).notebook.add("************************************************************");
 		            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
-		            X.notebook.add("*****************");
+		            X.notebook.add("************************************************************");
 		            JOptionPane.showMessageDialog(null, game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName(), "", JOptionPane.INFORMATION_MESSAGE); 
 		            for(int j=0;j<game.users.size();j++){
     		             if(j!=x && j!=t){
     			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
     			            game.users.get(j).notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing a card\n");
-    		                game.users.get(j).notebook.add("*****************");
+    		                game.users.get(j).notebook.add("************************************************************");
     		}
     	}
     	              found=true;
@@ -100,15 +103,15 @@ public class Hypothesis {
 		    	if(game.findHolder(game.allCard.get(cardIndex[i]))==t){
 		    		game.users.get(t).notebook.add(X.getName()+" formulated the hypothesis that "+keyword.get(0)+"  made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 			         game.users.get(t).notebook.add("I refuted the hypothesis by showing card "+game.allCard.get(cardIndex[i]).getName()+"\n");
-			         game.users.get(t).notebook.add("*****************");
+			         game.users.get(t).notebook.add("************************************************************");
 			            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
-			            X.notebook.add("*****************");
+			            X.notebook.add("************************************************************");
 			            JOptionPane.showMessageDialog(null, game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName(), "", JOptionPane.INFORMATION_MESSAGE); 
 			            for(int j=0;j<game.users.size();j++){
 	    		             if(j!=x && j!=t){
 	    			            game.users.get(j).notebook.add(X.getName()+" made the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
 	    			            game.users.get(j).notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing a card\n");
-	    		                game.users.get(j).notebook.add("*****************");
+	    		                game.users.get(j).notebook.add("************************************************************");
 	    		}
 	    	}
 	    	              found=true;
@@ -124,7 +127,7 @@ public class Hypothesis {
 	    
 	    if(found==false){
 	    	X.notebook.add("Nothing has been found !");
-	    	System.out.println("Nothing has been found !");
+	    	JOptionPane.showMessageDialog(null, "Nothing has been found", "", JOptionPane.INFORMATION_MESSAGE);
 	    }
 	    
 	    	}
@@ -133,6 +136,12 @@ public class Hypothesis {
 
 	public void movePawn( Pawn pawn, int newPosition) {
 		pawn.setPosition(newPosition);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

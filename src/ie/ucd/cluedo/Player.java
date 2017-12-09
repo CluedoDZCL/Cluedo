@@ -1,17 +1,36 @@
 package ie.ucd.cluedo;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Player {
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
+
+public class Player extends WindowAdapter implements ActionListener {
 	public String name;
 	protected List<String> notebook;
 	protected List<Card> playerCards;
 	public Pawn character;
 	public List<String>accusationWords;
 	public boolean playing;
+	public JFrame notes;
+	public JFrame cards;
+	public JButton b0;
+	public JButton b1;
+	public JPanel p0, p1;
 	
 	public Player(String name){
 		notebook=new ArrayList<String>();
@@ -87,30 +106,29 @@ public class Player {
 	             accusationWords.add(game.weaponPawn.get(weapon-1).getName());
 	             accusationWords.add(board.findRoomName(this.character.getPosition()));
     	notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
-    	System.out.print("Are you sure? If the accusation is wrong, you will be delete forever \n 1) yes \n 2) no");
-    	Scanner ce=new Scanner(System.in);
-    	int choice=ce.nextInt();
-    	if(choice==1){
-    		if(game.mystery.get(0).getName().equals(accusationWords.get(0)) && game.mystery.get(1).getName().equals(accusationWords.get(0)) && game.mystery.get(2).getName().equals(accusationWords.get(1))){
-    			System.out.println("Congratulations! You have won the game!");
-    			game.solved=true;
-    		}
+    	int choice = JOptionPane.showConfirmDialog(null,"Important!!!","If the accusation is wrong, you will be removed from the game, are you still going on?",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
+    	if(choice==JOptionPane.YES_OPTION){
+    		    if(game.mystery.get(0).getName().equals(accusationWords.get(0)) && game.mystery.get(1).getName().equals(accusationWords.get(0)) && game.mystery.get(2).getName().equals(accusationWords.get(1))){
+    			   JOptionPane.showMessageDialog(null, "Congratulations! You got the correct answer !", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+    			   game.solved=true;
+    		        }
     			else{
     				//game.users.remove(this);
     				this.playing=false;
-    	     System.out.println("Sorry you are out");
-    	     for(int j=0;j<game.users.size();j++){
-    	     		if(!game.users.get(j).getName().equals(this) ){
-    	     			game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
-    	     			game.users.get(j).notebook.add("*****************");
-    	     		}
-    	     	}
-    			}
-    		if(choice==2){
-    			System.out.println("you stopped the accusation, game goes on");
+    				JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer", "You are out!", JOptionPane.INFORMATION_MESSAGE);
+    	               for(int j=0;j<game.users.size();j++){
+    	     		       if(!game.users.get(j).getName().equals(this) ){
+    	     			       game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
+    	     			       game.users.get(j).notebook.add("*****************");
+    	     		           }
+    	     	         }
+    			    }
+    	}
+        if(choice==JOptionPane.NO_OPTION){
+    			JOptionPane.showMessageDialog(null, "You stopped the accusation.", "Game goes on", JOptionPane.INFORMATION_MESSAGE);
     		}
     	}
-    }
+    
 
     
  
@@ -242,10 +260,25 @@ public class Player {
 		}
 		
       public void printNotebook(){
+    	  notes=new JFrame("notebook content");
+    	  p0=new JPanel();
+    	  b0=new JButton("done");
+    	  b0.addActionListener(this);
+    	  p0.setLayout(new BoxLayout(p0, BoxLayout.Y_AXIS));
     	  for(int t=0;t<notebook.size();t++){  
-	           System.out.println(notebook.get(t));  
+    		  JLabel l= new JLabel(notebook.get(t));
+    		  JLabel l1=new JLabel("\n");
+    		  l.setHorizontalAlignment(JLabel.CENTER);
+    		  l1.setHorizontalAlignment(JLabel.CENTER);
+    		  p0.add(l);
+    		  p0.add(l1);
 	       }
-    	  
+    	  p0.add(b0);
+    	  notes.add(p0);
+ 	     notes.addWindowListener(new Player(""));
+ 	     notes.setSize(1000, 1000);
+ 	     notes.setVisible(true);
+ 	     notes.pack();
       }
 	public void checkNotebook(){
 		int check;
@@ -274,9 +307,9 @@ public class Player {
 		}	
 	}
 	public void initializeNotebook(){
-		notebook.add("*****************");
+		notebook.add("************************************************************");
 		notebook.add("Game Start");
-		notebook.add("*****************");
+		notebook.add("************************************************************");
 	}	
 	public void checkCard(){
 		int check;
@@ -304,9 +337,35 @@ public class Player {
 		}	
 	}}
 	public void printCard(){
-		for(int t=0;t<playerCards.size();t++){  
-	           System.out.println(playerCards.get(t).getName());  
+		cards=new JFrame("cards content");
+  	    p1=new JPanel();
+  	    b1=new JButton("done");
+  	    b1.addActionListener(this);
+  	    p1.setLayout(new BoxLayout(p1, BoxLayout.Y_AXIS));
+  	  for(int t=0;t<playerCards.size();t++){  
+  		  JLabel l= new JLabel(playerCards.get(t).getName());
+  		  l.setHorizontalAlignment(JLabel.CENTER);
+	      JLabel l1=new JLabel("\r");
+	      l1.setHorizontalAlignment(JLabel.CENTER);
+  		  p1.add(l);
+  		  p1.add(l1);
 	       }
+  	    p1.add(b1);
+  	    cards.add(p1);
+	     cards.addWindowListener(new Player(""));
+	     cards.setSize(1000, 1000);
+	     cards.setVisible(true);
+	     cards.pack();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		 if(e.getSource() == b0){
+			 notes.setVisible(false); 
+	        }// TODO Auto-generated method stub
+		 if(e.getSource() == b1){
+			 cards.setVisible(false);
+		 }
 	}
 		
 }
