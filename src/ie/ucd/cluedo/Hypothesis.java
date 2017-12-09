@@ -79,7 +79,6 @@ public class Hypothesis {
 		         game.users.get(t).notebook.add("*****************");
 		            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 		            X.notebook.add("*****************");
-		         //   System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 		            JOptionPane.showMessageDialog(null, game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName(), "", JOptionPane.INFORMATION_MESSAGE); 
 		            for(int j=0;j<game.users.size();j++){
     		             if(j!=x && j!=t){
@@ -104,7 +103,6 @@ public class Hypothesis {
 			         game.users.get(t).notebook.add("*****************");
 			            X.notebook.add(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 			            X.notebook.add("*****************");
-			           // System.out.println(game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName()+"\n");
 			            JOptionPane.showMessageDialog(null, game.users.get(t).getName()+" refuted the hypothesis by showing the card "+game.allCard.get(cardIndex[i]).getName(), "", JOptionPane.INFORMATION_MESSAGE); 
 			            for(int j=0;j<game.users.size();j++){
 	    		             if(j!=x && j!=t){

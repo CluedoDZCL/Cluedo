@@ -152,7 +152,7 @@ public class Game {
 			if(number>=3 && number<=6){
 			   outerloop:
 				for(int i=0;i<number;i++){
-					System.out.print("what is your name?\n");
+					System.out.print("Welcome player "+(i+1)+", what is your name?\n");
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
 					for(int j=0;j<users.size();j++){
@@ -280,6 +280,7 @@ public class Game {
 		while (!solved) {
 			currentPlayer++;
 			if (users.get(currentPlayer%number).playing) {
+				System.out.println("\n--------------------------------------------------------------------------- \n");
 				System.out.println("Its " + users.get(currentPlayer%number).getName() + "'s turn");
 	
 	            System.out.println("your current position is "+users.get(currentPlayer%number).getCharacter().getPosition());
@@ -288,7 +289,7 @@ public class Game {
 				users.get(currentPlayer % number).movement();
 				users.get(currentPlayer % number).choice(this, hepo, board);
 				
-				System.out.println("\n--------------------------------------------------------------------------- \n");
+				
 			}
 		}
 		
