@@ -1,5 +1,6 @@
 package ie.ucd.cluedo;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.util.Scanner;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,6 +33,18 @@ public class Player extends WindowAdapter implements ActionListener {
 	public JButton b0;
 	public JButton b1;
 	public JPanel p0, p1;
+	protected String person;
+    protected String weapon;
+    protected String room;
+    public Player player;
+    public Game game;
+    public Board board;
+    
+    public JFrame hy;
+	public JButton bacu;
+	public JPanel p, p0acu, p1acu,p2;
+    public JComboBox<String> c0,c1;
+    public JLabel l,l0,l1;
 	
 	public Player(String name){
 		notebook=new ArrayList<String>();
@@ -64,50 +78,73 @@ public class Player extends WindowAdapter implements ActionListener {
 
     public void raiseAccusation(Game game, Board board){
     	accusationWords = new ArrayList<String>();
-    	int person=0;
-    	int weapon=0;
-    	for(int t=0;t<game.charPawn.size();t++){  
-	           System.out.println((t+1)+") "+game.charPawn.get(t).getName());  
-	       } 
-	while(true){
-		       System.out.println("who do you accuse could be the killer?" );
- 	              Scanner in=new Scanner(System.in); 
- 	             String inputPerson=in.nextLine();
- 	    		try	{
- 	    			person=Integer.parseInt(inputPerson);
- 	    			}
- 	    		catch(NumberFormatException nfe) {
- 	    			System.out.println("please input the index number");
- 	    			continue;
- 	    		}
-	                   if(person>=1 && person<=game.charPawn.size()){
-	                     break;
-		             }
+		this.game=game;
+		this.board=board;
+		room=board.findRoomName(character.getPosition());
+		hy=new JFrame("Making accusation");
+		bacu=new JButton("done");
+		bacu.addActionListener(this);
+		l=new JLabel("your current location is "+room);
+		p=new JPanel();
+		p.add(l);
+		l0=new JLabel("Who do you think would be the suspect?");
+		c0=new JComboBox<String>();
+        c0.setEditable(false);
+		for(int t=0;t<game.charPawn.size();t++){
+		c0.addItem(game.charPawn.get(t).getName());  
 		}
-	    System.out.println("with what weapon?");
-	    for(int t=0;t<game.weaponPawn.size();t++){  
-             System.out.println((t+1)+") "+game.weaponPawn.get(t).getName());  
-                                                  } 
-	     while(true){
-	            Scanner sc=new Scanner(System.in); 
-	            String inputWeapon=sc.nextLine();
-	    		try	{
-	    			weapon=Integer.parseInt(inputWeapon);
-	    			}
-	    		catch(NumberFormatException nfe) {
-	    			System.out.println("please input the correct index");
-	    			continue;
-	    		}
-	           if(weapon>=1 && weapon<=game.weaponPawn.size()){
-	                      break;
-	                 }
-	     }
-	             accusationWords.add(game.charPawn.get(person-1).getName());
-	             accusationWords.add(game.weaponPawn.get(weapon-1).getName());
-	             accusationWords.add(board.findRoomName(this.character.getPosition()));
-    	notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
-    	int choice = JOptionPane.showConfirmDialog(null,"Important!!!","If the accusation is wrong, you will be removed from the game, are you still going on?",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
+		l1=new JLabel("With what weapon?");
+		c1=new JComboBox<String>();
+        c1.setEditable(false);
+		for(int t=0;t<game.weaponPawn.size();t++){
+		c1.addItem(game.weaponPawn.get(t).getName());  
+		}
+		p0acu = new JPanel();
+        p0acu.setLayout(new BorderLayout());
+        p0acu.add("West", l0);
+        p0acu.add("East", c0);
+       
+        
+        p1acu = new JPanel();
+        p1acu.setLayout(new BorderLayout());
+        p1acu.add("West", l1);
+        p1acu.add("East", c1);
+        
+        p2=new JPanel();
+        p2.setLayout(new BoxLayout(p2, BoxLayout.Y_AXIS));
+        p2.add(p);
+        p2.add(p0acu);
+        p2.add(p1acu);
+        p2.add(bacu);
+        
+        hy=new JFrame();
+        hy.add(p2);
+	    hy.addWindowListener(new Hypothesis());
+	    hy.setSize(1000, 1000);
+	    hy.setVisible(true);
+	    hy.pack();
+    }
+    
+    public void processAccusation(){
+    	int suspect=0;
+    	int weaponIndex=0;
+	    notebook.add("I formulated the accusation that"+person+" made the murder in the"+character.getPosition()+" with the"+weapon);
+    	int choice = JOptionPane.showConfirmDialog(null,"If the accusation is wrong, you will be removed from the game, are you still going on?","Important!!!",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
     	if(choice==JOptionPane.YES_OPTION){
+    		 //find out the index of suspects
+    	    for(int t=0;t<game.charPawn.size();t++){
+    	    	if(game.charPawn.get(t).equals(person)){
+    	    		suspect=t;
+    	    	}
+    	    }
+    	    //find out the index of the weapon
+    	    for(int t=0;t<game.weaponPawn.size();t++){
+    	    	if(game.users.get(t).equals(weapon)){
+    	    		weaponIndex=t;
+    	    	}
+    	    }
+    		game.charPawn.get(suspect).setPosition(player.character.getPosition());
+    	    game.weaponPawn.get(weaponIndex).setPosition(player.character.getPosition());
     		    if(game.mystery.get(0).getName().equals(accusationWords.get(0)) && game.mystery.get(1).getName().equals(accusationWords.get(0)) && game.mystery.get(2).getName().equals(accusationWords.get(1))){
     			   JOptionPane.showMessageDialog(null, "Congratulations! You got the correct answer !", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
     			   game.solved=true;
@@ -115,7 +152,7 @@ public class Player extends WindowAdapter implements ActionListener {
     			else{
     				//game.users.remove(this);
     				this.playing=false;
-    				JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer", "You are out!", JOptionPane.INFORMATION_MESSAGE);
+    				JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer, you are out", "You are out!", JOptionPane.INFORMATION_MESSAGE);
     	               for(int j=0;j<game.users.size();j++){
     	     		       if(!game.users.get(j).getName().equals(this) ){
     	     			       game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
@@ -260,7 +297,7 @@ public class Player extends WindowAdapter implements ActionListener {
 		}
 		
       public void printNotebook(){
-    	  notes=new JFrame("notebook content");
+    	  notes=new JFrame("notebook of "+this.getName());
     	  p0=new JPanel();
     	  b0=new JButton("done");
     	  b0.addActionListener(this);
@@ -337,7 +374,7 @@ public class Player extends WindowAdapter implements ActionListener {
 		}	
 	}}
 	public void printCard(){
-		cards=new JFrame("cards content");
+		cards=new JFrame("cards for "+this.getName());
   	    p1=new JPanel();
   	    b1=new JButton("done");
   	    b1.addActionListener(this);
@@ -365,6 +402,15 @@ public class Player extends WindowAdapter implements ActionListener {
 	        }// TODO Auto-generated method stub
 		 if(e.getSource() == b1){
 			 cards.setVisible(false);
+		 }
+		 if(e.getSource()==bacu){
+			 person=(String) c0.getSelectedItem();
+	         weapon=(String) c1.getSelectedItem();
+			 accusationWords.add(person);
+             accusationWords.add(weapon);
+             accusationWords.add(room);
+             hy.setVisible(false);
+        	 processAccusation();
 		 }
 	}
 		
