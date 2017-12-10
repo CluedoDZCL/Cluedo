@@ -63,6 +63,17 @@ public class Player extends WindowAdapter implements ActionListener {
 	public JPanel p4win=new JPanel();
 	public JButton b4win=new JButton("exit");
 	
+	/*public JFrame move0=new JFrame("movement for "+this.getName());
+	public JPanel p0mov=new JPanel();
+	public JLabel l0mov=new JLabel("click here to roll the dice");
+	public JButton b0mov=new JButton("roll");
+	
+	public JFrame mov1=new JFrame("make movement");
+	public JPanel p1mov=new JPanel();
+	public JComboBox cmov=new JComboBox();
+	public JLabel l1mov=new JLabel("Where do you want to go");*/
+	
+	
 	boolean raise=false;
     
 	
@@ -191,6 +202,7 @@ public class Player extends WindowAdapter implements ActionListener {
     
  
 	public void movement(){
+		
 		int pos=character.getPosition();
 		Random rand = new Random();
 		int dice1 = rand.nextInt(6)+1;

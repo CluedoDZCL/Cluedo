@@ -150,46 +150,52 @@ public class Game {
 			System.out.println("please input a number between 3 and 6");
 		}
 			if(number>=3 && number<=6){
-			   outerloop:
+				outerloop:
 				for(int i=0;i<number;i++){
-					System.out.print("Welcome player "+(i+1)+", what is your name?\n");
+				    System.out.print("what is your name?\n");
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
-					for(int j=0;j<users.size();j++){
+				 Player	A=new Player(playerName);
+					int j=0;
+					for(j=0;j<users.size();j++){
 						if(users.get(j).getName().equals(playerName)){
 							System.out.println("Duplicate user name, please input another name");
-				            continue outerloop;
-						}
-						}
-					Player A=new Player(playerName);
-					users.add(A);
-					for(int t=0;t<charCreate.size();t++){  
-				           System.out.println((t+1)+") "+charCreate.get(t).getName());  
-				       } 
-					while(true){
-						System.out.println("what character you want to be, please input the index");
-						Scanner sc=new Scanner(System.in);
-						//index=sc.nextInt();
-						String inputIndex=in.nextLine();
-						try	{
-							index=Integer.parseInt(inputIndex);
+							i--;
+							continue outerloop;
 							}
-						catch(NumberFormatException nfe) {
-							System.out.println("please input the index number");
-							continue;
 						}
-						   if(index>=1 && index<=charCreate.size()){
-							A.character=charCreate.get(index-1);
-							charCreate.remove(index-1);
-							userChar.add(A.character);
-						    break;
-						 }
+					if(j==users.size()){
+						users.add(A);	
 					}
+					for(int t=0;t<charCreate.size();t++){  
+					           System.out.println((t+1)+") "+charCreate.get(t).getName());  
+					       } 
+				    while(true){
+							 System.out.println("what character you want to be, please input the index");
+							 Scanner sc=new Scanner(System.in);
+							 String inputIndex=in.nextLine();
+							try	{
+								index=Integer.parseInt(inputIndex);
+								}
+							catch(NumberFormatException nfe) {
+								System.out.println("please input the index number");
+								continue;
+							}
+							if(index>=1 && index<=charCreate.size()){
+								A.character=charCreate.get(index-1);
+								charCreate.remove(index-1);
+								userChar.add(A.character);
+							    break;
+							 }
+						}
+					 }
+					}
+			          break;
 				}
-			break;
+		            
 			}
-		}
-	 }
+
+	 
 	
 	public void createMystery(){
 		//randomly select card
