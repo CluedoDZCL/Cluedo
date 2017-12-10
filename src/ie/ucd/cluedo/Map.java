@@ -43,7 +43,7 @@ public class Map extends WindowAdapter implements ActionListener{
 		b.addActionListener(this);
 		b1.addActionListener(this);
 		l=new JLabel("Click here to check the map");
-		ImageIcon icon=new ImageIcon("C:/Users/ZYX/Desktop/apartment.png");
+		ImageIcon icon=new ImageIcon("C:/MyProject/Cluedo/src/ie/ucd/cluedo/apartment.png");
 		l1=new JLabel(icon, JLabel.CENTER);
 	}
 	public void checkMap(){

@@ -256,7 +256,7 @@ public class Player extends WindowAdapter implements ActionListener {
 						continue;
 					}
 					if (amount<=diceroll) {
-						character.setPosition(pos-amount % 100);
+						character.setPosition(pos-amount % 54);
 						break;
 					}
 				}
@@ -275,7 +275,7 @@ public class Player extends WindowAdapter implements ActionListener {
 						continue;
 					}
 					if (amount<=diceroll) {
-						character.setPosition(pos+amount % 100);
+						character.setPosition(pos+amount % 54);
 						break;
 					}
 				}

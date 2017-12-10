@@ -1,7 +1,5 @@
 package ie.ucd.cluedo;
 
-import java.util.Scanner;
-
 public class Main {
 	public static void main (String[] args) {
 		//Create Board, Cards, Pawns and mystery
