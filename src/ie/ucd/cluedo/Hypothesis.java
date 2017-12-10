@@ -90,7 +90,7 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 	    public void processHypothesis(){
 	        int suspect = 0;
 	        int weaponIndex=0;
-	    	player.notebook.add("I formulated the hypothesis that "+keyword.get(0)+" made the murder in the"+keyword.get(2)+" with the "+keyword.get(1)+"\n");
+	    	player.notebook.add("I formulated the hypothesis that "+keyword.get(0)+" made the murder in the "+keyword.get(2)+" with the "+keyword.get(1)+"\n");
  	    //find out the index of X
 	    for(int t=0;t<game.users.size();t++){
 	    	if(game.users.get(t).equals(player)){

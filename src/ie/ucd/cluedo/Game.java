@@ -152,7 +152,7 @@ public class Game {
 			if(number>=3 && number<=6){
 				outerloop:
 				for(int i=0;i<number;i++){
-				    System.out.print("what is your name?\n");
+				    System.out.print("welcome player No."+(i+1)+ ", what is your name?\n");
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
 				 Player	A=new Player(playerName);
