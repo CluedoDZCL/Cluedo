@@ -75,11 +75,6 @@ class Junit {
 	
 	@Test	
 	public void testBoard(){
-		charPawn.setPosition(30);
-		Assert.assertTrue("Test check pawn in room",board.checkRoomPawn(charPawn,room));
-		charPawn.setPosition(35);
-		Assert.assertFalse("Test check pawn in room",board.checkRoomPawn(charPawn,room));
-		
 		//checkRoom(cluedo,room);
 		
 		Assert.assertEquals("Test position Constructor","Hall",board.findRoomName(30));

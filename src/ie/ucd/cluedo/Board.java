@@ -28,37 +28,25 @@ public class Board extends Game{
 		rooms.add(study);
 		rooms.add(billiard);
 		rooms.add(library);		
-			
-	}
-	
-	public boolean checkRoomPawn(Pawn pawn,Room room) {
-		if (pawn.getPosition()==room.getPosition()) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 	
 	public List<Pawn> checkRoom(Game game,Room room){
 		pawnList.clear();
-		int position =room.getPosition();
 		for (int i=0; i< game.pawns.size();i++) {
-			if (game.pawns.get(i).getPosition()==position) {
+			if (game.pawns.get(i).getPosition()==room.getPosition()) {
 				pawnList.add(game.pawns.get(i));
 			}
 		}
 		return pawnList;
 	}
+	
 	public String findRoomName(int loc){
 		String roomName = null;
 		for(int t=0;t<rooms.size();t++){
 			if(rooms.get(t).position==loc){
 				roomName=rooms.get(t).getName();
 			}
-			
-		}
-		if(roomName==null){
-		   roomName="corridor";
+			else roomName="corridor";
 		}
 		return roomName;
 	}

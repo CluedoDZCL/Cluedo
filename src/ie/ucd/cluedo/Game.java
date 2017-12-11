@@ -21,9 +21,9 @@ public class Game {
 	protected   List<Card> allCard;
 	protected List<Pawn> charCreate;
 	int number;
-	boolean solved=false;
-	boolean wait=true;
-	int currentPlayer=-1;
+	boolean solved;
+	boolean wait;
+	int currentPlayer;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
@@ -39,6 +39,9 @@ public class Game {
 		userChar=new ArrayList<Pawn>();
 		allCard=new ArrayList<Card>();
 		charCreate=new ArrayList<Pawn>();
+		solved=false;
+		wait=true;
+		currentPlayer=-1;
 	}
 	
 	public void createCards() {
