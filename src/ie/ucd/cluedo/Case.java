@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.After;
 import org.junit.AfterClass;
 
-class Junit {
+class Case {
 	CharPawn charPawn = null;
 	WeaponPawn weaponPawn=null;
 	CharCard charCard=null;
