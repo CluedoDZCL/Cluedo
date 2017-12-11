@@ -16,9 +16,7 @@ public class Main {
 		cluedo.creatPlayer();
 	   	cluedo.distributeCards();
 	   	
-		
 	    cluedo.startGame(hepo, apartment);
 		
-		System.out.println("Finished main");
 	}
 }

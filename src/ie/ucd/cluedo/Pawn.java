@@ -10,7 +10,7 @@ public abstract class Pawn{
 	}
 	
 	public void setPosition(int pos) {
-		position=pos;
+		position=(pos+54) % 54; //works for negative numbers
 	}
 	
 	public String getName(){

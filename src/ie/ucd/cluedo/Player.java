@@ -256,7 +256,7 @@ public class Player extends WindowAdapter implements ActionListener {
 						continue;
 					}
 					if (amount<=diceroll) {
-						character.setPosition(pos-amount % 54);
+						character.setPosition(pos-amount);
 						break;
 					}
 				}
@@ -275,7 +275,7 @@ public class Player extends WindowAdapter implements ActionListener {
 						continue;
 					}
 					if (amount<=diceroll) {
-						character.setPosition(pos+amount % 54);
+						character.setPosition(pos+amount);
 						break;
 					}
 				}
@@ -517,7 +517,7 @@ public class Player extends WindowAdapter implements ActionListener {
 			 }
 		 }
 		 if(e.getSource()==b4win){
-			 int choice = JOptionPane.showConfirmDialog(null,"Have you finished all the movement for this turn?"," ",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
+			 int choice = JOptionPane.showConfirmDialog(null,"Have you finished this turn?"," ",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
 		    	if(choice==JOptionPane.YES_OPTION){ 
 		    		game.wait=false;
 		    		window.setVisible(false);
