@@ -41,7 +41,7 @@ public class Hypothesis extends WindowAdapter implements ActionListener{
 		player=X;
 		this.game=game;
 		this.board=board;
-		room=board.findRoomName(X.character.getPosition());
+		room=board.findRoom(X.character.getPosition()).getName();
 		hy=new JFrame("Making hypothesis");
 		b0=new JButton("done");
 		b0.addActionListener(this);

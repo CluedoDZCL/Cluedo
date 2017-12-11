@@ -40,14 +40,13 @@ public class Board extends Game{
 		return pawnList;
 	}
 	
-	public String findRoomName(int loc){
-		String roomName = null;
+	public Room findRoom(int loc){
+		Room room=null;
 		for(int t=0;t<rooms.size();t++){
 			if(rooms.get(t).position==loc){
-				roomName=rooms.get(t).getName();
+				 room=rooms.get(t);
 			}
-			else roomName="corridor";
 		}
-		return roomName;
+		return room;		
 	}
 }

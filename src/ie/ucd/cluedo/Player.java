@@ -161,7 +161,7 @@ public class Player extends WindowAdapter implements ActionListener {
     	int choice = JOptionPane.showConfirmDialog(null,"If the accusation is wrong, you will be removed from the game, are you still going on?","Important!!!",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
     	if(choice==JOptionPane.YES_OPTION){
     		 //find out the index of suspects
-    		notebook.add("I formulated the accusation that"+person+" made the murder in the "+board.findRoomName(character.getPosition())+" with the"+weapon);
+    		notebook.add("I formulated the accusation that"+person+" made the murder in the "+board.findRoom(character.getPosition()).getName()+" with the"+weapon);
     		for(int t=0;t<game.charPawn.size();t++){
     	    	if(game.charPawn.get(t).getName()==person){
     	    		suspect=t;
@@ -439,7 +439,7 @@ public class Player extends WindowAdapter implements ActionListener {
 		this.board=board;
 		this.hypo=hepo;
 		raise=false;
-		room=board.findRoomName(character.getPosition());
+		room=board.findRoom(character.getPosition()).getName();
 		JLabel l00=new JLabel("Welcome to room " + room );
 		JPanel p00=new JPanel();
 		p00.add(l00);
