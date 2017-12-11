@@ -86,6 +86,44 @@ class Junit {
 		
 	}
 	
+	@Test	
+	public void testPlayer(){
+		//getName()
+		//getCharicter()
+		//getPlayerCards()
+		//contains(Card)
+		//raiseAccusation()
+		//processAccusation()
+		//movement()
+		//printNotebook()
+		//initializeNotebook()
+		//checkCards
+		//printCards
+		
+	}
+	
+	@Test	
+	public void testHypothesis(){
+		//makeHypothesis(Plyer,Game,Board)
+		//processHypothesis()
+		//movePawn(Pawn,int)
+	}
+	
+	@Test	
+	public void testGame(){
+		//createCards()
+		//createPawns()
+		//createPlayer()
+		//createMystery()
+		//checkMystery(String,String,String)
+		//distrbuteCards()
+		//getCard(int)
+		//findHolder(Card)
+		//findCard()
+		//mysterySolved()
+		//startGame(Hypo,Board)
+	}	
+	
 	@After	
 	public void tearDown(){	
 		CharPawn charPawn = null;
