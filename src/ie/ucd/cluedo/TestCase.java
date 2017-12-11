@@ -1,14 +1,15 @@
 package ie.ucd.cluedo;
 
 import static org.junit.Assert.*;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Before;
-import org.junit.Test;
+
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-class Case {
+public class TestCase {
 	CharPawn charPawn = null;
 	WeaponPawn weaponPawn=null;
 	CharCard charCard=null;
@@ -18,7 +19,7 @@ class Case {
 	Game cluedo=null;
 
 	@BeforeClass
-	public	static	void	BeforeClass(){	
+	public static void BeforeClass(){	
 		 	//initialise variables
 		 	System.out.println("BeforeClass");	
 	}	
@@ -33,6 +34,7 @@ class Case {
 		board= new Board();
 		cluedo= new Game();
 		board.rooms.add(room);
+		cluedo.pawns.add(charPawn);
 		System.out.println("setUp");	
 	}
 	
@@ -78,7 +80,7 @@ class Case {
 	public void testBoard(){
 		Assert.assertEquals("Test position Constructor",room,board.findRoom(20));
 		charPawn.setPosition(20);
-		Assert.assertEquals("Test pawns in room",charPawn,board.checkRoom(cluedo,room));
+		Assert.assertEquals("Test pawns in room",charPawn,board.checkRoom(cluedo,room).get(0));
 	}
 	
 	@Test	
@@ -121,6 +123,8 @@ class Case {
 	
 	@After	
 	public void tearDown(){	
+		board.rooms.remove(room);
+		cluedo.pawns.remove(charPawn);
 		CharPawn charPawn = null;
 		WeaponPawn weaponPawn=null;
 		CharCard charCard=null;
@@ -134,4 +138,5 @@ class Case {
 	public static void AfterClass(){	
 		 System.out.println("AfterClass");	
 	}
+
 }
