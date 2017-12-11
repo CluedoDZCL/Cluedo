@@ -22,7 +22,8 @@ public class Game {
 	protected List<Pawn> charCreate;
 	int number;
 	boolean solved=false;
-	
+	boolean wait=true;
+	int currentPlayer=-1;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
@@ -279,11 +280,12 @@ public class Game {
 	
 	public void startGame(Hypothesis hepo, Board board){
 		//initial notebook
+		wait=true;
 		for(int t=0;t<number;t++){
 			users.get(t).initializeNotebook();
 		}
-		int currentPlayer=-1;
-		while (!solved) {
+		
+		if (!solved) {
 			currentPlayer++;
 			if (users.get(currentPlayer%number).playing) {
 				System.out.println("\n--------------------------------------------------------------------------- \n");
@@ -291,12 +293,11 @@ public class Game {
 	
 	            System.out.println("your current position is "+users.get(currentPlayer%number).getCharacter().getPosition());
 	           users.get(currentPlayer% number).checkCard();
-	      //      users.get(currentPlayer % number).checkNotebook();
+	      //   users.get(currentPlayer % number).checkNotebook();
 				users.get(currentPlayer % number).movement();
 				users.get(currentPlayer % number).buildWindow(this, board, hepo);
 				
 			//	users.get(currentPlayer % number).choice(this, hepo, board);
-				
 				
 			}
 		}

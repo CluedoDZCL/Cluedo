@@ -438,6 +438,7 @@ public class Player extends WindowAdapter implements ActionListener {
 		this.game=game;
 		this.board=board;
 		this.hypo=hepo;
+		raise=false;
 		room=board.findRoomName(character.getPosition());
 		JLabel l00=new JLabel("Welcome to room " + room );
 		JPanel p00=new JPanel();
@@ -463,8 +464,8 @@ public class Player extends WindowAdapter implements ActionListener {
 		pc.add(p00);
 		pc.add(p0win); 
 		pc.add(p1win); 
-		pc.add(p2win); 
-		pc.add(p3win);
+		pc.add(p3win); 
+		pc.add(p2win);
 		pc.add(p4win);
 		window.add(pc);
 		window.addWindowListener(new Player(""));
@@ -503,7 +504,7 @@ public class Player extends WindowAdapter implements ActionListener {
 				 raiseAccusation();
 				 }
 				 else{
-					 JOptionPane.showMessageDialog(null, "you cannot raise an accusation", " ", JOptionPane.INFORMATION_MESSAGE);
+					 JOptionPane.showMessageDialog(null, "you cannot raise an accusation here", " ", JOptionPane.INFORMATION_MESSAGE);
 				 }
 			
 		 }
@@ -512,12 +513,19 @@ public class Player extends WindowAdapter implements ActionListener {
 			 hypo.makeHypothesis(this, game, board);
 			 }
 			 else{
-				 JOptionPane.showMessageDialog(null, "you cannot raise a hypothesis", " ", JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "you cannot raise a hypothesis here", " ", JOptionPane.INFORMATION_MESSAGE);
 			 }
 		 }
 		 if(e.getSource()==b4win){
-			 window.setVisible(false);
-			 
+			 int choice = JOptionPane.showConfirmDialog(null,"Have you finished all the movement for this turn?"," ",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
+		    	if(choice==JOptionPane.YES_OPTION){ 
+		    		game.wait=false;
+		    		window.setVisible(false);
+			        game.startGame(hypo, board);
+		    	}
+		    	if(choice==JOptionPane.NO_OPTION){
+		    		
+		    	}
 		 }
 	}
 		

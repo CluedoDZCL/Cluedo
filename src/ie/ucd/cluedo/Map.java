@@ -33,7 +33,7 @@ public class Map extends WindowAdapter implements ActionListener{
 		 }
 	}
 	public Map(){
-		fCon=new JFrame("Check the Map");
+		fCon=new JFrame("View the Map");
 		fPic=new JFrame("Appartment");
 		p1=new JPanel();
 		p2=new JPanel();
@@ -42,7 +42,7 @@ public class Map extends WindowAdapter implements ActionListener{
 		b1=new JButton("close");
 		b.addActionListener(this);
 		b1.addActionListener(this);
-		l=new JLabel("Click here to check the map");
+		l=new JLabel("Click here to view the map");
 		ImageIcon icon=new ImageIcon("C:/MyProject/Cluedo/src/ie/ucd/cluedo/apartment.png");
 		l1=new JLabel(icon, JLabel.CENTER);
 	}

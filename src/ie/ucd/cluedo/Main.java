@@ -6,8 +6,8 @@ public class Main {
 		Game cluedo = new Game();
 		Board apartment=new Board();
 		Hypothesis hepo=new Hypothesis();
-		Map map=new Map();
-		map.checkMap();
+		//Map map=new Map();
+		//map.checkMap();
 		
 		apartment.createRooms();
 		cluedo.createCards();	
