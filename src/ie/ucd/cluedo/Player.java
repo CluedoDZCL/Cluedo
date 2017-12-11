@@ -439,7 +439,10 @@ public class Player extends WindowAdapter implements ActionListener {
 		this.board=board;
 		this.hypo=hepo;
 		raise=false;
-		room=board.findRoom(character.getPosition()).getName();
+		if (board.findRoom(character.getPosition())==(null)) {
+			room="Corridor";
+		}
+		else room=board.findRoom(character.getPosition()).getName();
 		JLabel l00=new JLabel("Welcome to room " + room );
 		JPanel p00=new JPanel();
 		p00.add(l00);
