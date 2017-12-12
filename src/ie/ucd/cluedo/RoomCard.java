@@ -3,7 +3,7 @@ package ie.ucd.cluedo;
 public class RoomCard extends Card {
 
 	public RoomCard(String name) {
-		String type = "Room";
+		type = "Room";
 		this.name=name;
 	}
 }

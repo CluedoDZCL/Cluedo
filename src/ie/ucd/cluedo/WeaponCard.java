@@ -4,7 +4,7 @@ public class WeaponCard extends Card{
 		
 	public WeaponCard(String name) {
 		super();
-		String type = "Weapon";
+		type = "Weapon";
 		this.name=name;
 	}
  }

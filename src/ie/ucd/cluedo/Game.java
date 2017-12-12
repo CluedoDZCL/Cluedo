@@ -18,7 +18,7 @@ public class Game {
 	protected List<Pawn> pawns;
 	protected List<Pawn> pawnList;
 	protected List<Pawn> userChar;
-	protected   List<Card> allCard;
+	protected List<Card> allCard;
 	protected List<Pawn> charCreate;
 	int number;
 	boolean solved;

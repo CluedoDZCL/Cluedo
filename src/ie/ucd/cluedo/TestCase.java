@@ -17,6 +17,8 @@ public class TestCase {
 	Room room=null;
 	Board board=null;
 	Game cluedo=null;
+	Player player=null;
+	Player player2=null;
 
 	@BeforeClass
 	public static void BeforeClass(){	
@@ -33,8 +35,11 @@ public class TestCase {
 		room= new Room(20,"Room");
 		board= new Board();
 		cluedo= new Game();
+		player= new Player("Player");
 		board.rooms.add(room);
 		cluedo.pawns.add(charPawn);
+		cluedo.users.add(player);
+		
 		System.out.println("setUp");	
 	}
 	
@@ -85,10 +90,8 @@ public class TestCase {
 	
 	@Test	
 	public void testPlayer(){
-		//getName()
-		//getCharicter()
-		//getPlayerCards()
-		//contains(Card)
+		cluedo.users.get(0).playerCards.add(charCard);
+		Assert.assertTrue("Test check player has card",player.contains(charCard));
 		//raiseAccusation()
 		//processAccusation()
 		//movement()
@@ -108,16 +111,35 @@ public class TestCase {
 	
 	@Test	
 	public void testGame(){
-		//createCards()
-		//createPawns()
-		//createPlayer()
-		//createMystery()
-		//checkMystery(String,String,String)
-		//distrbuteCards()
-		//getCard(int)
-		//findHolder(Card)
-		//findCard()
-		//mysterySolved()
+		cluedo.createCards();	
+		cluedo.createMystery();	
+		
+		player2= new Player("Player2");
+		cluedo.users.add(player2);
+		cluedo.number=2;
+		cluedo.createPawns();
+		//cluedo.creatPlayer();
+	   	cluedo.distributeCards();
+		
+		Assert.assertEquals("Test amount cards",21,cluedo.allCard.size());
+		Assert.assertEquals("Test amount mystery cards",3,cluedo.mystery.size());
+		Assert.assertEquals("Test amount player cards",9,cluedo.users.get(0).playerCards.size());
+		
+		Assert.assertEquals("Test amount weapon pawns",6,cluedo.weaponPawn.size());
+		Assert.assertEquals("Test amount weapon pawns",6,cluedo.charPawn.size());
+		
+		Assert.assertEquals("Test mystery 1 each type","Charicter",cluedo.mystery.get(0).getType());
+		Assert.assertEquals("Test mystery 1 each type","Room",cluedo.mystery.get(1).getType());
+		Assert.assertEquals("Test mystery 1 each type","Weapon",cluedo.mystery.get(2).getType());
+	   	
+		Assert.assertFalse("Test check mystery incorrect",cluedo.checkMystery("","",""));
+		Assert.assertTrue("Test check mystery correct",cluedo.checkMystery(
+				cluedo.mystery.get(0).getName(),cluedo.mystery.get(1).getName(),cluedo.mystery.get(2).getName()));
+		
+		Assert.assertEquals("Test finding owner of card",0,cluedo.findHolder(cluedo.getCards(0).get(0)));
+		
+		Assert.assertEquals("Test finding card in allCards",16,cluedo.findCard("knife"));
+			
 		//startGame(Hypo,Board)
 	}	
 	

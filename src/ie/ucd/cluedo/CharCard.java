@@ -4,7 +4,7 @@ public class CharCard extends Card {
 
 	public CharCard(String name) {
 		super();
-		String type = "Charicter";
+		type = "Charicter";
 		this.name=name;
 	}
 }
