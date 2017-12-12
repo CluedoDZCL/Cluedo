@@ -1,14 +1,16 @@
 package ie.ucd.cluedo;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
+
+
 import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,7 +22,7 @@ public class Map extends WindowAdapter implements ActionListener{
     JLabel l;
 	JLabel l1;
     JButton b,b1;
-    ImageIcon icon;
+    ImageIcon  i;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		 if(e.getSource() == b){
@@ -43,8 +45,8 @@ public class Map extends WindowAdapter implements ActionListener{
 		b.addActionListener(this);
 		b1.addActionListener(this);
 		l=new JLabel("Click here to view the map");
-		ImageIcon icon=new ImageIcon("C:/MyProject/Cluedo/src/ie/ucd/cluedo/apartment.png");
-		l1=new JLabel(icon, JLabel.CENTER);
+		i=new  ImageIcon(getClass().getResource("apartment.png"));
+		l1=new JLabel(i, JLabel.CENTER);
 	}
 	public void checkMap(){
 		
@@ -55,7 +57,6 @@ public class Map extends WindowAdapter implements ActionListener{
 	     p1.setLayout(new GridLayout(1, 1));
 	     p1.add(p2);
 	     fCon.add(p1);
-	     fCon.addWindowListener(new Map());
 	     fCon.setSize(1000,1000);
 	     fCon.setVisible(true);
 	     fCon.pack();
@@ -63,12 +64,9 @@ public class Map extends WindowAdapter implements ActionListener{
 	     p3.add(l1);
 	     p3.add(b1);
 	     fPic.add(p3);
-	     fPic.addWindowListener(new Map());
 	     fPic.setSize(1000, 1000);
 	     fPic.setVisible(false);
 	     fPic.pack();
-	     
-		
-	}
-
+	  }
 }
+	
