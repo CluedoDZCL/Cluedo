@@ -288,7 +288,7 @@ public class Game {
 			users.get(t).initializeNotebook();
 		}
 		
-		if (!solved) {
+		while (!solved) {
 			currentPlayer++;
 			if (users.get(currentPlayer%number).playing) {
 				System.out.println("\n--------------------------------------------------------------------------- \n");

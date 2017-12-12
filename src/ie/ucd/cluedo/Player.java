@@ -524,7 +524,7 @@ public class Player extends WindowAdapter implements ActionListener {
 		    	if(choice==JOptionPane.YES_OPTION){ 
 		    		game.wait=false;
 		    		window.setVisible(false);
-			        game.startGame(hypo, board);
+			   //     game.startGame(hypo, board);
 		    	}
 		    	if(choice==JOptionPane.NO_OPTION){
 		    		
