@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Map extends WindowAdapter implements ActionListener{
+public class Map implements ActionListener{
 	JFrame fCon;
 	JFrame fPic;
     JPanel p1,p2,p3;
@@ -49,7 +49,6 @@ public class Map extends WindowAdapter implements ActionListener{
 		l1=new JLabel(i, JLabel.CENTER);
 	}
 	public void checkMap(){
-		
 		 p2.setLayout(new BorderLayout());
          p2.add("West", l);
 	     p2.add("East", b);

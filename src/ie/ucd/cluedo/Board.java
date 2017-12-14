@@ -29,7 +29,7 @@ public class Board extends Game{
 		rooms.add(billiard);
 		rooms.add(library);		
 	}
-	
+	//check who is in the room
 	public List<Pawn> checkRoom(Game game,Room room){
 		pawnList.clear();
 		for (int i=0; i< game.pawns.size();i++) {
@@ -39,13 +39,17 @@ public class Board extends Game{
 		}
 		return pawnList;
 	}
-	
-	public Room findRoom(int loc){
-		Room room=null;
+	//find the room name
+	public String findRoom(int loc){
+		String room=null;
 		for(int t=0;t<rooms.size();t++){
 			if(rooms.get(t).position==loc){
-				 room=rooms.get(t);
+				 room=rooms.get(t).getName();
 			}
+		}
+		//if the position is not related to a room, then returns corridor
+		if(room ==null){
+			room="Corridor";
 		}
 		return room;		
 	}

@@ -23,7 +23,6 @@ public class Game {
 	int number;
 	boolean solved;
 	boolean wait;
-	int currentPlayer;
 		
 	public Game() {
 		charCards = new ArrayList<Card>();		
@@ -40,8 +39,6 @@ public class Game {
 		allCard=new ArrayList<Card>();
 		charCreate=new ArrayList<Pawn>();
 		solved=false;
-		wait=true;
-		currentPlayer=-1;
 	}
 	
 	public void createCards() {
@@ -101,6 +98,7 @@ public class Game {
 	
 	
 	public void createPawns(){
+		//create weapon pawns
 		Pawn candlestick_Pawn = new WeaponPawn("candlestick", 0);
 		Pawn knife_Pawn = new WeaponPawn("knife", 12);
 		Pawn pipe_Pawn = new WeaponPawn("lead pipe", 24);
@@ -114,6 +112,7 @@ public class Game {
 		weaponPawn.add(rope_Pawn);
 		weaponPawn.add(poison_Pawn);
 		
+		//create character pawns
 		Pawn scarlett_Pawn = new CharPawn("Miss Scarlett",3);
 		Pawn plum_Pawn = new CharPawn("Professor Plum",15);
 		Pawn peacock_Pawn = new CharPawn("Mrs. Peacock",27);
@@ -127,6 +126,7 @@ public class Game {
 		charPawn.add(mustard_Pawn);
 		charPawn.add(white_Pawn);
 		
+		//charCreate list is especially used in showing the available character for the players to chose
 		charCreate.add(scarlett_Pawn);
 		charCreate.add(plum_Pawn);
 		charCreate.add(peacock_Pawn);
@@ -143,23 +143,27 @@ public class Game {
 
 	public void creatPlayer(){
 		int index=0;
+		//the while loop is used for making sure the input index is between 3 and 6, if the user input another number it will go back to the loop and demand another input
 		while(true){
 			System.out.println("How many players do you have(should between 3 and 6)");
 			Scanner in=new Scanner(System.in);
 			String inputstr=in.nextLine();
 		try	{
-			number=Integer.parseInt(inputstr);
+			number=Integer.parseInt(inputstr);//process the integer input
 			}
 		catch(NumberFormatException nfe) {
-			System.out.println("please input a number between 3 and 6");
+			System.out.println("please input a number between 3 and 6");//demanding another input if the current input is character
+			continue;
 		}
+		    //if the number is suitable, then go to the next stage
 			if(number>=3 && number<=6){
 				outerloop:
 				for(int i=0;i<number;i++){
 				    System.out.print("welcome player No."+(i+1)+ ", what is your name?\n");
 					Scanner scc=new Scanner(System.in);
 					String playerName=scc.nextLine();
-				 Player	A=new Player(playerName);
+				    Player	A=new Player(playerName);
+				    //check if the name has been used, if it is then go back to the loop to demand another input
 					int j=0;
 					for(j=0;j<users.size();j++){
 						if(users.get(j).getName().equals(playerName)){
@@ -168,9 +172,10 @@ public class Game {
 							continue outerloop;
 							}
 						}
-					if(j==users.size()){
+					if(j==users.size()){//if j=user.size(), then it mean the previous loop has not been stopped, no duplicate name has been found
 						users.add(A);	
 					}
+					//let the player choose their character pawn
 					for(int t=0;t<charCreate.size();t++){  
 					           System.out.println((t+1)+") "+charCreate.get(t).getName());  
 					       } 
@@ -187,17 +192,15 @@ public class Game {
 							}
 							if(index>=1 && index<=charCreate.size()){
 								A.character=charCreate.get(index-1);
-								charCreate.remove(index-1);
-								userChar.add(A.character);
-							    break;
+								charCreate.remove(index-1);//the current character is not available any more
+							    break; //break the while(true) loop
 							 }
 						}
-					 }
-					}
-			          break;
-				}
-		            
+				 }
 			}
+		  break;//break the outside while(true) loop
+		}
+	}
 
 	 
 	
@@ -269,8 +272,7 @@ public class Game {
 		 for(int t=0;t<allCard.size();t++){
 			 if(allCard.get(t).getName().equals(name)){
 				 index=t;
-				// allCard.remove(t);
-			 }
+				}
 		 }
 		return index;
 	}
@@ -282,31 +284,25 @@ public class Game {
 	
 	
 	public void startGame(Hypothesis hepo, Board board){
+		int currentPlayer=-1;
 		//initial notebook
-		wait=true;
 		for(int t=0;t<number;t++){
 			users.get(t).initializeNotebook();
 		}
-		
+		//keep loop for every round until the game is solved
 		while (!solved) {
 			currentPlayer++;
 			if (users.get(currentPlayer%number).playing) {
 				System.out.println("\n--------------------------------------------------------------------------- \n");
 				System.out.println("Its " + users.get(currentPlayer%number).getName() + "'s turn");
-	
 	            System.out.println("your current position is "+users.get(currentPlayer%number).getCharacter().getPosition());
 	            users.get(currentPlayer% number).checkCard();
-	            //users.get(currentPlayer % number).checkNotebook();
+	            users.get(currentPlayer % number).checkNotebook();
 				users.get(currentPlayer % number).movement();
-				users.get(currentPlayer % number).buildWindow(this, board, hepo);
-				
-			//	users.get(currentPlayer % number).choice(this, hepo, board);
-				
+			    users.get(currentPlayer % number).choice(this, hepo, board);
+				}
 			}
 		}
-		
 	}
-		
-}
 	
 
