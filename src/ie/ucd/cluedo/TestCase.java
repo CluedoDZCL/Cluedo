@@ -83,9 +83,13 @@ public class TestCase {
 	
 	@Test	
 	public void testBoard(){
-		Assert.assertEquals("Test position Constructor",room,board.findRoom(20));
+		Assert.assertEquals("Test position Constructor",room.getName(),board.findRoom(20));
+		Assert.assertEquals("Test position corridor","Corridor",board.findRoom(2));
 		charPawn.setPosition(20);
 		Assert.assertEquals("Test pawns in room",charPawn,board.checkRoom(cluedo,room).get(0));
+		board.rooms.remove(room);
+		board.createRooms();
+		Assert.assertEquals("Test all rooms created",9,board.rooms.size());
 	}
 	
 	@Test	
@@ -95,8 +99,8 @@ public class TestCase {
 		//raiseAccusation()
 		//processAccusation()
 		//movement()
+		player.initializeNotebook();
 		//printNotebook()
-		//initializeNotebook()
 		//checkCards
 		//printCards
 		
@@ -118,8 +122,7 @@ public class TestCase {
 		cluedo.users.add(player2);
 		cluedo.number=2;
 		cluedo.createPawns();
-		//cluedo.creatPlayer();
-	   	cluedo.distributeCards();
+		cluedo.distributeCards();
 		
 		Assert.assertEquals("Test amount cards",21,cluedo.allCard.size());
 		Assert.assertEquals("Test amount mystery cards",3,cluedo.mystery.size());
@@ -139,9 +142,14 @@ public class TestCase {
 		Assert.assertEquals("Test finding owner of card",0,cluedo.findHolder(cluedo.getCards(0).get(0)));
 		
 		Assert.assertEquals("Test finding card in allCards",16,cluedo.findCard("knife"));
-			
+		
+		cluedo.mysterySolved();
+		Assert.assertTrue("Test solved setter",cluedo.solved);
+		
 		//startGame(Hypo,Board)
+		//cluedo.creatPlayer();
 	}	
+	
 	
 	@After	
 	public void tearDown(){	
