@@ -142,7 +142,6 @@ public class Game {
 	
 
 	public void creatPlayer(){
-		int index=0;
 		//the while loop is used for making sure the input index is between 3 and 6, if the user input another number it will go back to the loop and demand another input
 		while(true){
 			System.out.println("How many players do you have(should between 3 and 6)");
@@ -174,33 +173,42 @@ public class Game {
 						}
 					if(j==users.size()){//if j=user.size(), then it mean the previous loop has not been stopped, no duplicate name has been found
 						users.add(A);	
+						selectCharacter(A);
 					}
 					//let the player choose their character pawn
-					for(int t=0;t<charCreate.size();t++){  
-					           System.out.println((t+1)+") "+charCreate.get(t).getName());  
-					       } 
-				    while(true){
-							 System.out.println("what character you want to be, please input the index");
-							 Scanner sc=new Scanner(System.in);
-							 String inputIndex=in.nextLine();
-							try	{
-								index=Integer.parseInt(inputIndex);
-								}
-							catch(NumberFormatException nfe) {
-								System.out.println("please input the index number");
-								continue;
-							}
-							if(index>=1 && index<=charCreate.size()){
-								A.character=charCreate.get(index-1);
-								charCreate.remove(index-1);//the current character is not available any more
-							    break; //break the while(true) loop
-							 }
-						}
-				 }
+					//print out all the available characters
+				}
+			break;
 			}
-		  break;//break the outside while(true) loop
 		}
 	}
+	 public void selectCharacter(Player A){
+		 int index;
+		 //print all the available characters
+		 for(int t=0;t<charCreate.size();t++){  
+			 System.out.println((t+1)+") "+charCreate.get(t).getName());  
+		  } 
+		 while(true){
+			   System.out.println("what character you want to be, please input the index");
+			   Scanner sc=new Scanner(System.in);
+			   String inputIndex=sc.nextLine();
+			   try{
+				  index=Integer.parseInt(inputIndex);
+				}
+			   catch(NumberFormatException nfe) {
+				  System.out.println("please input the index number");
+				  continue;
+				}
+				if(index>=1 && index<=charCreate.size()){
+				   A.character=charCreate.get(index-1);
+				   charCreate.remove(index-1);//the current character is not available any more,so delete it from the list
+				   break; //break the while(true) loop
+				}
+			}
+		 }
+	 
+
+
 
 	 
 	

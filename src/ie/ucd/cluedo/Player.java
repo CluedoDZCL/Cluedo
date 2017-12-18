@@ -86,48 +86,60 @@ public class Player {
 							}
 						//if the weapon index is correct then start process the accusation
 						if(weapon>0 && weapon<7){
-							//define the three element in the accusation
-							accusationWords.add(game.charPawn.get(suspect-1).getName());
-							accusationWords.add(game.weaponPawn.get(weapon-1).getName());
-							accusationWords.add(board.findRoom(this.character.getPosition()));
-							//confirm the accusation
-							int choice = JOptionPane.showConfirmDialog(null,"If the accusation is wrong, you will be removed from the game, are you still going on?","Important!!!",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
-					    	if(choice==JOptionPane.YES_OPTION){
-					    		notebook.add("I formulated the accusation that"+accusationWords.get(0)+" made the murder in the "+accusationWords.get(2)+" with the"+accusationWords.get(1));
-					    		//move the suspect and the weapon into the room
-					    		game.charPawn.get(suspect-1).setPosition(this.character.getPosition());
-					    		game.charPawn.get(weapon-1).setPosition(this.character.getPosition());
-					    		//compare the accusation and the correct answer
-					    		if(game.checkMystery(accusationWords.get(0),accusationWords.get(2), accusationWords.get(1))==true){
-					    		   JOptionPane.showMessageDialog(null, "Congratulations! You got the correct answer !", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
-					    		   game.mysterySolved();
-					    		        }
-					    		else{
-					    			this.playing=false;//this player could not keep playing the game
-					    		    JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer", "You are out!", JOptionPane.INFORMATION_MESSAGE);
-					    			JOptionPane.showMessageDialog(null, "you have been removed", "You are out!", JOptionPane.INFORMATION_MESSAGE);
-					    			for(int j=0;j<game.users.size();j++){
-					    	     		if(!game.users.get(j).equals(this) ){
-					    	     		   game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
-					    	     		   game.users.get(j).notebook.add("************************************************************");
-					    	     		 }
-					    	     	 }
-					    		 }
-					    	}
-					    	if(choice==JOptionPane.NO_OPTION){
-				    			JOptionPane.showMessageDialog(null, "You stopped the accusation.", "Game goes on", JOptionPane.INFORMATION_MESSAGE);
-				    		}
-					    	//clear the accusation record 
-					    	accusationWords.remove(game.charPawn.get(suspect-1).getName());
-							accusationWords.remove(game.weaponPawn.get(weapon-1).getName());
-							accusationWords.remove(board.findRoom(this.character.getPosition()));
-					    	break;
-					    	}	
+							processAccusation(accusationWords,game,board,suspect, weapon);
+							break;
+						}
+						else{
+							continue;
+						}
 					}
-					break;
 				}
-	    }
+				else{
+					continue;
+				}
+				break;
+    	}
     }
+
+					
+		public void processAccusation(List<String>accusationWords, Game game, Board board, int suspect, int weapon){
+				//define the three element in the accusation
+				  accusationWords.add(game.charPawn.get(suspect-1).getName());
+				  accusationWords.add(game.weaponPawn.get(weapon-1).getName());
+				  accusationWords.add(board.findRoom(this.character.getPosition()));
+				//confirm the accusation
+				  int choice = JOptionPane.showConfirmDialog(null,"If the accusation is wrong, you will be removed from the game, are you still going on?","Important!!!",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
+				  if(choice==JOptionPane.YES_OPTION){
+					 notebook.add("I formulated the accusation that"+accusationWords.get(0)+" made the murder in the "+accusationWords.get(2)+" with the"+accusationWords.get(1));
+					//move the suspect and the weapon into the room
+					 game.charPawn.get(suspect-1).setPosition(this.character.getPosition());
+					 game.charPawn.get(weapon-1).setPosition(this.character.getPosition());
+					//compare the accusation and the correct answer
+					 if(game.checkMystery(accusationWords.get(0),accusationWords.get(2), accusationWords.get(1))==true){
+					    JOptionPane.showMessageDialog(null, "Congratulations! You got the correct answer !", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
+					    game.mysterySolved();
+					  }
+					 else{
+					    this.playing=false;//this player could not keep playing the game
+					    JOptionPane.showMessageDialog(null, "Sorry, you did not get the correct answer", "You are out!", JOptionPane.INFORMATION_MESSAGE);
+					    JOptionPane.showMessageDialog(null, "you have been removed", "You are out!", JOptionPane.INFORMATION_MESSAGE);
+					    for(int j=0;j<game.users.size();j++){
+					    	if(!game.users.get(j).equals(this) ){
+					    	   game.users.get(j).notebook.add(this.getName()+" has been removed from the game\n");
+					    	   game.users.get(j).notebook.add("************************************************************");
+					    	 }
+					    }
+					  }
+					}
+				   if(choice==JOptionPane.NO_OPTION){
+				      JOptionPane.showMessageDialog(null, "You stopped the accusation.", "Game goes on", JOptionPane.INFORMATION_MESSAGE);
+				    }
+				   //clear the accusation record 
+				    accusationWords.remove(game.charPawn.get(suspect-1).getName());
+				    accusationWords.remove(game.weaponPawn.get(weapon-1).getName());
+					accusationWords.remove(board.findRoom(this.character.getPosition()));
+	}	
+    
     
      public void movement(){
 		int pos=character.getPosition();
@@ -293,7 +305,7 @@ public class Player {
 			      check=Integer.parseInt(ckc);
 			   }
 		      catch(NumberFormatException nfe) {
-		    	  System.out.println("please input a number");
+		    	  System.out.println("please input a number");//if the input is a letter it will go back to require another input
 		    	  continue;
 		      }
 		      if(check==1){
