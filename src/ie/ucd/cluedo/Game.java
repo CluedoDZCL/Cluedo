@@ -198,11 +198,12 @@ public class Game {
 		  } 
 		 while(true){
 			 index=scannerCharicter();
-			 if(index>=1 && index<=charCreate.size()){
+			 if(!(index==-1)){
 				 A.character=charCreate.get(index-1);
 				 charCreate.remove(index-1);//the current character is not available any more,so delete it from the list
 				 break; //break the while(true) loop
 				}
+			 else  System.out.println("please input the index number");
 			}
 		 }
 	 
@@ -212,19 +213,19 @@ public class Game {
 		 Scanner sc=new Scanner(System.in);
 		 String inputIndex=sc.nextLine();
 		   try{
-			  index=Integer.parseInt(inputIndex);
-			  return index;
+			   index=Integer.parseInt(inputIndex);
+			   if (index>=1 && index<=charCreate.size()) {
+				  return index; 
+			   }
+			   else return -1;
 			}
 		   catch(NumberFormatException nfe) {
 			  System.out.println("please input the index number");
 			  return -1;
-			}
+			  }
 	 }
-
-
-
-	 
 	
+	 	
 	public void createMystery(){
 		//randomly select card
 		Random rand = new Random();		

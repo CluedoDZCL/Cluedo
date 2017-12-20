@@ -150,7 +150,10 @@ public class TestCase {
 	   System.setIn(new ByteArrayInputStream("1".getBytes()));
 	   cluedo.selectCharacter(player);
 	   Assert.assertEquals("Test charicter selection","Miss Scarlett",player.character.getName());
-	   		
+	   
+	   System.setIn(new ByteArrayInputStream("8".getBytes()));
+	   Assert.assertEquals("Test charicter selection",-1,cluedo.scannerCharicter());
+	   
 		//cluedo.creatPlayer();
 	}	
 	
