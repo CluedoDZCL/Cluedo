@@ -149,13 +149,29 @@ public class TestCase {
 
 	   System.setIn(new ByteArrayInputStream("1".getBytes()));
 	   cluedo.selectCharacter(player);
-	   Assert.assertEquals("Test charicter selection","Miss Scarlett",player.character.getName());
+	   Assert.assertEquals("Test allowed charicter selection","Miss Scarlett",player.character.getName());
 	   
 	   System.setIn(new ByteArrayInputStream("8".getBytes()));
-	   Assert.assertEquals("Test charicter selection",-1,cluedo.scannerCharicter());
+	   Assert.assertEquals("Test incorrect charicter selection",-1,cluedo.scanCharicter());
 	   
-		//cluedo.creatPlayer();
-	}	
+	   System.setIn(new ByteArrayInputStream("a".getBytes()));
+	   Assert.assertEquals("Test invalid charicter selection",-1,cluedo.scanCharicter());
+	   
+	   System.setIn(new ByteArrayInputStream("3".getBytes()));
+	   Assert.assertEquals("Test number players selection",3,cluedo.scanNumberPlayers());
+	   
+	   System.setIn(new ByteArrayInputStream("90".getBytes()));
+	   Assert.assertEquals("Test incorrect number players selection",-1,cluedo.scanNumberPlayers());
+	   
+	   System.setIn(new ByteArrayInputStream("e".getBytes()));
+	   Assert.assertEquals("Test invalid number players selection",-1,cluedo.scanNumberPlayers());
+	   
+	   Assert.assertTrue("Test for Duplicates",cluedo.checkDuplicate("Player"));
+	   Assert.assertFalse("Test for Duplicates",cluedo.checkDuplicate("Cian"));
+	   
+	   System.setIn(new ByteArrayInputStream("Cian".getBytes()));
+	   Assert.assertEquals("Test scan name","Cian",cluedo.scanPlayerName(1));
+	   }	
 	
 	
 	@After	

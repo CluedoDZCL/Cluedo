@@ -147,47 +147,67 @@ public class Game {
 	
 
 	public void creatPlayer(){
+		while(true) {
+			//if the number is suitable, then go to the next stage
+			number=scanNumberPlayers();
+			if(!(number==-1)) break;
+		}	    
+		for(int i=0;i<number;i++){
+			//returns player name, ensures no duplicate names
+			Player player = new Player(scanPlayerName(i));
+			users.add(player);
+			//let the player choose their character pawn
+			selectCharacter(player);
+		}
+	}
+	
+	
+	public int scanNumberPlayers() {
 		//the while loop is used for making sure the input index is between 3 and 6
 		//if the user input another number it will go back to the loop and demand another input
-		while(true){
-			System.out.println("How many players do you have(should between 3 and 6)");
-			Scanner in=new Scanner(System.in);
-			String inputstr=in.nextLine();
-		try	{
-			number=Integer.parseInt(inputstr);//process the integer input
-			}
-		catch(NumberFormatException nfe) {
-			//demanding another input if the current input is character
-			System.out.println("please input a number between 3 and 6");
-			continue;
-		}
-		    //if the number is suitable, then go to the next stage
-			if(number>=3 && number<=6){
-				outerloop:
-				for(int i=0;i<number;i++){
-				    System.out.print("welcome player No."+(i+1)+ ", what is your name?\n");
-					Scanner scc=new Scanner(System.in);
-					String playerName=scc.nextLine();
-				    Player	A=new Player(playerName);
-				    //check if the name has been used, if it is then go back to the loop to demand another input
-					int j=0;
-					for(j=0;j<users.size();j++){
-						if(users.get(j).getName().equals(playerName)){
-							System.out.println("Duplicate user name, please input another name");
-							i--;
-							continue outerloop;
-							}
-						}
-					if(j==users.size()){//if j=user.size(), then it mean the previous loop has not been stopped, no duplicate name has been found
-						users.add(A);	
-						selectCharacter(A);
-					}
-					//let the player choose their character pawn
-					//print out all the available characters
+		int amount;
+		System.out.println("How many players do you have(should between 3 and 6)");
+		Scanner in=new Scanner(System.in);
+		String inputstr=in.nextLine();
+			try	{
+				amount=Integer.parseInt(inputstr);//process the integer input
+				if(amount>=3 && amount<=6){
+					return amount;
+				}else {
+					System.out.println("please input a number between 3 and 6");
+					return -1;
 				}
-			break;
+			}
+			catch(NumberFormatException nfe) {
+				//demanding another input if the current input is character
+				System.out.println("please input a number between 3 and 6");
+				return -1;
+			}
+	}
+	
+	public String scanPlayerName(int i) {
+		String playerName=null;
+		System.out.print("welcome player No."+(i+1)+ ", what is your name?\n");
+	    while(true) {
+	    	Scanner scc=new Scanner(System.in);
+			playerName=scc.nextLine();
+			//check if the name has been used, if it is then go back to the loop to demand another input
+			if(!checkDuplicate(playerName)) {
+				break;
+				}
+			}
+	    return playerName;
+	}
+	
+	public boolean checkDuplicate(String playerName) {
+		boolean duplicate=false;
+		for(int j=0;j<users.size();j++){
+			if(users.get(j).getName().equals(playerName)){
+				System.out.println("Duplicate user name, please input another name");
+				duplicate=true;
 			}
 		}
+		return duplicate;
 	}
 	
 	 public void selectCharacter(Player A){
@@ -197,7 +217,7 @@ public class Game {
 			 System.out.println((t+1)+") "+charCreate.get(t).getName());  
 		  } 
 		 while(true){
-			 index=scannerCharicter();
+			 index=scanCharicter();
 			 if(!(index==-1)){
 				 A.character=charCreate.get(index-1);
 				 charCreate.remove(index-1);//the current character is not available any more,so delete it from the list
@@ -207,7 +227,7 @@ public class Game {
 			}
 		 }
 	 
-	 public int scannerCharicter() {
+	 public int scanCharicter() {
 		 int index;
 		 System.out.println("what character you want to be, please input the index");
 		 Scanner sc=new Scanner(System.in);
@@ -220,7 +240,6 @@ public class Game {
 			   else return -1;
 			}
 		   catch(NumberFormatException nfe) {
-			  System.out.println("please input the index number");
 			  return -1;
 			  }
 	 }
