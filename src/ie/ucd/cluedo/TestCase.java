@@ -146,6 +146,7 @@ public class TestCase {
 		cluedo.mysterySolved();
 		Assert.assertTrue("Test solved setter",cluedo.solved);
 		
+		//selectCharacter(Player A)
 		//startGame(Hypo,Board)
 		//cluedo.creatPlayer();
 	}	

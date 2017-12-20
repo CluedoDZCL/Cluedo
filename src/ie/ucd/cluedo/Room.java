@@ -1,5 +1,9 @@
 package ie.ucd.cluedo;
 
+/**
+ * This class represents a generic Room on the board
+ */
+
 public class Room {
 	protected int position;
 	protected String name;

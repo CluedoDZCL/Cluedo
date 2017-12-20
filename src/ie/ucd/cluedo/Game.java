@@ -5,6 +5,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * This class represents the game functionality
+ * It creates the different pawns, cards and players
+ * It creates the mystery and distributes the cards
+ */
 
 public class Game {
 	protected   List<Card> charCards;
@@ -142,7 +147,8 @@ public class Game {
 	
 
 	public void creatPlayer(){
-		//the while loop is used for making sure the input index is between 3 and 6, if the user input another number it will go back to the loop and demand another input
+		//the while loop is used for making sure the input index is between 3 and 6
+		//if the user input another number it will go back to the loop and demand another input
 		while(true){
 			System.out.println("How many players do you have(should between 3 and 6)");
 			Scanner in=new Scanner(System.in);
@@ -151,7 +157,8 @@ public class Game {
 			number=Integer.parseInt(inputstr);//process the integer input
 			}
 		catch(NumberFormatException nfe) {
-			System.out.println("please input a number between 3 and 6");//demanding another input if the current input is character
+			//demanding another input if the current input is character
+			System.out.println("please input a number between 3 and 6");
 			continue;
 		}
 		    //if the number is suitable, then go to the next stage
@@ -182,6 +189,7 @@ public class Game {
 			}
 		}
 	}
+	
 	 public void selectCharacter(Player A){
 		 int index;
 		 //print all the available characters

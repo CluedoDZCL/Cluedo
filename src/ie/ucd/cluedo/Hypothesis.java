@@ -6,6 +6,12 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+/**
+ * This class represents Hypothesis
+ * It organizes raising the hypothesis
+ * It prints the appropriate statements in notebooks
+ */
+
 public class Hypothesis {
     protected List<String> keyword; // the list of the three elements, suspect, weapon and room
     int suspect;// input suspect index from the player
@@ -79,6 +85,7 @@ public class Hypothesis {
 					break;
 	        }      
 	}
+    
 	 public void processHypothesis(Player X, Game game, Board board){
 		   //start search the related card from the previous player
 		     outerloop:

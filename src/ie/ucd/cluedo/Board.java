@@ -3,6 +3,12 @@ package ie.ucd.cluedo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents the game Board
+ * Rooms are given positions on the board
+ * Methods can return what pawns are in what room
+ */
+
 public class Board extends Game{
 	protected List<Room> rooms;
 	

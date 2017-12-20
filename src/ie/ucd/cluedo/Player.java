@@ -10,6 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/**
+ * This class represents a player
+ * It organizes player movements and choices
+ */
+
 public class Player {
 	public String name;
 	protected List<String> notebook;

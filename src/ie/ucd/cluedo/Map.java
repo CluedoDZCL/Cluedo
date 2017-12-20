@@ -7,13 +7,17 @@ import java.awt.GridLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+/**
+ * This class represents the map display
+ * It creates a Jframe for the map to be viewed
+ */
 
 public class Map implements ActionListener{
 	JFrame fCon;
