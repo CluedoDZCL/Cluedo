@@ -190,7 +190,7 @@ public class Player {
 		}
      }
 
-     
+     //Prompts the user to give amount they wish to move by
      public int steps(int diceroll) {
     	 int amount;
     	 System.out.println("How many steps do you want to go?");
@@ -209,6 +209,7 @@ public class Player {
     	 return amount;
      }
      
+     //ensures the move amount does not excede the diceroll
      public boolean checkDiceroll(int amount, int diceroll) {
     	 if (amount<=diceroll && amount>0) return true;
     	 else {
@@ -217,7 +218,7 @@ public class Player {
     	 }
      }
      
-     
+     //prompts the user to check if they wish to use shortcut
      public boolean scanShortcut() {
     	 int resp=0;
     	 System.out.println("Would you like to use shortcut? \n 1) Yes \n 2) No");
@@ -238,6 +239,7 @@ public class Player {
     	 else return false;    			 
      }
      
+    //checks the direction in which the user wants to move
      public int moveChoice() {
     	int resp=0;
     	System.out.println("Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay");
