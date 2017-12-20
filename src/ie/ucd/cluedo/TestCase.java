@@ -99,11 +99,27 @@ public class TestCase {
 		Assert.assertTrue("Test check player has card",player.contains(charCard));
 		//raiseAccusation()
 		//processAccusation()
-		//movement()
+		
 		player.initializeNotebook();
 		//printNotebook()
 		//checkCards
 		//printCards
+		
+		System.setIn(new ByteArrayInputStream("2".getBytes()));
+		Assert.assertEquals("Test valid movement amount",2,player.steps(6));
+				
+		Assert.assertTrue("Test allowed movement amount",player.checkDiceroll(2,6));
+		Assert.assertFalse("Test not allowed movement amount",player.checkDiceroll(8,6));
+		
+		System.setIn(new ByteArrayInputStream("2".getBytes()));
+		Assert.assertEquals("Test valid movement choice",2,player.moveChoice());
+		
+		System.setIn(new ByteArrayInputStream("1".getBytes()));
+		Assert.assertTrue("Test valid movement choice",player.scanShortcut());
+		
+		System.setIn(new ByteArrayInputStream("2".getBytes()));
+		Assert.assertFalse("Test valid movement choice",player.scanShortcut());
+		
 		
 	}
 	

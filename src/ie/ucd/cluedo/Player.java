@@ -152,94 +152,109 @@ public class Player {
 		int dice1 = rand.nextInt(6)+1;//randomly get a number between 1 and 6
 		int dice2 = rand.nextInt(6)+1;
 		int diceroll=dice1+dice2;
-		int resp1;
 		int amount=0;
 		System.out.println("you have rolled a " + diceroll );
 				
 		while(true) {
             //if the player's character pawn is in the room with shortcut, they could choose to move directly through shortcut
 			if (pos==6 || pos==24 || pos==36 || pos==48) {
-				System.out.println("Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay \n 4)shortcut");
-				Scanner in=new Scanner(System.in);
-				String input=in.nextLine();
-				try	{
-					resp1=Integer.parseInt(input);
-					}
-				catch(NumberFormatException nfe) {
-					System.out.println("please input the correct index number");
-					continue;
-				}
-			}
-			else {
-				System.out.println("Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay");
-				Scanner in=new Scanner(System.in);
-				String input=in.nextLine();
-				try	{
-					resp1=Integer.parseInt(input);
-					}
-				catch(NumberFormatException nfe) {
-					System.out.println("please input the correct index number");
-					continue;
-				}
-			}
-			
-			//they choose to stay
-			if(resp1==3) {
-				break;
-			}
-			//they chose to move backward
-			else if(resp1==1){
-				while(true) {
-					System.out.println("How many steps do you want to go?");
-					Scanner resp2=new Scanner(System.in);
-					String respTwo=resp2.nextLine();
-					try	{
-						amount=Integer.parseInt(respTwo);
-						}
-					catch(NumberFormatException nfe) {
-						System.out.println("please input a number");
-						continue;
-					}
-					if (amount<=diceroll) {
-						character.setPosition(pos-amount);//they will be moved to the related place
-						break;
-					}
-				}
-				break;
-			}
-			//they choose to move forward
-			else if(resp1==2){
-				while(true) {
-					System.out.println("How many steps do you want to go?");
-					Scanner resp2=new Scanner(System.in);
-					String respTwo=resp2.nextLine();
-					try	{
-						amount=Integer.parseInt(respTwo);
-						}
-					catch(NumberFormatException nfe) {
-						System.out.println("please input a number");
-						continue;
-					}
-					if (amount<=diceroll) {
-						character.setPosition(pos+amount);
-						break;
-					}
-				}
-				break;
-			}
-			//they choose shortcut
-			else if(resp1==4){
-				while(true) {
+				if (scanShortcut()) {
 					if 		(pos==6)	character.setPosition(36);//their position number is the same as the related room number
 					else if (pos==24)	character.setPosition(48);
 					else if (pos==36)	character.setPosition(6);
-					else if (pos==48)	character.setPosition(24);
+					else if (pos==48)	character.setPosition(24);					
+				}
+			}
+			else {
+				//returns response: Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay
+				int choice=moveChoice();
+
+				//they choose to stay
+				if(choice==3) {
+					break;	
+					}
+				//they chose to move backward
+				else if(choice==1){
+					amount=steps(diceroll);
+					character.setPosition(pos-amount);//they will be moved to the related place
 					break;
 					}
-				}
-				break;
+				//they choose to move forward
+				else if(choice==2){
+					amount=steps(diceroll);
+					character.setPosition(pos+amount);
+					break;
+					}
+				
 			}
 		}
+     }
+
+     
+     public int steps(int diceroll) {
+    	 int amount;
+    	 System.out.println("How many steps do you want to go?");
+    	 while(true) { 
+    		 Scanner resp2=new Scanner(System.in);
+    		 String respTwo=resp2.nextLine();
+    				try	{
+    					amount=Integer.parseInt(respTwo);
+    					}
+    				catch(NumberFormatException nfe) {
+    					System.out.println("please input a number");
+    					amount=-1;
+    					}
+    		if (checkDiceroll(amount, diceroll)) break;
+    	 }
+    	 return amount;
+     }
+     
+     public boolean checkDiceroll(int amount, int diceroll) {
+    	 if (amount<=diceroll && amount>0) return true;
+    	 else {
+    		 System.out.println("please input a valid number, you rolled a"+ diceroll);
+    		 return false;
+    	 }
+     }
+     
+     
+     public boolean scanShortcut() {
+    	 int resp=0;
+    	 System.out.println("Would you like to use shortcut? \n 1) Yes \n 2) No");
+    	 while(true) {
+	    	 Scanner in=new Scanner(System.in);
+	    	 String input=in.nextLine();
+	    	 try{
+	    		 resp=Integer.parseInt(input);
+				}
+			catch(NumberFormatException nfe) {
+				System.out.println("please input the correct index number");
+				}
+			if (resp==1 || resp==2) {
+				break;
+			}
+    	 }
+    	 if (resp==1) return true;
+    	 else return false;    			 
+     }
+     
+     public int moveChoice() {
+    	int resp=0;
+    	System.out.println("Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay");
+    	while(true) {
+	 		Scanner in=new Scanner(System.in);
+	 		String input=in.nextLine();
+	 		try	{
+	 			resp=Integer.parseInt(input);
+	 			}
+	 		catch(NumberFormatException nfe) {
+	 	 		}
+	 		if (resp==1 || resp==2 || resp==3) break;
+	 		else System.out.println("please input the correct index number");
+    	}
+ 		return resp;
+     }
+     
 			
         //they could choose to raise hypothesis or accusation or do nothing
 		public void choice(Game game,Hypothesis hepo, Board board) {
