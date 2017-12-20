@@ -197,24 +197,29 @@ public class Game {
 			 System.out.println((t+1)+") "+charCreate.get(t).getName());  
 		  } 
 		 while(true){
-			   System.out.println("what character you want to be, please input the index");
-			   Scanner sc=new Scanner(System.in);
-			   String inputIndex=sc.nextLine();
-			   try{
-				  index=Integer.parseInt(inputIndex);
-				}
-			   catch(NumberFormatException nfe) {
-				  System.out.println("please input the index number");
-				  continue;
-				}
-				if(index>=1 && index<=charCreate.size()){
-				   A.character=charCreate.get(index-1);
-				   charCreate.remove(index-1);//the current character is not available any more,so delete it from the list
-				   break; //break the while(true) loop
+			 index=scannerCharicter();
+			 if(index>=1 && index<=charCreate.size()){
+				 A.character=charCreate.get(index-1);
+				 charCreate.remove(index-1);//the current character is not available any more,so delete it from the list
+				 break; //break the while(true) loop
 				}
 			}
 		 }
 	 
+	 public int scannerCharicter() {
+		 int index;
+		 System.out.println("what character you want to be, please input the index");
+		 Scanner sc=new Scanner(System.in);
+		 String inputIndex=sc.nextLine();
+		   try{
+			  index=Integer.parseInt(inputIndex);
+			  return index;
+			}
+		   catch(NumberFormatException nfe) {
+			  System.out.println("please input the index number");
+			  return -1;
+			}
+	 }
 
 
 

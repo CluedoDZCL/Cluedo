@@ -1,7 +1,7 @@
 package ie.ucd.cluedo;
 
 import static org.junit.Assert.*;
-
+import java.io.ByteArrayInputStream;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -19,6 +19,7 @@ public class TestCase {
 	Game cluedo=null;
 	Player player=null;
 	Player player2=null;
+	ByteArrayInputStream in=null;
 
 	@BeforeClass
 	public static void BeforeClass(){	
@@ -145,9 +146,11 @@ public class TestCase {
 		
 		cluedo.mysterySolved();
 		Assert.assertTrue("Test solved setter",cluedo.solved);
-		
-		//selectCharacter(Player A)
-		//startGame(Hypo,Board)
+
+	   System.setIn(new ByteArrayInputStream("1".getBytes()));
+	   cluedo.selectCharacter(player);
+	   Assert.assertEquals("Test charicter selection","Miss Scarlett",player.character.getName());
+	   		
 		//cluedo.creatPlayer();
 	}	
 	
