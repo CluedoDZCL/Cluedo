@@ -50,9 +50,41 @@ public class Player {
 		return contains;
 	}
 	
+	public int scanSuspectAccusation(){
+		int suspect;
+		System.out.println("Who do you think would be the suspect?");
+		Scanner sc=new Scanner(System.in);
+		String inputIndex=sc.nextLine();
+		try{
+		    suspect=Integer.parseInt(inputIndex);
+			if (suspect>=1 && suspect<=6) {
+				  return suspect; 
+			   }
+			   else return -1;
+			}
+		   catch(NumberFormatException nfe) {
+			  return -1;
+			  }
+	}
 	
-
-    public void raiseAccusation(Game game, Board board){
+	public int scanWeaponAccusation(){
+		int weapon;
+		System.out.println("with what weapon?");
+		Scanner sc=new Scanner(System.in);
+		String weaponIndex=sc.nextLine();
+		try{
+		    weapon=Integer.parseInt(weaponIndex);
+			if (weapon>=1 && weapon<=6) {
+				  return weapon; 
+			   }
+			   else return -1;
+			}
+		   catch(NumberFormatException nfe) {
+			  return -1;
+			  }
+	}
+	
+	public void raiseAccusation(Game game, Board board){
     	int suspect=0;
     	int weapon=0;
     	List<String>accusationWords=new ArrayList<String>();//contain the three element in an accusation
@@ -63,46 +95,30 @@ public class Player {
 	    		System.out.println((t+1)+"."+game.charPawn.get(t).getName());
 	    	}
 	    	System.out.println("Please input the suspect index");
-	    	Scanner susp=new Scanner(System.in);
-	    	 String suspIndex=susp.nextLine();
-				try	{
-					suspect=Integer.parseInt(suspIndex);//if the input is an integer
-					}
-				catch(NumberFormatException nfe) {
-					System.out.println("please input the index number");// if the input is a string, then go back and ask for another demand
-					continue;
+	    	suspect=scanSuspectAccusation();
+			//if the suspect index is correct, then go to the next step
+	    	if(suspect!=-1){
+			   while(true){
+		          System.out.println("with what weapon?");
+		          for(int t=0;t<game.weaponPawn.size();t++){
+				  System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
+			}
+				  System.out.println("Please input the weapon index");
+				  weapon=scanWeaponAccusation();
+				//if the weapon index is correct then start process the accusation
+				  if(weapon!=-1){
+					 processAccusation(accusationWords,game,board,suspect, weapon);
+					 break;
+				   }
+				  else{
+					   continue;
+				   }
+			    }
+			 }
+			else{
+				continue;
 				}
-				//if the suspect index is correct, then go to the next step
-				if(suspect>0 && suspect <7){
-					while(true){
-						System.out.println("with what weapon?");
-				    	for(int t=0;t<game.weaponPawn.size();t++){
-				    		System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
-				    	}
-				    	System.out.println("Please input the weapon index");
-				    	Scanner weap=new Scanner(System.in);
-				    	String weapIndex=weap.nextLine();
-							try	{
-								weapon=Integer.parseInt(weapIndex);
-								}
-							catch(NumberFormatException nfe) {
-								System.out.println("please input the index number");
-								continue;
-							}
-						//if the weapon index is correct then start process the accusation
-						if(weapon>0 && weapon<7){
-							processAccusation(accusationWords,game,board,suspect, weapon);
-							break;
-						}
-						else{
-							continue;
-						}
-					}
-				}
-				else{
-					continue;
-				}
-				break;
+			break;
     	}
     }
 
@@ -189,7 +205,7 @@ public class Player {
 			}
 		}
      }
-
+     
      //Prompts the user to give amount they wish to move by
      public int steps(int diceroll) {
     	 int amount;

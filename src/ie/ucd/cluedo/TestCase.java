@@ -19,6 +19,7 @@ public class TestCase {
 	Game cluedo=null;
 	Player player=null;
 	Player player2=null;
+	Hypothesis hypo=null;
 	ByteArrayInputStream in=null;
 
 	@BeforeClass
@@ -97,13 +98,15 @@ public class TestCase {
 	public void testPlayer(){
 		cluedo.users.get(0).playerCards.add(charCard);
 		Assert.assertTrue("Test check player has card",player.contains(charCard));
-		//raiseAccusation()
-		//processAccusation()
+	//	cluedo.users.get(0).scanSuspectAccusation();
+	//	cluedo.users.get(0).scanWeaponAccusation();
+	//	cluedo.users.get(0).raiseAccusation(cluedo, board);
+	//	cluedo.users.get(0).processAccusation(accusationWords, cluedo, board, suspect, weapon);
 		
 		player.initializeNotebook();
-		//printNotebook()
-		//checkCards
-		//printCards
+		player.printNotebook();
+	//	player.checkCard();
+	//	player.printCard();
 		
 		System.setIn(new ByteArrayInputStream("2".getBytes()));
 		Assert.assertEquals("Test valid movement amount",2,player.steps(6));
@@ -123,11 +126,15 @@ public class TestCase {
 		
 	}
 	
+	
+
+	
 	@Test	
 	public void testHypothesis(){
-		//makeHypothesis(Plyer,Game,Board)
+		hypo.scanSuspect();
+		hypo.scanWeapon();
+		hypo.makeHypothesis(player,cluedo,board);
 		//processHypothesis()
-		//movePawn(Pawn,int)
 	}
 	
 	@Test	
@@ -187,8 +194,7 @@ public class TestCase {
 	   
 	   System.setIn(new ByteArrayInputStream("Cian".getBytes()));
 	   Assert.assertEquals("Test scan name","Cian",cluedo.scanPlayerName(1));
-	   }	
-	
+	   }
 	
 	@After	
 	public void tearDown(){	

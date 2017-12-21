@@ -30,7 +30,40 @@ public class Hypothesis {
     		processHypothesis(X, game, board);
     		endHypothesis(X, game,board);
     }
+    public int scanSuspect(){
+		int suspect;
+		System.out.println("Who do you guess would be the suspect?");
+		Scanner sc=new Scanner(System.in);
+		String inputIndex=sc.nextLine();
+		try{
+		    suspect=Integer.parseInt(inputIndex);
+			if (suspect>=1 && suspect<=6) {
+				  return suspect; 
+			   }
+			   else return -1;
+			}
+		   catch(NumberFormatException nfe) {
+			  return -1;
+			  }
+	}
 	
+	public int scanWeapon(){
+		int weapon;
+		System.out.println("with what weapon?");
+		Scanner sc=new Scanner(System.in);
+		String weaponIndex=sc.nextLine();
+		try{
+		    weapon=Integer.parseInt(weaponIndex);
+			if (weapon>=1 && weapon<=6) {
+				  return weapon; 
+			   }
+			   else return -1;
+			}
+		   catch(NumberFormatException nfe) {
+			  return -1;
+			  }
+	}
+    
     public void raiseHypothesis(Player X, Game game, Board board){
 	        while(true){
 		    	System.out.println("Who do you guess would be the suspect?");
@@ -40,17 +73,9 @@ public class Hypothesis {
 		    	}
 		    	System.out.println("Please input the suspect index");
 		    	//get the input from the commend panel
-		    	Scanner susp=new Scanner(System.in);
-		    	 String suspIndex=susp.nextLine();
-					try	{
-						suspect=Integer.parseInt(suspIndex);//the input should be a integer, if it is an integer the program will process it
-						}
-					catch(NumberFormatException nfe) {
-						System.out.println("please input the index number");//if the input is a string, the program will go back to the loop to let the user re input the index
-						continue;
-					}
+		    	suspect=scanSuspect();
 					//if the suspect index is correctly between 1 and 6 then go to the next step
-					if(suspect>0 && suspect <7){
+					if(suspect!=-1){
 						//input the weapon
 						while(true){
 							System.out.println("with what weapon?");
@@ -58,17 +83,9 @@ public class Hypothesis {
 					    		System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
 					    	}
 					    	System.out.println("Please input the weapon index");
-					    	Scanner weap=new Scanner(System.in);
-					    	 String weapIndex=weap.nextLine();
-								try	{
-									weaponIndex=Integer.parseInt(weapIndex);
-									}
-								catch(NumberFormatException nfe) {
-									System.out.println("please input the index number");
-									continue;
-								}
+					    	weaponIndex=scanWeapon();
 							//if the weapon is correctly between 1 and 6 then go to the next step: hypothesis processing
-							if(weaponIndex>0 && weaponIndex<7){
+							if(weaponIndex!=-1){
 								found=false;//the hypothesis is finished, but the related card has not been found
 								break;  
 	                         }
