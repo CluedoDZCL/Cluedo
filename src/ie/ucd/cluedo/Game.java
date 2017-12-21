@@ -199,6 +199,7 @@ public class Game {
 	    return playerName;
 	}
 	
+	//Ensures user name is not already used
 	public boolean checkDuplicate(String playerName) {
 		boolean duplicate=false;
 		for(int j=0;j<users.size();j++){
@@ -210,6 +211,7 @@ public class Game {
 		return duplicate;
 	}
 	
+	//Alocates a charicter pawn to a player
 	 public void selectCharacter(Player A){
 		 int index;
 		 //print all the available characters
@@ -227,6 +229,7 @@ public class Game {
 			}
 		 }
 	 
+	 //takes user input of character selection
 	 public int scanCharicter() {
 		 int index;
 		 System.out.println("what character you want to be, please input the index");
@@ -263,6 +266,7 @@ public class Game {
 		weaponCards.remove(randomWeapon);
 	}
 	
+	//checks if the mystery is correct
 	public boolean checkMystery(String charicter, String room, String weapon) {
 		if (mystery.get(0).getName().equals(charicter) && mystery.get(1).getName().equals(room) && 
 				mystery.get(2).getName().equals(weapon)) {
@@ -275,6 +279,7 @@ public class Game {
 	
 	}
 	
+	//Gives random remaining cards out to players
 	public void distributeCards() {
 		//Add all cards to one array
 		for (int j=0; j<charCards.size(); j+=1) {
@@ -318,12 +323,12 @@ public class Game {
 		return index;
 	}
 	
-	
+	//If mystery solved set solved to true to end game
 	public void mysterySolved() {
 		solved=true;
 	}
 	
-	
+	//Cycle of player turns
 	public void startGame(Hypothesis hepo, Board board){
 		int currentPlayer=-1;
 		//initial notebook
