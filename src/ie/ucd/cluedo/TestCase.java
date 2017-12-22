@@ -136,7 +136,8 @@ public class TestCase {
 	    Assert.assertEquals("Test input suspect",-1,player.scanWeaponAccusation());
 	    
 		player2.processAccusation(accusationWords, cluedo, board, 1, 1);
-	
+		Assert.assertEquals("Test the number of accusationwords",3,accusationWords.size());
+		
 		player.initializeNotebook();
 		player.printNotebook();
 		player.printCard();
