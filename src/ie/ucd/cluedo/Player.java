@@ -86,9 +86,7 @@ public class Player {
 	
 	public void raiseAccusation(Game game, Board board){
     	int suspect=0;
-    	int weapon=0;
-    	List<String>accusationWords=new ArrayList<String>();//contain the three element in an accusation
-	    //while loop is guarantee the input is between 1 and 6, if not it will go back and ask for another input
+    	//while loop is guarantee the input is between 1 and 6, if not it will go back and ask for another input
     	while(true){
 	    	System.out.println("Who do you think would be the suspect?");
 	    	for(int t=0;t<game.charPawn.size();t++){
@@ -98,32 +96,36 @@ public class Player {
 	    	suspect=scanSuspectAccusation();
 			//if the suspect index is correct, then go to the next step
 	    	if(suspect!=-1){
-			   while(true){
-		          System.out.println("with what weapon?");
-		          for(int t=0;t<game.weaponPawn.size();t++){
-				  System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
-			}
-				  System.out.println("Please input the weapon index");
-				  weapon=scanWeaponAccusation();
-				//if the weapon index is correct then start process the accusation
-				  if(weapon!=-1){
-					 processAccusation(accusationWords,game,board,suspect, weapon);
-					 break;
-				   }
-				  else{
-					   continue;
-				   }
+	    		requireWeapon(game, board, suspect);
 			    }
-			 }
 			else{
 				continue;
 				}
 			break;
     	}
     }
+	public void requireWeapon(Game game, Board board, int suspect){
+		 int weapon=0;
+		 List<String>accusationWords=new ArrayList<String>();//contain the three element in an accusation
+		 while(true){
+	          System.out.println("with what weapon?");
+	          for(int t=0;t<game.weaponPawn.size();t++){
+			  System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
+		}
+			  System.out.println("Please input the weapon index");
+			  weapon=scanWeaponAccusation();
+			//if the weapon index is correct then start process the accusation
+			  if(weapon!=-1){
+				 processAccusation(accusationWords,game,board,suspect, weapon);
+				 break;
+			   }
+			  else{
+				   continue;
+			   }
+	   }
+}
 
-					
-		public void processAccusation(List<String>accusationWords, Game game, Board board, int suspect, int weapon){
+		 public void processAccusation(List<String>accusationWords, Game game, Board board, int suspect, int weapon){
 				//define the three element in the accusation
 				  accusationWords.add(game.charPawn.get(suspect-1).getName());
 				  accusationWords.add(game.weaponPawn.get(weapon-1).getName());

@@ -74,7 +74,7 @@ public class Hypothesis {
 		    	System.out.println("Please input the suspect index");
 		    	//get the input from the commend panel
 		    	suspect=scanSuspect();
-					//if the suspect index is correctly between 1 and 6 then go to the next step
+					//if the suspect index is correct
 					if(suspect!=-1){
 						//input the weapon
 						while(true){
@@ -84,18 +84,18 @@ public class Hypothesis {
 					    	}
 					    	System.out.println("Please input the weapon index");
 					    	weaponIndex=scanWeapon();
-							//if the weapon is correctly between 1 and 6 then go to the next step: hypothesis processing
+							//if the weapon is correct
 							if(weaponIndex!=-1){
 								found=false;//the hypothesis is finished, but the related card has not been found
 								break;  
 	                         }
-							//if the weapon is outside 1 to 6, it will go back to require another input
+							//if the weapon is not correct, it will go back to require another input
 							else{
 								continue;
 							}
 						}
 					}
-					//if the suspect is outside 1 to 6, it will go back to require another input
+					//if the suspect is not correct, it will go back to require another input
 					else{
 						continue;
 					}

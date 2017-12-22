@@ -2,6 +2,9 @@ package ie.ucd.cluedo;
 
 import static org.junit.Assert.*;
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -14,13 +17,17 @@ public class TestCase {
 	WeaponPawn weaponPawn=null;
 	CharCard charCard=null;
 	WeaponCard weaponCard=null;
+	RoomCard roomCard=null;
 	Room room=null;
 	Board board=null;
 	Game cluedo=null;
 	Player player=null;
 	Player player2=null;
-	Hypothesis hypo=null;
+	Player player3=null;
+	Hypothesis hypo=new Hypothesis();
+	Map map=null;
 	ByteArrayInputStream in=null;
+	
 
 	@BeforeClass
 	public static void BeforeClass(){	
@@ -34,6 +41,7 @@ public class TestCase {
 		weaponPawn = new WeaponPawn("Weapon",18);
 		charCard= new CharCard("Charicter");
 		weaponCard= new WeaponCard("Weapon");
+		roomCard=new RoomCard("Study");
 		room= new Room(20,"Room");
 		board= new Board();
 		cluedo= new Game();
@@ -96,17 +104,41 @@ public class TestCase {
 	
 	@Test	
 	public void testPlayer(){
+		List<String>accusationWords=new ArrayList<String>();
+		player2= new Player("Player2");
+		cluedo.number=2;
+		cluedo.users.add(player2);
+		cluedo.charPawn.add(charPawn);
+		cluedo.weaponPawn.add(weaponPawn);
+		player2.character=charPawn;
+		player2.character.setPosition(6);
+		cluedo.createCards();
+		
+		cluedo.mystery.add(roomCard);
+		cluedo.mystery.add(weaponCard);
+		cluedo.mystery.add(roomCard);
+		
 		cluedo.users.get(0).playerCards.add(charCard);
 		Assert.assertTrue("Test check player has card",player.contains(charCard));
-	//	cluedo.users.get(0).scanSuspectAccusation();
-	//	cluedo.users.get(0).scanWeaponAccusation();
-	//	cluedo.users.get(0).raiseAccusation(cluedo, board);
-	//	cluedo.users.get(0).processAccusation(accusationWords, cluedo, board, suspect, weapon);
+		
+		System.setIn(new ByteArrayInputStream("3".getBytes()));
+	    Assert.assertEquals("Test input suspect",3,player.scanSuspectAccusation());
+		
+	    System.setIn(new ByteArrayInputStream("8".getBytes()));
+	    Assert.assertEquals("Test input suspect",-1,player.scanSuspectAccusation());
+	    
+	    System.setIn(new ByteArrayInputStream("6".getBytes()));
+	    Assert.assertEquals("Test input suspect",6,player.scanWeaponAccusation());
+		
+	    System.setIn(new ByteArrayInputStream("9".getBytes()));
+	    Assert.assertEquals("Test input suspect",-1,player.scanWeaponAccusation());
+	    
+		player2.processAccusation(accusationWords, cluedo, board, 1, 1);
+		Assert.assertEquals("Test the position of the suspect",6, cluedo.charPawn.get(0).getPosition());
 		
 		player.initializeNotebook();
 		player.printNotebook();
-	//	player.checkCard();
-	//	player.printCard();
+		player.printCard();
 		
 		System.setIn(new ByteArrayInputStream("2".getBytes()));
 		Assert.assertEquals("Test valid movement amount",2,player.steps(6));
@@ -131,10 +163,45 @@ public class TestCase {
 	
 	@Test	
 	public void testHypothesis(){
-		hypo.scanSuspect();
-		hypo.scanWeapon();
-		hypo.makeHypothesis(player,cluedo,board);
-		//processHypothesis()
+		player3= new Player("Player3");
+		cluedo.number=2;
+		cluedo.users.add(player3);
+		cluedo.users.add(player);
+		cluedo.charPawn.add(charPawn);
+		cluedo.weaponPawn.add(weaponPawn);
+		player3.character=charPawn;
+		player3.character.setPosition(0);
+		cluedo.createCards();
+		player.playerCards.add(roomCard);
+		player.playerCards.add(charCard);
+		player.playerCards.add(weaponCard);
+		
+		hypo.suspect=1;
+		hypo.weaponIndex=1;
+		
+		System.setIn(new ByteArrayInputStream("3".getBytes()));
+	    Assert.assertEquals("Test input suspect",3,hypo.scanSuspect());
+		
+	    System.setIn(new ByteArrayInputStream("8".getBytes()));
+	    Assert.assertEquals("Test input suspect",-1,hypo.scanSuspect());
+	    
+	    System.setIn(new ByteArrayInputStream("6".getBytes()));
+	    Assert.assertEquals("Test input suspect",6,hypo.scanWeapon());
+		
+	    System.setIn(new ByteArrayInputStream("9".getBytes()));
+	    Assert.assertEquals("Test input suspect",-1,hypo.scanWeapon());
+	    
+	    hypo.initialElements(player3, cluedo, board, hypo.suspect, hypo.weaponIndex);
+	    Assert.assertEquals("Test the amount of keyword",3,hypo.keyword.size());
+	    Assert.assertEquals("Test the index of the person who raise hypothesis",1,hypo.x);
+
+		hypo.processHypothesis(player3, cluedo, board);
+		
+		
+		hypo.endHypothesis(player3, cluedo, board);
+		Assert.assertEquals("Test the amount of keyword",0,hypo.keyword.size());
+		Assert.assertEquals("Test the position of the suspect",0,cluedo.charPawn.get(0).getPosition());
+		Assert.assertEquals("Test the position of the weapon",0,cluedo.weaponPawn.get(0).getPosition());
 	}
 	
 	@Test	
@@ -161,7 +228,7 @@ public class TestCase {
 	   	
 		Assert.assertFalse("Test check mystery incorrect",cluedo.checkMystery("","",""));
 		Assert.assertTrue("Test check mystery correct",cluedo.checkMystery(
-				cluedo.mystery.get(0).getName(),cluedo.mystery.get(1).getName(),cluedo.mystery.get(2).getName()));
+		cluedo.mystery.get(0).getName(),cluedo.mystery.get(1).getName(),cluedo.mystery.get(2).getName()));
 		
 		Assert.assertEquals("Test finding owner of card",0,cluedo.findHolder(cluedo.getCards(0).get(0)));
 		
@@ -195,6 +262,11 @@ public class TestCase {
 	   System.setIn(new ByteArrayInputStream("Cian".getBytes()));
 	   Assert.assertEquals("Test scan name","Cian",cluedo.scanPlayerName(1));
 	   }
+	@Test
+	public void testMap(){
+		map=new Map();
+		map.checkMap();
+	}
 	
 	@After	
 	public void tearDown(){	
