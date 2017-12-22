@@ -107,7 +107,7 @@ public class Player {
     }
 	public void requireWeapon(Game game, Board board, int suspect){
 		 int weapon=0;
-		 List<String>accusationWords=new ArrayList<String>();//contain the three element in an accusation
+		 //contain the three element in an accusation
 		 while(true){
 	          System.out.println("with what weapon?");
 	          for(int t=0;t<game.weaponPawn.size();t++){
@@ -117,7 +117,7 @@ public class Player {
 			  weapon=scanWeaponAccusation();
 			//if the weapon index is correct then start process the accusation
 			  if(weapon!=-1){
-				 processAccusation(accusationWords,game,board,suspect, weapon);
+				 processAccusation(game,board,suspect, weapon);
 				 break;
 			   }
 			  else{
@@ -126,8 +126,9 @@ public class Player {
 	   }
 }
 
-		 public void processAccusation(List<String>accusationWords, Game game, Board board, int suspect, int weapon){
-				//define the three element in the accusation
+		 public void processAccusation(Game game, Board board, int suspect, int weapon){
+			    List<String>accusationWords=new ArrayList<String>();
+			    //define the three element in the accusation
 				  accusationWords.add(game.charPawn.get(suspect-1).getName());
 				  accusationWords.add(game.weaponPawn.get(weapon-1).getName());
 				  accusationWords.add(board.findRoom(this.character.getPosition()));
