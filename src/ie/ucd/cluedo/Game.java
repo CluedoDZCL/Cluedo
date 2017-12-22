@@ -305,9 +305,9 @@ public class Game {
 	
 	
 	public int findHolder(Card card) { //find out the card holder
-		int index = 0;
-		for (int i=0; i< users.size();i+=1) {
-			if (users.get(i).contains(card)){
+		int index=0;
+		for (int i=0; i< users.size();i++) {
+			if (users.get(i).contains(card)==true){
 				index=i;	//return the index of the player				
 			} 
 		}

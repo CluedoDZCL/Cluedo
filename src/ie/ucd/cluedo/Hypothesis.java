@@ -77,23 +77,22 @@ public class Hypothesis {
 					//if the suspect index is correct
 					if(suspect!=-1){
 						//input the weapon
-						while(true){
-							System.out.println("with what weapon?");
-					    	for(int t=0;t<game.weaponPawn.size();t++){
-					    		System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
-					    	}
-					    	System.out.println("Please input the weapon index");
-					    	weaponIndex=scanWeapon();
-							//if the weapon is correct
-							if(weaponIndex!=-1){
-								found=false;//the hypothesis is finished, but the related card has not been found
-								break;  
-	                         }
-							//if the weapon is not correct, it will go back to require another input
-							else{
-								continue;
-							}
+						 while(true){
+					          System.out.println("with what weapon?");
+					          for(int t=0;t<game.weaponPawn.size();t++){
+							  System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
 						}
+							  System.out.println("Please input the weapon index");
+							  weaponIndex=scanWeapon();
+							//if the weapon index is correct then start process the accusation
+							  if(weaponIndex!=-1){
+								 processHypothesis(X,game, board);
+								 break;
+							   }
+							  else{
+								   continue;
+							   }
+					   }
 					}
 					//if the suspect is not correct, it will go back to require another input
 					else{
@@ -102,7 +101,6 @@ public class Hypothesis {
 					break;
 	        }      
 	}
-    
 	 public void processHypothesis(Player X, Game game, Board board){
 		   //start search the related card from the previous player
 		     outerloop:
@@ -169,6 +167,9 @@ public class Hypothesis {
 	        keyword.remove(game.charPawn.get(suspect-1).getName());
 	        keyword.remove(game.weaponPawn.get(weaponIndex-1).getName());
 	        keyword.remove(board.findRoom(X.character.getPosition()));
+	        for(int i=0;i<cardIndex.length;i++){
+	        	cardIndex[i]=0;
+	        }
 	 }   	  
                 	
 					

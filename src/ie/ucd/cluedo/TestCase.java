@@ -106,18 +106,40 @@ public class TestCase {
 	public void testPlayer(){
 		player2= new Player("Player2");
 		cluedo.number=3;
-		CharPawn ssPawn = new CharPawn("Professor Plum", 15);
-		WeaponPawn rrPawn = new WeaponPawn("poison",18);
+		Pawn ssPawn = new CharPawn("Professor Plum", 15);
+		Pawn green_Pawn = new CharPawn("Reverend Green",33);
+		Pawn rrPawn = new WeaponPawn("poison",18);
+		Room study = new Room(24,"Study");
+		Card studyCard =new RoomCard("Study");
+		board.rooms.add(study);
+		
+		//initial the conditions which are needed by accusation
+		Card plum = new CharCard("Professor Plum");
+		Card poison = new WeaponCard("poison");
 		cluedo.users.add(player2);
 		cluedo.charPawn.add(ssPawn);
 		cluedo.weaponPawn.add(rrPawn);
+		cluedo.charPawn.add(green_Pawn);
 		player2.character=ssPawn;
-		player2.character.setPosition(6);
+		player2.character.setPosition(24);
 		cluedo.createCards();
 		
-		cluedo.mystery.add(charCard);
-		cluedo.mystery.add(weaponCard);
-		cluedo.mystery.add(roomCard);
+		cluedo.mystery.add(plum);
+		cluedo.mystery.add(studyCard);
+		cluedo.mystery.add(poison);
+		
+		player2.processAccusation(cluedo, board, 1, 1);
+		Assert.assertEquals("Test the position of the suspect","Professor Plum",cluedo.charPawn.get(0).getName());
+		Assert.assertEquals("Test the position of the weapon","poison",cluedo.weaponPawn.get(0).getName());
+		Assert.assertEquals("Test the position of the suspect",24,cluedo.charPawn.get(0).getPosition());
+		Assert.assertEquals("Test the position of the weapon",24,cluedo.weaponPawn.get(0).getPosition());
+		
+		player2.processAccusation(cluedo, board, 2, 1);
+		Assert.assertEquals("Test the position of the suspect","Reverend Green",cluedo.charPawn.get(1).getName());
+		Assert.assertEquals("Test the position of the weapon","poison",cluedo.weaponPawn.get(0).getName());
+		Assert.assertEquals("Test the position of the suspect",24,cluedo.charPawn.get(1).getPosition());
+		Assert.assertEquals("Test the position of the weapon",24,cluedo.weaponPawn.get(0).getPosition());
+		
 		
 		cluedo.users.get(0).playerCards.add(charCard);
 		Assert.assertTrue("Test check player has card",player.contains(charCard));
@@ -140,11 +162,21 @@ public class TestCase {
 	    System.setIn(new ByteArrayInputStream("a".getBytes()));
 	    Assert.assertEquals("Test invalid input suspect",-1,player.scanWeaponAccusation());
 	    
-		player2.processAccusation(cluedo, board, 1, 1);
-		
-		
 		player.initializeNotebook();
+		
+		System.setIn(new ByteArrayInputStream("2".getBytes()));
+		Assert.assertEquals("Test valid movement amount",2,player.scanCheckCard());
+		
+		System.setIn(new ByteArrayInputStream("6".getBytes()));
+		Assert.assertEquals("Test valid movement amount",-1,player.scanCheckCard());
+		
 		player.printNotebook();
+		
+		System.setIn(new ByteArrayInputStream("2".getBytes()));
+		Assert.assertEquals("Test valid movement amount",2,player.scanCheckNotebook());
+		
+		System.setIn(new ByteArrayInputStream("2".getBytes()));
+		Assert.assertEquals("Test valid movement amount",2,player.scanCheckNotebook());
 		player.printCard();
 		
 		System.setIn(new ByteArrayInputStream("2".getBytes()));
@@ -166,26 +198,69 @@ public class TestCase {
 	}
 	@Test	
 	public void testHypothesis(){
+		//initial all the conditions which are needed by making a hypothesis
 		CharPawn sPawn = new CharPawn("Miss Scarlett", 15);
-		CharCard sCard=new CharCard("Miss Scarlett");
+		CharPawn green_Pawn = new CharPawn("Reverend Green",33);
 		WeaponPawn rPawn = new WeaponPawn("rope",18);
+		Room dining=new Room(0,"Dining Room");
 		player3= new Player("Player3");
 		cluedo.number=2;
 		cluedo.users.add(player3);
-		cluedo.users.add(player);
 		cluedo.charPawn.add(sPawn);
+		cluedo.charPawn.add(green_Pawn);
 		cluedo.weaponPawn.add(rPawn);
-		player3.character=rPawn;
+		board.rooms.add(dining);
+		player3.character=sPawn;
 		player3.character.setPosition(0);
 		cluedo.createCards();
-		// Assert.assertEquals("Test amount cards",21,cluedo.allCard.size());
 		
+		//cards 'dining room', 'green','rope' are possessed by the player who raise hypothesis
+		player3.playerCards.add(cluedo.allCard.get(3));
+		player3.playerCards.add(cluedo.allCard.get(19));
+		player3.playerCards.add(cluedo.allCard.get(9));
+		
+		//other players possess card 'scarlett'
 		player.playerCards.add(roomCard);
-		player.playerCards.add(sCard);
+		player.playerCards.add(cluedo.allCard.get(0));
 		player.playerCards.add(weaponCard);
-		Assert.assertEquals("Test the length of player card",3,player.playerCards.size());
+		
+		//make hypothesis 1
+		hypo.suspect=2;
+		hypo.weaponIndex=1;
+		hypo.found=false;
+		
+		hypo.initialElements(player3, cluedo, board, hypo.suspect, hypo.weaponIndex);
+	    Assert.assertEquals("Test the amount of keyword",3,hypo.keyword.size());
+	    Assert.assertEquals("Test the index of the person who raise hypothesis",1,hypo.x);
+	    Assert.assertEquals("Test the length of cardIndex",3,hypo.cardIndex.length);
+	    Assert.assertEquals("Test the name of the suspect","Reverend Green",hypo.keyword.get(0));
+		
+	    hypo.processHypothesis(player3, cluedo, board);
+	    Assert.assertEquals("Test the statues of the founding",false,hypo.found);
+		
+	    hypo.endHypothesis(player3, cluedo, board);
+		Assert.assertEquals("Test the amount of keyword",0,hypo.keyword.size());
+		Assert.assertEquals("Test the position of the suspect",0,cluedo.charPawn.get(1).getPosition());
+		Assert.assertEquals("Test the position of the weapon",0,cluedo.weaponPawn.get(0).getPosition());
+		
+		//make hypothesis 2
 		hypo.suspect=1;
 		hypo.weaponIndex=1;
+		cluedo.weaponPawn.get(0).setPosition(25);//reset the position
+		
+		hypo.initialElements(player3, cluedo, board, hypo.suspect, hypo.weaponIndex);
+	    Assert.assertEquals("Test the amount of keyword",3,hypo.keyword.size());
+	    Assert.assertEquals("Test the index of the person who raise hypothesis",1,hypo.x);
+	    Assert.assertEquals("Test the length of cardIndex",3,hypo.cardIndex.length);
+	    Assert.assertEquals("Test the name of the suspect","Miss Scarlett",hypo.keyword.get(0));
+		
+	    hypo.processHypothesis(player3, cluedo, board);
+	    Assert.assertEquals("Test the statues of the founding",true, hypo.found);
+		
+	    hypo.endHypothesis(player3, cluedo, board);
+		Assert.assertEquals("Test the amount of keyword",0,hypo.keyword.size());
+		Assert.assertEquals("Test the position of the suspect",0,cluedo.charPawn.get(0).getPosition());
+		Assert.assertEquals("Test the position of the weapon",0,cluedo.weaponPawn.get(0).getPosition());
 		
 		System.setIn(new ByteArrayInputStream("3".getBytes()));
 	    Assert.assertEquals("Test input suspect",3,hypo.scanSuspect());
@@ -199,18 +274,7 @@ public class TestCase {
 	    System.setIn(new ByteArrayInputStream("9".getBytes()));
 	    Assert.assertEquals("Test input suspect",-1,hypo.scanWeapon());
 	    
-	    hypo.initialElements(player3, cluedo, board, hypo.suspect, hypo.weaponIndex);
-	    Assert.assertEquals("Test the amount of keyword",3,hypo.keyword.size());
-	    Assert.assertEquals("Test the index of the person who raise hypothesis",1,hypo.x);
-	    Assert.assertEquals("Test the length of cardIndex",3,hypo.cardIndex.length);
-
-		hypo.processHypothesis(player3, cluedo, board);
-		
-		
-		hypo.endHypothesis(player3, cluedo, board);
-		Assert.assertEquals("Test the amount of keyword",0,hypo.keyword.size());
-		Assert.assertEquals("Test the position of the suspect",0,cluedo.charPawn.get(0).getPosition());
-		Assert.assertEquals("Test the position of the weapon",0,cluedo.weaponPawn.get(0).getPosition());
+	    
 	}
 	
 	@Test	

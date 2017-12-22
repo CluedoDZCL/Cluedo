@@ -127,20 +127,15 @@ public class Player {
 }
 
 		 public void processAccusation(Game game, Board board, int suspect, int weapon){
-			    List<String>accusationWords=new ArrayList<String>();
-			    //define the three element in the accusation
-				  accusationWords.add(game.charPawn.get(suspect-1).getName());
-				  accusationWords.add(game.weaponPawn.get(weapon-1).getName());
-				  accusationWords.add(board.findRoom(this.character.getPosition()));
 				//confirm the accusation
 				  int choice = JOptionPane.showConfirmDialog(null,"If the accusation is wrong, you will be removed from the game, are you still going on?","Important!!!",JOptionPane.YES_OPTION,JOptionPane.NO_OPTION);
 				  if(choice==JOptionPane.YES_OPTION){
-					 notebook.add("I formulated the accusation that"+accusationWords.get(0)+" made the murder in the "+accusationWords.get(2)+" with the"+accusationWords.get(1));
+					 notebook.add("I formulated the accusation that"+game.charPawn.get(suspect-1).getName()+" made the murder in the "+board.findRoom(this.character.getPosition())+" with the"+game.weaponPawn.get(weapon-1).getName());
 					//move the suspect and the weapon into the room
 					 game.charPawn.get(suspect-1).setPosition(this.character.getPosition());
-					 game.charPawn.get(weapon-1).setPosition(this.character.getPosition());
+					 game.weaponPawn.get(weapon-1).setPosition(this.character.getPosition());
 					//compare the accusation and the correct answer
-					 if(game.checkMystery(accusationWords.get(0),accusationWords.get(2), accusationWords.get(1))==true){
+					 if(game.checkMystery(game.charPawn.get(suspect-1).getName(),board.findRoom(this.character.getPosition()), game.weaponPawn.get(weapon-1).getName())==true){
 					    JOptionPane.showMessageDialog(null, "Congratulations! You got the correct answer !", "Game Over!", JOptionPane.INFORMATION_MESSAGE);
 					    game.mysterySolved();
 					  }
@@ -159,10 +154,6 @@ public class Player {
 				   if(choice==JOptionPane.NO_OPTION){
 				      JOptionPane.showMessageDialog(null, "You stopped the accusation.", "Game goes on", JOptionPane.INFORMATION_MESSAGE);
 				    }
-				   //clear the accusation record 
-				    accusationWords.remove(game.charPawn.get(suspect-1).getName());
-				    accusationWords.remove(game.weaponPawn.get(weapon-1).getName());
-					accusationWords.remove(board.findRoom(this.character.getPosition()));
 	}	
     
     
@@ -352,19 +343,26 @@ public class Player {
  	     notes.pack();
       }
     //ask if the players want to print their notebook
-	public void checkNotebook(){
+      public int scanCheckNotebook(){
+  		int check;
+  		Scanner sc=new Scanner(System.in);
+  		String checkIndex=sc.nextLine();
+  		try{
+  		    check=Integer.parseInt(checkIndex);
+  			if (check>=1 && check<=2) {
+  				  return check; 
+  			   }
+  			   else return -1;
+  			}
+  		   catch(NumberFormatException nfe) {
+  			  return -1;
+  			  }
+  	}
+      public void checkNotebook(){
 		int check;
 		while(true){
 		      System.out.println("Do you want to check your notebook \n 1) yes; \n 2) no;");
-		      Scanner ck=new Scanner(System.in);
-		      String ckc=ck.nextLine();
-		      try{
-			      check=Integer.parseInt(ckc);
-			   }
-		      catch(NumberFormatException nfe) {
-		    	  System.out.println("please input a number");//if the input is a letter it will go back to require another input
-		    	  continue;
-		      }
+		      check=scanCheckNotebook();
 		      if(check==1){
 		    	  printNotebook();
 		    	  break;
@@ -385,19 +383,26 @@ public class Player {
 		notebook.add("************************************************************");
 	}	
 	//check if they want to print out their cards
+	public int scanCheckCard(){
+		int check;
+		Scanner sc=new Scanner(System.in);
+		String checkIndex=sc.nextLine();
+		try{
+		    check=Integer.parseInt(checkIndex);
+			if (check>=1 && check<=2) {
+				  return check; 
+			   }
+			   else return -1;
+			}
+		   catch(NumberFormatException nfe) {
+			  return -1;
+			  }
+	}
 	public void checkCard(){
 		int check;
 		while(true){
 			System.out.println("Do you want to check your cards \n 1) yes; \n 2) no;");
-			Scanner ck=new Scanner(System.in);
-			String ckc=ck.nextLine();
-			try	{
-				check=Integer.parseInt(ckc);
-				}
-			catch(NumberFormatException nfe) {
-				System.out.println("please input a number");
-				continue;
-			}
+			check=scanCheckCard();
 			if(check==1){
 				printCard();
 				break;
