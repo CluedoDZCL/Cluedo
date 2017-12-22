@@ -104,7 +104,6 @@ public class TestCase {
 	
 	@Test	
 	public void testPlayer(){
-		List<String>accusationWords=new ArrayList<String>();
 		player2= new Player("Player2");
 		cluedo.number=3;
 		CharPawn ssPawn = new CharPawn("Professor Plum", 15);
@@ -136,7 +135,7 @@ public class TestCase {
 	    Assert.assertEquals("Test input suspect",-1,player.scanWeaponAccusation());
 	    
 		player2.processAccusation(cluedo, board, 1, 1);
-		Assert.assertEquals("Test the number of accusationwords",0,accusationWords.size());
+		
 		
 		player.initializeNotebook();
 		player.printNotebook();
