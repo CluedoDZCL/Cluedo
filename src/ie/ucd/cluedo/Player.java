@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * This class represents a player
@@ -330,16 +331,21 @@ public class Player {
     	 JFrame notes=new JFrame("notebook of "+this.getName());
     	 JPanel p0=new JPanel();
     	 p0.setLayout(new BoxLayout(p0, BoxLayout.Y_AXIS));//set the layout of the panel
-    	 //create a new label for every new string and put it in the panel
+    	//create a new label for every new string and put it in the panel
     	 for(int t=0;t<notebook.size();t++){  
     		 JLabel l= new JLabel(notebook.get(t));
+    		
     		 JLabel l1=new JLabel("\n");
     		 l.setHorizontalAlignment(JLabel.CENTER);
     		 l1.setHorizontalAlignment(JLabel.CENTER);
+    		 
+    		 
     		 p0.add(l);
     		 p0.add(l1);
 	       }
-    	 notes.add(p0);//put the panel into the frame
+    	 JScrollPane jsp=new JScrollPane(p0);
+   
+		 notes.add(jsp); 
  	     notes.setSize(1000, 1000);
  	     notes.setVisible(true);
  	     notes.pack();
