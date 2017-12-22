@@ -177,34 +177,44 @@ public class Player {
             //if the player's character pawn is in the room with shortcut, they could choose to move directly through shortcut
 			if (pos==6 || pos==24 || pos==36 || pos==48) {
 				if (scanShortcut()) {
-					if 		(pos==6)	character.setPosition(36);//their position number is the same as the related room number
-					else if (pos==24)	character.setPosition(48);
-					else if (pos==36)	character.setPosition(6);
-					else if (pos==48)	character.setPosition(24);					
+					if 		(pos==6) {
+						character.setPosition(36);//their position number is the same as the related room number
+						break;
+					}
+					else if (pos==24) {
+						character.setPosition(48);
+						break;
+					}
+					else if (pos==36) {
+						character.setPosition(6);
+						break;
+					}
+					else if (pos==48) {
+						character.setPosition(24);		
+						break;
+					}
 				}
 			}
-			else {
-				//returns response: Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay
-				int choice=moveChoice();
+			
+			//returns response: Would you like to, \n 1) move anticlockwise \n 2) move clockwise \n 3) stay
+			int choice=moveChoice();
 
-				//they choose to stay
-				if(choice==3) {
-					break;	
-					}
-				//they chose to move backward
-				else if(choice==1){
-					amount=steps(diceroll);
-					character.setPosition(pos-amount);//they will be moved to the related place
-					break;
-					}
-				//they choose to move forward
-				else if(choice==2){
-					amount=steps(diceroll);
-					character.setPosition(pos+amount);
-					break;
-					}
-				
-			}
+			//they choose to stay
+			if(choice==3) {
+				break;	
+				}
+			//they chose to move backward
+			else if(choice==1){
+				amount=steps(diceroll);
+				character.setPosition(pos-amount);//they will be moved to the related place
+				break;
+				}
+			//they choose to move forward
+			else if(choice==2){
+				amount=steps(diceroll);
+				character.setPosition(pos+amount);
+				break;
+				}
 		}
      }
      
