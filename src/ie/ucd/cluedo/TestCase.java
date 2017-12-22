@@ -141,8 +141,9 @@ public class TestCase {
 	    System.setIn(new ByteArrayInputStream("a".getBytes()));
 	    Assert.assertEquals("Test invalid input suspect",-1,player.scanWeaponAccusation());
 	    
-		player2.processAccusation(accusationWords, cluedo, board, 1, 1);
-	
+		player2.processAccusation(cluedo, board, 1, 1);
+		Assert.assertEquals("Test the number of accusationwords",0,accusationWords.size());
+		
 		player.initializeNotebook();
 		player.printNotebook();
 		player.printCard();
@@ -163,6 +164,54 @@ public class TestCase {
 		Assert.assertFalse("Test valid movement choice",player.scanShortcut());
 		
 		
+	}
+	@Test	
+	public void testHypothesis(){
+		CharPawn sPawn = new CharPawn("Miss Scarlett", 15);
+		CharCard sCard=new CharCard("Miss Scarlett");
+		WeaponPawn rPawn = new WeaponPawn("rope",18);
+		player3= new Player("Player3");
+		cluedo.number=2;
+		cluedo.users.add(player3);
+		cluedo.users.add(player);
+		cluedo.charPawn.add(sPawn);
+		cluedo.weaponPawn.add(rPawn);
+		player3.character=rPawn;
+		player3.character.setPosition(0);
+		cluedo.createCards();
+		// Assert.assertEquals("Test amount cards",21,cluedo.allCard.size());
+		
+		player.playerCards.add(roomCard);
+		player.playerCards.add(sCard);
+		player.playerCards.add(weaponCard);
+		Assert.assertEquals("Test the length of player card",3,player.playerCards.size());
+		hypo.suspect=1;
+		hypo.weaponIndex=1;
+		
+		System.setIn(new ByteArrayInputStream("3".getBytes()));
+	    Assert.assertEquals("Test input suspect",3,hypo.scanSuspect());
+		
+	    System.setIn(new ByteArrayInputStream("8".getBytes()));
+	    Assert.assertEquals("Test input suspect",-1,hypo.scanSuspect());
+	    
+	    System.setIn(new ByteArrayInputStream("6".getBytes()));
+	    Assert.assertEquals("Test input suspect",6,hypo.scanWeapon());
+		
+	    System.setIn(new ByteArrayInputStream("9".getBytes()));
+	    Assert.assertEquals("Test input suspect",-1,hypo.scanWeapon());
+	    
+	    hypo.initialElements(player3, cluedo, board, hypo.suspect, hypo.weaponIndex);
+	    Assert.assertEquals("Test the amount of keyword",3,hypo.keyword.size());
+	    Assert.assertEquals("Test the index of the person who raise hypothesis",1,hypo.x);
+	    Assert.assertEquals("Test the length of cardIndex",3,hypo.cardIndex.length);
+
+		hypo.processHypothesis(player3, cluedo, board);
+		
+		
+		hypo.endHypothesis(player3, cluedo, board);
+		Assert.assertEquals("Test the amount of keyword",0,hypo.keyword.size());
+		Assert.assertEquals("Test the position of the suspect",0,cluedo.charPawn.get(0).getPosition());
+		Assert.assertEquals("Test the position of the weapon",0,cluedo.weaponPawn.get(0).getPosition());
 	}
 	
 	@Test	
