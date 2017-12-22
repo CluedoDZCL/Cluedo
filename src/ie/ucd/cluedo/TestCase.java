@@ -127,13 +127,19 @@ public class TestCase {
 	    Assert.assertEquals("Test input suspect",3,player.scanSuspectAccusation());
 		
 	    System.setIn(new ByteArrayInputStream("8".getBytes()));
-	    Assert.assertEquals("Test input suspect",-1,player.scanSuspectAccusation());
+	    Assert.assertEquals("Test out of bounds input suspect",-1,player.scanSuspectAccusation());
+	    
+	    System.setIn(new ByteArrayInputStream("f".getBytes()));
+	    Assert.assertEquals("Test invalid input suspect",-1,player.scanSuspectAccusation());
 	    
 	    System.setIn(new ByteArrayInputStream("6".getBytes()));
 	    Assert.assertEquals("Test input suspect",6,player.scanWeaponAccusation());
 		
 	    System.setIn(new ByteArrayInputStream("9".getBytes()));
-	    Assert.assertEquals("Test input suspect",-1,player.scanWeaponAccusation());
+	    Assert.assertEquals("Test out bounds input suspect",-1,player.scanWeaponAccusation());
+	    
+	    System.setIn(new ByteArrayInputStream("a".getBytes()));
+	    Assert.assertEquals("Test invalid input suspect",-1,player.scanWeaponAccusation());
 	    
 		player2.processAccusation(accusationWords, cluedo, board, 1, 1);
 	
