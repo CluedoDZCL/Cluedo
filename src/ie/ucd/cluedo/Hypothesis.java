@@ -77,7 +77,7 @@ public class Hypothesis {
 					//if the suspect index is correct
 					if(suspect!=-1){
 						//input the weapon
-						 while(true){
+						while(true){
 					          System.out.println("with what weapon?");
 					          for(int t=0;t<game.weaponPawn.size();t++){
 							  System.out.println((t+1)+"."+game.weaponPawn.get(t).getName());
@@ -86,13 +86,13 @@ public class Hypothesis {
 							  weaponIndex=scanWeapon();
 							//if the weapon index is correct then start process the accusation
 							  if(weaponIndex!=-1){
-								 processHypothesis(X,game, board);
+								 initialElements(X,game,board,suspect, weaponIndex);
 								 break;
 							   }
 							  else{
 								   continue;
 							   }
-					   }
+						 }
 					}
 					//if the suspect is not correct, it will go back to require another input
 					else{
@@ -101,6 +101,7 @@ public class Hypothesis {
 					break;
 	        }      
 	}
+ 
 	 public void processHypothesis(Player X, Game game, Board board){
 		   //start search the related card from the previous player
 		     outerloop:
