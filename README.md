@@ -38,6 +38,8 @@ For accusation, after the three elements are set, the system will confirm with t
 
 Before finishing the hypothesis/accusation, the suspect pawn and weapon pawn are going to be moved to the room where the hypothesis/accusation is raised.
 
+# Testing
+When running Junit answer yes and ok to each window to complete the testing.
 
 
 
