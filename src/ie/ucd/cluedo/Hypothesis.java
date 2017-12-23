@@ -126,7 +126,8 @@ public class Hypothesis {
 	                  }
 	               } 
 	           }
-	         //if the card holder has not been found, then start searching from the end player to the player X+1
+	         
+	 //if the card holder has not been found, then start searching from the end player to the player X+1
 	         if(found==false){
 	            outerloop:
 	            for(int t=game.users.size()-1;t>=x+1;t--){
@@ -152,7 +153,8 @@ public class Hypothesis {
 	                 }
 	              }
 	           }
-	       //if nothing has been found after two round searching, which mean the hypothesis might be correct
+	       
+	         //if nothing has been found after two round searching, which mean the hypothesis might be correct
 	         if(found==false){
 	             X.notebook.add("Nothing has been found !");
 	             JOptionPane.showMessageDialog(null, "Nothing has been found", "", JOptionPane.INFORMATION_MESSAGE);
@@ -174,7 +176,8 @@ public class Hypothesis {
                 	
 					
 		public void initialElements(Player X, Game game, Board board, int suspect, int weaponIndex){
-		  //define the three element in the hypothesis
+		    found=false;
+			//define the three element in the hypothesis
 			keyword.add(game.charPawn.get(suspect-1).getName());
 			keyword.add(game.weaponPawn.get(weaponIndex-1).getName());
 			keyword.add(board.findRoom(X.character.getPosition()));
