@@ -26,7 +26,6 @@ public class Hypothesis {
 	
     public void makeHypothesis(Player X, Game game, Board board){
     		raiseHypothesis(X, game, board);
-    		initialElements(X, game, board,suspect, weaponIndex);
     		processHypothesis(X, game, board);
     		endHypothesis(X, game,board);
     }
@@ -86,7 +85,7 @@ public class Hypothesis {
 							  weaponIndex=scanWeapon();
 							//if the weapon index is correct then start process the accusation
 							  if(weaponIndex!=-1){
-								 initialElements(X,game,board,suspect, weaponIndex);
+								 initialElements(X, game, board,suspect, weaponIndex);
 								 break;
 							   }
 							  else{

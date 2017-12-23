@@ -344,13 +344,13 @@ public class Player {
       }
     //ask if the players want to print their notebook
       public int scanCheckNotebook(){
-  		int check;
+  		int checknotebook;
   		Scanner sc=new Scanner(System.in);
   		String checkIndex=sc.nextLine();
   		try{
-  		    check=Integer.parseInt(checkIndex);
-  			if (check>=1 && check<=2) {
-  				  return check; 
+  		    checknotebook=Integer.parseInt(checkIndex);
+  			if (checknotebook>=1 && checknotebook<=2) {
+  				  return checknotebook; 
   			   }
   			   else return -1;
   			}
