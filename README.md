@@ -12,6 +12,9 @@ Author: Dannie Zhang
 Classes: Hypothesis, Map and player(Accusation methods and Notebook, card methods), Game(create player, select characters before split, findHolders, findRoom)
 TestCase: Above classes
 
+# Design ideals
+The code was written to keep the game and its mechanics relatively simple. The main premise of Cluedo is applying problem solving and deductive reasoning. Keeping the game play one dimensional gives a superior design due to its simplicity. The moving mechanics allows for shift and effective play around the board. Payer details were kept private to optimise game play. 
+
 # Game functionality
 This program is a Cluedo board game. It contains three parts: creating players, making movements, and make hypothesis/accusation.
 
@@ -38,6 +41,8 @@ For accusation, after the three elements are set, the system will confirm with t
 
 Before finishing the hypothesis/accusation, the suspect pawn and weapon pawn are going to be moved to the room where the hypothesis/accusation is raised.
 
+# Testing
+When running Junit answer yes and ok to each window to complete the testing.
 
 
 
